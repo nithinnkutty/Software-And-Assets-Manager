@@ -21,7 +21,10 @@
         .wrapleft {
             text-align: left;
         }
-
+        
+        .lead {
+            margin-top: 10px;
+        }
 
     </style>
 
@@ -31,41 +34,32 @@
         <!--Basic layout 3 columns-->
         <div class="row">
             <div class="col col-lg-2">
-                left column
             </div>
             <div class="col col-lg-8 text-center">
-                <h1 class="display-5">bipsync Property Managing System</h1>
-                <p class="lead">
-                    Your Professional Assets and Warranties Manager...
+                <div style="background-color: #2A2731!important;">
+                    <img class="logo" src="imgs/logo.png">
+                </div>
+                <p class="lead" st>
+                    Software and Asset Management System
                 </p>
                 <hr class="border border-primary border-2 opacity-75">
 
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-asserts-tab" data-bs-toggle="tab" data-bs-target="#nav-asserts" type="button" role="tab" aria-controls="nav-asserts" aria-selected="false">Asserts</button>
-                        <button class="nav-link" id="nav-ordering-tab" data-bs-toggle="tab" data-bs-target="#nav-ordering" type="button" role="tab" aria-controls="nav-ordering" aria-selected="false">Ordering</button>
-                        <button class="nav-link" id="nav-production-tab" data-bs-toggle="tab" data-bs-target="#nav-production" type="button" role="tab" aria-controls="nav-production" aria-selected="false">Production</button>
+                        <button class="nav-link active" id="nav-assets-tab" data-bs-toggle="tab" data-bs-target="#nav-assets" type="button" role="tab" aria-controls="nav-assets" aria-selected="false">Assets</button>
+                        <button class="nav-link" id="nav-assetstatus-tab" data-bs-toggle="tab" data-bs-target="#nav-assetstatus" type="button" role="tab" aria-controls="nav-assetstatus" aria-selected="false">Asset Status</button>
                         <button class="nav-link" id="nav-managing-tab" data-bs-toggle="tab" data-bs-target="#nav-managing" type="button" role="tab" aria-controls="nav-managing" aria-selected="false">Managing</button>
                     </div>
                 </nav>
 
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active w-100" id="nav-asserts" role="tabpanel" aria-labelledby="nav-asserts-tab" tabindex="0">
-
+                    <div class="tab-pane fade show active w-100" id="nav-assets" role="tabpanel" aria-labelledby="nav-assets-tab" tabindex="0">
                     </div>
-                    <div class="tab-pane fade w-100" id="nav-ordering" role="tabpanel" aria-labelledby="nav-asserts-tab" tabindex="0">
-
+                    <div class="tab-pane fade w-100" id="nav-assetstatus" role="tabpanel" aria-labelledby="nav-assets-tab" tabindex="0">
                     </div>
-                    <div class="tab-pane fade w-100" id="nav-production" role="tabpanel" aria-labelledby="nav-production-tab" tabindex="0">
-
-                    </div>
-
                     <div class="tab-pane fade w-100" id="nav-managing" role="tabpanel" aria-labelledby="nav-managing-tab" tabindex="0">
-
-               
                     </div>
             <div class="col col-lg-2">
-                right column
             </div>
         </div>
     </div>
