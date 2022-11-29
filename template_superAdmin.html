@@ -49,7 +49,7 @@
             </div>
             <div class="col col-lg-8 text-center">
                 <div style="background-color: #2A2731!important;">
-                    <img class="logo" src="imgs/logo.png">
+                    <img class="logo" src="/imgs/logo.png">
                 </div>
                 <p class="lead">
                     Your Professional Assets and Warranties Manager...
@@ -70,9 +70,9 @@
                         <button class="nav-link" id="nav-expiring-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-expiring" type="button" role="tab" aria-controls="nav-expiring"
                             aria-selected="false">Expiring Warranties</button>
-<!--                        <button class="nav-link" id="nav-managing-tab" data-bs-toggle="tab"-->
-<!--                            data-bs-target="#nav-managing" type="button" role="tab" aria-controls="nav-managing"-->
-<!--                            aria-selected="false">Manager Login</button>-->
+                        <button class="nav-link" id="nav-manageAdmin-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-manageAdmin" type="button" role="tab" aria-controls="nav-manageAdmin"
+                            aria-selected="false">Manage Admin</button>
                     </div>
                 </nav>
 
@@ -298,11 +298,11 @@
                                             <td>Student Jane</td>
                                             <td>
                                                 <div style="white-space:nowrap">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
                                                             data-bs-target="#edit" style="display: inline-block">
                                                         Edit
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#Edit" style="display: inline-block">
                                                         Delete
                                                     </button>
@@ -318,11 +318,11 @@
                                             <td>Student Lisa</td>
                                             <td>
                                                 <div style="white-space:nowrap">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
                                                             data-bs-target="#edit" style="display: inline-block">
                                                         Edit
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#Edit" style="display: inline-block">
                                                         Delete
                                                     </button>
@@ -338,11 +338,11 @@
                                             <td>Prof Leo</td>
                                             <td>
                                                 <div style="white-space:nowrap">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                            data-bs-target="#edit" style="display: inline-block">
-                                                        Edit
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                  <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                                              data-bs-target="#edit" style="display: inline-block; " >
+                                                      <a href="www.google.com"> Edit  aaaaaaaa</a>
+                                                   </button>
+                                                    <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#Edit" style="display: inline-block">
                                                         Delete
                                                     </button>
@@ -547,34 +547,53 @@
                         </nav>
                     </div>
 
-                    <div class="tab-pane fade w-100" id="nav-managing" role="tabpanel"
-                        aria-labelledby="nav-managing-tab" tabindex="0">
+                    <div class="tab-pane fade w-100" id="nav-manageAdmin" role="tabpanel"
+                        aria-labelledby="nav-manageAdmin-tab" tabindex="0">
                         <div class="col-10">
                             <div class="container">
-                                <form>
-                                    <div id="Help" class="form-text">If you are not admin, please do not try to log in.
-                                    </div>
-                                    <div class="container text-start">
-                                        <div class="row row-col-2">
-                                            <div class="col-2 p-2">
-                                                <label for="UserID" class="form-label">User ID:</label>
-                                            </div>
-                                            <div class="col-10 p-2">
-                                                <input type="email" class="form-control" id="UserID"
-                                                    aria-describedby="emailHelp">
-                                            </div>
-                                            <div class="col-2 p-2">
-                                                <label for="Password1" class="form-label">Password:</label>
-                                            </div>
-                                            <div class="col-10 p-2">
-                                                <input type="password" class="form-control" id="Password1">
-                                            </div>
-                                            <div class="col-4 p-2">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                <br>
+                                <div class="table-responsive w-100 ">
+                                    <table
+                                            class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog modal-dialog-scrollable"
+                                            id="viewresult">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Admin ID</th>
+                                            <th scope="col">Admin Name</th>
+                                            <th scope="col">Department</th>
+                                            <th scope="col">Accessibility</th>
+                                            <th scope="col">Manage</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider ">
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Joseph</td>
+                                            <td>IT</td>
+                                            <td>Super</td>
+                                            <td>Add/Remove</td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Wenqi Chan</td>
+                                            <td>Marketing</td>
+                                            <td>Admin</td>
+                                            <td>Add/Remove</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Vincy</td>
+                                            <td>Finance</td>
+                                            <td>Super</td>
+                                            <td>Add/Remove</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+
                             </div>
                         </div>
                         <div class="col-2">
