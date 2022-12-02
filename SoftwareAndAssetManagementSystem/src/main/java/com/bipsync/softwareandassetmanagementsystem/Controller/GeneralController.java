@@ -15,5 +15,4 @@ public class GeneralController {
         mav.setViewName("homeSuperAdmin");
         return mav;
     }
-
 }
