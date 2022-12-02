@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<head th:replace="Fragments::siteHead">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li class="active"><a href="/Site/AddEmployee">AddEmployee</a></li>
+    <li ><a href="/Site/Sample">Sample</a></li>
+    <li><a href="/Site/EmployeeSearch">SearchEmployee</a></li>
+</ul>
+
+    <main>
+        <table >
+            <tr><td>ID</td><td>Name</td></tr>
+            <tr>
+                <td th:text="${employeeDTO.id}"></td>
+                <td th:text="${employeeDTO.Name}"></td>
+                <td th:text="${employeeDTO.Department}"></td>
+                <td th:text="${employeeDTO.Authority}"></td>
+
+            </tr>
+        </table>
+
+    </main>
+
+
+</body>
+</html>

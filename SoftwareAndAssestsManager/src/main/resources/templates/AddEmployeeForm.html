@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<head th:replace="Fragments::siteHead">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul >
+    <li class="active"><a href="/Site/AddEmployee">AddEmployee</a></li>
+    <li ><a href="/Site/Sample">Sample</a></li>
+    <li><a href="/Site/EmployeeSearch">SearchEmployee</a></li>
+</ul>
+
+    
+    <main>
+        <h2>Add a new Employee</h2>
+        <form id='myForm' action='/Employee/' method = 'post'>
+            <label>Name: <input type="text" name = "Name"></label><br>
+            <label>Department: <input type="text" name = "Department"></label><br>
+            <label>Authority: <input type="text" name = "Authority"></label><br>
+            <button type = "submit"> Submit </button>
+        </form>
+    </main>
+
+</body>
+</html>
