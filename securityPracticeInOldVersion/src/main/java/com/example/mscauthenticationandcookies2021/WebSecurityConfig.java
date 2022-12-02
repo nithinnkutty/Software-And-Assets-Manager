@@ -14,11 +14,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers("/css/**").permitAll()
+                .mvcMatchers("public/login").permitAll()
                 .mvcMatchers("/").permitAll()
-                .mvcMatchers("/public/**").permitAll()
+                .mvcMatchers("/public/**").authenticated()
                 .mvcMatchers("/admin/**").authenticated()
-                .mvcMatchers("/superUser/**").hasRole("SU")
+                .mvcMatchers("/superAdmin/**").hasRole("SA")
                 .anyRequest().denyAll()
                 .and()
                 .formLogin();
@@ -28,9 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("ADMIN");
+                .withUser("generaladmin@admin").password("{noop}password").roles("ADMIN");
         auth
                 .inMemoryAuthentication()
-                .withUser("su").password("{noop}su").roles("SU");
+                .withUser("superadmin@admin").password("{noop}su").roles("SA");
     }
 }
