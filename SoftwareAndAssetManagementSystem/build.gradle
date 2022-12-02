@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.bipsync'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -28,8 +28,6 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-
 	
 }
 

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--This is the Home Page template for SuperAdmin Access-->
+<head th:replace="fragments/Head::siteHead">
+</head>
+<body>
+<header th:replace="fragments/Header::siteHeader">
+</header>
+<nav th:replace="fragments/navBarSuperAdmin::siteNavBarSupAdmin">
+</nav>
+
+    <div class="row">
+        <div class="col col-lg-8 offset-lg-2 text-center">
+            <div class="tab-content" id="nav-tabContent">
+                <!--                All Assets-->
+                <div aria-labelledby="nav-assets-tab" class="tab-pane fade show active w-100" id="nav-assets"
+                     role="tabpanel" tabindex="0">
+                    <br/>
+                    <p style="text-align:left">
+                        <select aria-label=".select status" class="form-select form-select-md mb-3">
+                            <option selected>Sort By...</option>
+                            <option value="1">Asset Type</option>
+                            <option value="2">Staff Name</option>
+                            <option value="3">Department</option>
+                        </select>
+                    </p>
+                    <div class="table-responsive w-100 ">
+                        <table
+                                class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
+                                id="viewresult">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Asset Name</th>
+                                <th scope="col">Asset Type</th>
+                                <th scope="col">Assigned Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Proprietary</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-group-divider ">
+                            <tr>
+                                Need to add Thymeleaf bit here....!!
+                            </tr>
+                            <tr>
+                                Need to add Thymeleaf bit here....!!
+                            </tr>
+                            <tr>
+                                Need to add Thymeleaf bit here....!!
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+
+                    <div class="container">
+                        <div class="row clearfix">
+                            <div class="col-md-6 column">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-start">
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-md-6 column">
+                                <!--add assets button-->
+                                <button class="btn btn-primary" data-bs-target="#addAsset" data-bs-toggle="modal"
+                                        type="button">
+                                    Add Asset
+                                </button>
+                                <div class="modal fade" id="addAsset">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Add Asset</h4>
+                                                <button class="btn-close" data-bs-dismiss="modal"
+                                                        type="button"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="wrapleft ">
+                                                    <div class="row row-col-5">
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="AssetName">Asset Name</label>
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="addAssetName"
+                                                                   placeholder="Default Name"
+                                                                   type="text">
+                                                        </div>
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="Model">Model</label>
+
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="addModel"
+                                                                   placeholder="Default Model"
+                                                                   type="text">
+                                                        </div>
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="addOperatedDate">Operated
+                                                                Date</label>
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="addOperatedDate"
+                                                                   placeholder="Date"
+                                                                   type="date">
+
+                                                        </div>
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="Operation">Operation</label>
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="addOperation"
+                                                                   placeholder="Operation"
+                                                                   type="text">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-success" data-bs-dismiss="modal" type="button">
+                                                    submit
+                                                </button>
+                                                <button class="btn btn-danger" data-bs-dismiss="modal" type="button">
+                                                    Cancel
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                Asset Search-->
+                <div aria-labelledby="nav-assetSearch-tab" class="tab-pane fade w-100" id="nav-assetSearch"
+                     role="tabpanel" tabindex="0">
+                    <br/>
+                    <p style="text-align:left">
+
+                    </p>
+                    <div class="container">
+
+                        <div class="wrapleft ">
+                            <div class="row row-col-5">
+                                <div class="col-4 p-2">
+                                    <label class="form-label" for="AssetName">Asset Name</label>
+                                </div>
+                                <div class="col-8 p-2">
+                                    <input class="form-control" id="AssetName" placeholder="Default Name"
+                                           type="text">
+                                </div>
+                                <div class="col-4 p-2">
+                                    <label class="form-label" for="Model">Model</label>
+                                </div>
+                                <div class="col-8 p-2">
+                                    <input class="form-control" id="Model" placeholder="Default Model" type="text">
+                                </div>
+                                <div class="col-4 p-2">
+                                    <label class="form-label" for="OperatedDate">Operated Date</label>
+                                </div>
+                                <div class="col-8 p-2">
+                                    <input class="form-control" id="OperatedDate" placeholder="Date" type="date">
+
+                                </div>
+                                <div class="col-4 p-2">
+                                    <label class="form-label" for="Operation">Operation</label>
+                                </div>
+                                <div class="col-8 p-2">
+                                    <input class="form-control" id="Operation" placeholder="Operation" type="text">
+                                </div>
+                                <div class="col-12 p-2" style="text-align: center">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div aria-labelledby="nav-assets-tab" class="tab-pane fade show active w-100" id="nav-assets"
+                         role="tabpanel" tabindex="0">
+                        <br/>
+                        <p style="text-align:left">
+                        </p>
+                        <div class="table-responsive w-100 ">
+
+                            <!--modal-dialog will makes buttons losing its function!!-->
+                            <table
+                                    class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
+                                    id="viewresult">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Asset Name</th>
+                                    <th scope="col">Asset Type</th>
+                                    <th scope="col">Assigned Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Proprietary</th>
+
+                                </tr>
+                                </thead>
+                                <tbody class="table-group-divider ">
+                                <tr>
+                                    <th scope="row">1</th>
+                                    data to bee added from database
+                                    <td>
+                                        <div style="white-space:nowrap">
+                                            <button class="btn btn-primary" data-bs-target="#edit"
+                                                    data-bs-toggle="modal"
+                                                    style="display: inline-block" type="submit">
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-danger" data-bs-target="#Edit" data-bs-toggle="modal"
+                                                    style="display: inline-block" type="submit">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!--                Asset Status -->
+                <div aria-labelledby="nav-assetStatus-tab" class="tab-pane fade w-100" id="nav-assetStatus"
+                     role="tabpanel" tabindex="0">
+                    <br/>
+                    <div class="col-2">
+                        <p style="text-align:left">
+                            <select aria-label=".select status" class="form-select form-select-md mb-3">
+                                <option selected>Sort By...</option>
+                                <option value="1">Update Required</option>
+                                <option value="2">Damaged</option>
+                                <option value="3">Return</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-10">
+
+                                <div class="table-wrapheight">
+                                    <div class="table-responsive-sm w-100 ">
+                                        <table
+                                                class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
+                                                id="viewresult">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Asset Name</th>
+                                                <th scope="col">Asset Type</th>
+                                                <th scope="col">Assigned Date</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Proprietary</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider ">
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                data to be added from db
+                                                <td>
+                                                    <div style="white-space:nowrap">
+                                                        <button class="btn btn-primary" data-bs-target="#edit"
+                                                                data-bs-toggle="modal"
+                                                                style="display: inline-block" type="button">
+                                                            Change Status
+                                                        </button>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-start">
+                                        <li class="page-item disabled">
+                                            <a class="page-link">Previous</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                Asset Expiring-->
+                <div aria-labelledby="nav-expiring-tab" class="tab-pane fade w-100" id="nav-expiring"
+                     role="tabpanel" tabindex="0">
+                    <br/>
+                    <p style="text-align:left">
+
+                    </p>
+                    <div class="table-responsive w-100 ">
+                        <table
+                                class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
+                                id="viewresult">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Asset Name</th>
+                                <th scope="col">Asset Type</th>
+                                <th scope="col">Assigned Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Due Date</th>
+
+                            </tr>
+                            </thead>
+                            <tbody class="table-group-divider ">
+                            <tr>
+                                <th scope="row">1</th>
+                                Data to be Added from DB
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-start">
+                            <li class="page-item disabled">
+                                <a class="page-link">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!--                Manage Admin-->
+                <div aria-labelledby="nav-manageAdmin-tab" class="tab-pane fade w-100" id="nav-manageAdmin"
+                     role="tabpanel" tabindex="0">
+                    <div class="container">
+                        <div class="row">
+                            <div style="text-align: center">
+
+                                <br>
+                                <br>
+                                <div class="wrapleft">
+                                    <div class="row row-col-5">
+                                        <div class="col-4 p-2">
+                                            <label for="AdminName" class="form-label">Admin Name</label>
+                                        </div>
+                                        <div class="col-8 p-2">
+                                            <input type="text" class="form-control" id="AdminName"
+                                                   placeholder="Default Name">
+                                        </div>
+                                        <div class="col-4 p-2">
+                                            <label for="Department" class="form-label">Department</label>
+
+                                        </div>
+                                        <div class="col-8 p-2">
+                                            <input type="text" class="form-control" id="Department"
+                                                   placeholder="Default Department">
+                                        </div>
+                                        <div class="col-4 p-2">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive w-100 ">
+                                <table
+                                        class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
+                                        id="viewresult">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Admin ID</th>
+                                        <th scope="col">Admin Name</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Accessibility</th>
+                                        <th scope="col">Manage</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider ">
+                                    <tr>
+
+                                    </tr>
+                                    <tr>
+
+                                    </tr>
+                                    <tr>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <br>
+                            <!--Paged navigation bar and button to add admins-->
+                            <div class="container">
+                                <div class="row clearfix">
+                                    <div class="col-md-6 column">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination justify-content-start">
+                                                <li class="page-item disabled">
+                                                    <a class="page-link">Previous</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                    <div class="col-md-6 column">
+                                        <!--add assets button-->
+                                        <button class="btn btn-primary" data-bs-target="#addAdmin"
+                                                data-bs-toggle="modal"
+                                                type="button">
+                                            Add Admin
+                                        </button>
+                                        <div class="modal fade" id="addAdmin">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+
+
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Add Admin</h4>
+                                                        <button class="btn-close" data-bs-dismiss="modal"
+                                                                type="button"></button>
+                                                    </div>
+
+
+                                                    <div class="modal-body">
+                                                        <div class="wrapleft ">
+                                                            <div class="row row-col-5">
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="addAdminName">Admin
+                                                                        Name</label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="addAdminName"
+                                                                           placeholder="required"
+                                                                           type="text">
+                                                                </div>
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="addDepartment">Department</label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="addDepartment"
+                                                                           placeholder="Default Department"
+                                                                           type="text">
+                                                                </div>
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="addAccessibility">Accessibility </label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="addAccessibility"
+                                                                           placeholder="Default Department"
+                                                                           type="text">
+                                                                </div>
+
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label"
+                                                                           for="addPassword">Password </label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="addPassword"
+                                                                           placeholder="required"
+                                                                           type="text">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-success" data-bs-dismiss="modal"
+                                                                type="button">
+                                                            submit
+                                                        </button>
+                                                        <button class="btn btn-danger" data-bs-dismiss="modal"
+                                                                type="button">
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Edit admin/delete-->
+                                        <!--Here the implementation is different from the search tag-->
+                                        <button class="btn btn-danger" data-bs-target="#editAdmin"
+                                                data-bs-toggle="modal"
+                                                type="button">
+                                            Edit Admin
+                                        </button>
+                                        <div class="modal fade" id="editAdmin">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+
+
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Admin</h4>
+                                                        <button class="btn-close" data-bs-dismiss="modal"
+                                                                type="button"></button>
+                                                    </div>
+
+
+                                                    <div class="modal-body">
+                                                        <div class="wrapleft ">
+                                                            <div class="row row-col-5">
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="adminId">Admin
+                                                                        ID</label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="adminId"
+                                                                           placeholder="required"
+                                                                           type="text">
+                                                                </div>
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="editAdminName">Admin
+                                                                        Name</label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="editAdminName"
+                                                                           placeholder="Name"
+                                                                           type="text">
+                                                                </div>
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="editDepartment">Department</label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="editDepartment"
+                                                                           placeholder="Default Department"
+                                                                           type="text">
+                                                                </div>
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="editAccessibility">Accessibility </label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="editAccessibility"
+                                                                           placeholder="Default Department"
+                                                                           type="text">
+                                                                </div>
+
+                                                                <div class="col-4 p-2">
+                                                                    <label class="form-label" for="editPassword">Password </label>
+                                                                </div>
+                                                                <div class="col-8 p-2">
+                                                                    <input class="form-control" id="editPassword"
+                                                                           placeholder="required"
+                                                                           type="text">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-danger" data-bs-dismiss="modal"
+                                                                type="button">
+                                                            DELETE!
+                                                        </button>
+                                                        <button class="btn btn-success" data-bs-dismiss="modal"
+                                                                type="button">
+                                                            submit
+                                                        </button>
+                                                        <button class="btn btn-ready" data-bs-dismiss="modal"
+                                                                type="button">
+                                                            Cancel
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                        </div>
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
