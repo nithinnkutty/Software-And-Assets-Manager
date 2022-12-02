@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Software and Assets Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .tab-content {
+            height: 100%;
+        }
+
+        .tab-pane {
+            height: 100%;
+        }
+
+        .table-wrapheight {
+            max-height: 45%;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .wrapleft {
+            text-align: left;
+        }
+
+        .logo {
+            width: 250px;
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .lead {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!--Basic layout 3 columns-->
+        <div class="row">
+            <div class="col col-lg-2" id="left-column">
+            </div>
+            <div class="col col-lg-8 text-center">
+                <div style="background-color: #2A2731!important;">
+                    <img class="logo" src="imgs/logo.png">
+                </div>
+                <p class="lead">
+                    Your Professional Assets and Warranties Manager...
+                </p>
+                <p class="border border-2 opacity-75" style="border-color: #05ED99!important;">
+
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-assets-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-assets" type="button" role="tab" aria-controls="nav-assets"
+                            aria-selected="false">Assets</button>
+                        <button class="nav-link" id="nav-assetSearch-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-assetSearch" type="button" role="tab" aria-controls="nav-assetSearch"
+                            aria-selected="false">Asset Search</button>
+                        <button class="nav-link" id="nav-assetStatus-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-assetStatus" type="button" role="tab" aria-controls="nav-assetStatus"
+                            aria-selected="false">Asset Status</button>
+                        <button class="nav-link" id="nav-expiring-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-expiring" type="button" role="tab" aria-controls="nav-expiring"
+                            aria-selected="false">Expiring Warranties</button>
+                        <button class="nav-link" id="nav-managing-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-managing" type="button" role="tab" aria-controls="nav-managing"
+                            aria-selected="false">Manager Login</button>
+                    </div>
+                </nav>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active w-100" id="nav-assets" role="tabpanel"
+                        aria-labelledby="nav-assets-tab" tabindex="0">
+                        <br />
+                        <p style="text-align:left">
+                            <select class="form-select form-select-md mb-3" aria-label=".select status">
+                                <option selected>Sort By...</option>
+                                <option value="1">Asset Type</option>
+                                <option value="2">Staff Name</option>
+                                <option value="3">Department</option>
+                            </select>
+                        </p>
+                        <div class="table-responsive w-100 ">
+                            <table
+                                class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog modal-dialog-scrollable"
+                                id="viewresult">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Asset Name</th>
+                                        <th scope="col">Model</th>
+                                        <th scope="col">In-Stock Date</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Proprietary</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider ">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>iPhone</td>
+                                        <td>iPhone 14 Pro Max</td>
+                                        <td>22/11/2022</td>
+                                        <td>damaged</td>
+                                        <td>Student Jane</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>iPhone</td>
+                                        <td>iPhone 14</td>
+                                        <td>22/11/2022</td>
+                                        <td>fixed</td>
+                                        <td>Student Lisa</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>iPad</td>
+                                        <td>iPad 2019</td>
+                                        <td>22/11/2022</td>
+                                        <td>fixed</td>
+                                        <td>Prof Leo</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="tab-pane fade w-100" id="nav-assetSearch" role="tabpanel"
+                        aria-labelledby="nav-assets-tab" tabindex="0">
+                        <br />
+                        <p style="text-align:left">
+
+                        </p>
+                        <div class="container">
+
+                            <div class="wrapleft ">
+                                <div class="row row-col-5">
+                                    <div class="col-4 p-2">
+                                        <label for="AssetName" class="form-label">Asset Name</label>
+                                    </div>
+                                    <div class="col-8 p-2">
+                                        <input type="text" class="form-control" id="AssetName"
+                                            placeholder="Default Name">
+                                    </div>
+                                    <div class="col-4 p-2">
+                                        <label for="Model" class="form-label">Model</label>
+
+                                    </div>
+                                    <div class="col-8 p-2">
+                                        <input type="text" class="form-control" id="Model" placeholder="Default Model">
+                                    </div>
+                                    <div class="col-4 p-2">
+                                        <label for="OperatedDate" class="form-label">Operated Date</label>
+                                    </div>
+                                    <div class="col-8 p-2">
+                                        <input type="date" class="form-control" id="OperatedDate" placeholder="Date">
+
+                                    </div>
+                                    <div class="col-4 p-2">
+                                        <label for="Operation" class="form-label">Operation</label>
+                                    </div>
+                                    <div class="col-8 p-2">
+                                        <input type="text" class="form-control" id="Operation" placeholder="Operation">
+                                    </div>
+                                    <div class="col-4 p-2">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active w-100" id="nav-assets" role="tabpanel"
+                            aria-labelledby="nav-assets-tab" tabindex="0">
+                            <br />
+                            <p style="text-align:left">
+                            </p>
+                            <div class="table-responsive w-100 ">
+                                <table
+                                    class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog modal-dialog-scrollable"
+                                    id="viewresult">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Asset Name</th>
+                                            <th scope="col">Model</th>
+                                            <th scope="col">In-Stock Date</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Proprietary</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider ">
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>iPhone</td>
+                                            <td>iPhone 14 Pro Max</td>
+                                            <td>22/11/2022</td>
+                                            <td>damaged</td>
+                                            <td>Student Jane</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>iPhone</td>
+                                            <td>iPhone 14</td>
+                                            <td>22/11/2022</td>
+                                            <td>fixed</td>
+                                            <td>Student Lisa</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>iPad</td>
+                                            <td>iPad 2019</td>
+                                            <td>22/11/2022</td>
+                                            <td>fixed</td>
+                                            <td>Prof Leo</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item disabled">
+                                        <a class="page-link">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade w-100" id="nav-assetStatus" role="tabpanel"
+                        aria-labelledby="nav-assetStatus-tab" tabindex="0">
+                        <br />
+                        <p style="text-align:left">
+
+                        </p>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-10">
+
+                                    <div class="table-wrapheight">
+                                        <div class="table-responsive-sm w-100 ">
+                                            <table
+                                                class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog modal-dialog-scrollable"
+                                                id="viewresult">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Asset Name</th>
+                                                        <th scope="col">Model</th>
+                                                        <th scope="col">In-Stock Date</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Proprietary</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider ">
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>iPhone</td>
+                                                        <td>iPhone 14 Pro Max</td>
+                                                        <td>22/11/2022</td>
+                                                        <td>damaged</td>
+                                                        <td>Student Jane</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>iPhone</td>
+                                                        <td>iPhone 14</td>
+                                                        <td>22/11/2022</td>
+                                                        <td>fixed</td>
+                                                        <td>Student Lisa</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">3</th>
+                                                        <td>iPad</td>
+                                                        <td>iPad 2019</td>
+                                                        <td>22/11/2022</td>
+                                                        <td>fixed</td>
+                                                        <td>Prof Leo</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-start">
+                                            <li class="page-item disabled">
+                                                <a class="page-link">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+
+                                </div>
+                                <div class="col-2">
+                                    <p> Repairing status Check.</p>
+                                    <select class="form-select form-select-md mb-3" aria-label=".select status">
+                                        <option selected>select...</option>
+                                        <option value="1">damaged</option>
+                                        <option value="2">fixed</option>
+                                        <option value="3">failed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane fade w-100" id="nav-expiring" role="tabpanel"
+                        aria-labelledby="nav-expiring-tab" tabindex="0">
+                        <br />
+                        <p style="text-align:left">
+
+                        </p>
+                        <div class="table-responsive w-100 ">
+                            <table
+                                class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog modal-dialog-scrollable"
+                                id="viewresult">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Asset Name</th>
+                                        <th scope="col">Model</th>
+                                        <th scope="col">In-Stock Date</th>
+                                        <th scope="col">Proprietary</th>
+                                        <th scope="col">Expiring</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider ">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>iPhone</td>
+                                        <td>iPhone 14 Pro Max</td>
+                                        <td>22/11/2022</td>
+                                        <td>Student Jane</td>
+                                        <td style="color:red">3 Days</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>iPhone</td>
+                                        <td>iPhone 14</td>
+                                        <td>22/11/2022</td>
+                                        <td>Student Lisa</td>
+                                        <td style="color:red">1 Week, 5 Days</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>iPad</td>
+                                        <td>iPad 2019</td>
+                                        <td>22/11/2022</td>
+                                        <td>Prof Leo</td>
+                                        <td style="color:red">1 Month</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="tab-pane fade w-100" id="nav-managing" role="tabpanel"
+                        aria-labelledby="nav-managing-tab" tabindex="0">
+                        <div class="col-10">
+                            <div class="container">
+                                <form>
+                                    <div id="Help" class="form-text">If you are not admin, please do not try to log in.
+                                    </div>
+                                    <div class="container text-start">
+                                        <div class="row row-col-2">
+                                            <div class="col-2 p-2">
+                                                <label for="UserID" class="form-label">User ID:</label>
+                                            </div>
+                                            <div class="col-10 p-2">
+                                                <input type="email" class="form-control" id="UserID"
+                                                    aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="col-2 p-2">
+                                                <label for="Password1" class="form-label">Password:</label>
+                                            </div>
+                                            <div class="col-10 p-2">
+                                                <input type="password" class="form-control" id="Password1">
+                                            </div>
+                                            <div class="col-4 p-2">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-lg-2">
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
