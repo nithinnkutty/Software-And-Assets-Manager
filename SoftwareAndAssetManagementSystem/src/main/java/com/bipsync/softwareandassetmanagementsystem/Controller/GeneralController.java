@@ -9,10 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GeneralController {
 
-    @RequestMapping(path="/Home")
+    @RequestMapping(path="/homeSuperAdmin")
     public ModelAndView homePage(){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("home");
+        mav.setViewName("homeSuperAdmin");
         return mav;
     }
 
