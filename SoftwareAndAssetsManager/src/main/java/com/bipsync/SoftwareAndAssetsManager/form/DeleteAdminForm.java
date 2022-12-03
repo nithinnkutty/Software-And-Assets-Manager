@@ -1,16 +1,20 @@
-package com.Bipsync.SoftwareAndAssetsManager.form;
+package com.bipsync.SoftwareAndAssetsManager.form;
 
-public class AddEmployeeForm {
-    //getter/setter/model for adding function.
+public class DeleteAdminForm {
+
     private String Name;
     private String Department;
     private String Authority;
 
+    private int ID;
+    private String Password;
 
-    public AddEmployeeForm(String name, String department, String authority) {
+    public DeleteAdminForm(String name, String department, String authority, int ID, String password) {
         Name = name;
         Department = department;
         Authority = authority;
+        this.ID = ID;
+        Password = password;
     }
 
     public String getName() {
@@ -35,5 +39,21 @@ public class AddEmployeeForm {
 
     public void setAuthority(String authority) {
         Authority = authority;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 }

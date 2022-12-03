@@ -17,16 +17,6 @@ public class GeneralController {
 
 //Do not use it when the setviewname is not underlined!!!!!!
 
-    /*
-        Navigating to Search
-         */
-    @RequestMapping(path="/Site/EmployeeSearch", method = RequestMethod.GET)
-    public ModelAndView studentSearch(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("EmployeeSearchForm");
-        return mav;
-    }
-
 //    /*
 //        Navigating to Add Admin
 //         */
@@ -40,7 +30,7 @@ public class GeneralController {
     /*
        Assign this address to Sample page
         */
-    @RequestMapping(path="/Site/Sample", method = RequestMethod.GET)
+    @RequestMapping(path="/Sample", method = RequestMethod.GET)
     public ModelAndView SampleFunction(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Sample");

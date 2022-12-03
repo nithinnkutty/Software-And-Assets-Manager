@@ -1,29 +1,17 @@
-package com.Bipsync.SoftwareAndAssetsManager.DTO;
+package com.bipsync.SoftwareAndAssetsManager.form;
 
-public class EmployeeDTO {
-    //In this class, one line == one column in db table
-    //Provided with corresponding getters and setters
-    private int id;
+public class AddAdminForm {
+    //getter/setter/model for adding function.
     private String Name;
-
     private String Department;
-
     private String Authority;
+    private String Password;
 
-
-    public EmployeeDTO(int id, String name, String department, String authority) {
-        this.id = id;
+    public AddAdminForm(String name, String department, String authority, String password) {
         Name = name;
         Department = department;
         Authority = authority;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        Password = password;
     }
 
     public String getName() {
@@ -49,5 +37,12 @@ public class EmployeeDTO {
     public void setAuthority(String authority) {
         Authority = authority;
     }
-}
 
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
+    }
+}
