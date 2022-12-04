@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GeneralController {
-/**
+    /**
      * This is controller for all the pages
      */
     /*
@@ -20,8 +20,15 @@ public class GeneralController {
     /*
         Navigating to Search
          */
-    @RequestMapping(path="/Site/EmployeeSearch", method = RequestMethod.GET)
-    public ModelAndView studentSearch(){
+    @RequestMapping(path = "/homeSuperAdmin")
+    public ModelAndView homePage() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("allAssetsSupAdmin");
+        return mav;
+    }
+
+    @RequestMapping(path = "/Site/EmployeeSearch", method = RequestMethod.GET)
+    public ModelAndView studentSearch() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("EmployeeSearchForm");
         return mav;
@@ -40,8 +47,8 @@ public class GeneralController {
     /*
        Assign this address to Sample page
         */
-    @RequestMapping(path="/Site/Sample", method = RequestMethod.GET)
-    public ModelAndView SampleFunction(){
+    @RequestMapping(path = "/Site/Sample", method = RequestMethod.GET)
+    public ModelAndView SampleFunction() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Sample");
         return mav;
