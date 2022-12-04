@@ -59,5 +59,19 @@ public class GeneralController {
         mav.setViewName("AssetSearch_SA");
         return mav;
     }
+    @RequestMapping(path="/assetStatusSupAdmin")
+    public ModelAndView assetStatusTab() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.setViewName("AssetStatus_SA");
+        return mav;
+    }
+    @RequestMapping(path="/assetsExpiringSupAdmin")
+    public ModelAndView assetsExpiringTab() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.setViewName("AssetsExpiring_SA");
+        return mav;
+    }
 
 }
