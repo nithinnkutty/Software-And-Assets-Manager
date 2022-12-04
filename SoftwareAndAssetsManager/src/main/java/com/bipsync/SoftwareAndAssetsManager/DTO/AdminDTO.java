@@ -10,12 +10,15 @@ public class AdminDTO {
 
     private String Authority;
 
+    private String Username;
 
-    public AdminDTO(int id, String name, String department, String authority) {
+
+    public AdminDTO(int id, String name, String department, String authority, String username) {
         this.id = id;
         Name = name;
         Department = department;
         Authority = authority;
+        Username = username;
     }
 
     public int getId() {
@@ -48,6 +51,14 @@ public class AdminDTO {
 
     public void setAuthority(String authority) {
         Authority = authority;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
     }
 }
 

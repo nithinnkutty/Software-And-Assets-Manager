@@ -33,14 +33,14 @@ public class AdminController {
     public ModelAndView search() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("adminAttribute",adminRepo.findAllAdmin());
-        mav.setViewName("Sample");
+        mav.setViewName("ManageAdmin_SA");
         return mav;
     }
 
 
 
     //Here handles the data from the HTML page
-    @RequestMapping(path="/Sample", method = RequestMethod.POST)
+    @RequestMapping(path="/AddAdmin", method = RequestMethod.POST)
     public ModelAndView AddAdmin(AddAdminForm addAdminForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
         //if add error the lead the user back to the home page
@@ -52,7 +52,7 @@ public class AdminController {
                 System.out.println("added admin");
                 mav.addObject("adminAttribute", adminRepo.findAllAdmin());
                 //here, successfully added
-                mav.setViewName("Sample");
+                mav.setViewName("ManageAdmin_SA");
             }else{
                 mav.setViewName("Main");
                 //add is a boolean function, boolean rows>0 is false. this is in repository.
@@ -75,9 +75,9 @@ public class AdminController {
                 System.out.println("Edited Admin");
                 mav.addObject("adminAttribute", adminRepo.findAllAdmin());
 
-                mav.setViewName("Sample");
+                mav.setViewName("ManageAdmin_SA");
             }else{
-                mav.setViewName("Sample");
+                mav.setViewName("ManageAdmin_SA");
             }
         }
         return mav;
@@ -85,21 +85,16 @@ public class AdminController {
 
     @RequestMapping(path="/DeleteAdmin", method = RequestMethod.POST)
     public ModelAndView DeleteAdmin(DeleteAdminForm deleteAdminForm, BindingResult br) {
-        System.out.println("in EditAdmin of Controller");
         ModelAndView mav = new ModelAndView();
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
-            mav.setViewName("Main");
-            System.out.println("Controller err");
+            mav.setViewName("ManageAdmin_SA");
         } else {
             if (adminRepo.DeleteAdmin(deleteAdminForm)) {
-                System.out.println("Deleted employee");
-                mav.addObject("adminAttribute", adminRepo.findAllAdmin());
-
-                mav.setViewName("Sample");
+                mav.addObject("adminAttribute",adminRepo.findAllAdmin());
+                mav.setViewName("ManageAdmin_SA");
             }else{
-                System.out.println("Controller else");
-                mav.setViewName("Sample");
+                mav.setViewName("ManageAdmin_SA");
             }
         }
         return mav;

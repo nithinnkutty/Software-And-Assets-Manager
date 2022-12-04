@@ -8,12 +8,15 @@ public class EditAdminForm {
     private int ID;
     private String Password;
 
-    public EditAdminForm(String name, String department, String authority, int ID, String password) {
+    private  String Username;
+
+    public EditAdminForm(String name, String department, String authority, int ID, String password, String username) {
         Name = name;
         Department = department;
         Authority = authority;
         this.ID = ID;
         Password = password;
+        Username = username;
     }
 
     public String getName() {
@@ -54,5 +57,13 @@ public class EditAdminForm {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
     }
 }

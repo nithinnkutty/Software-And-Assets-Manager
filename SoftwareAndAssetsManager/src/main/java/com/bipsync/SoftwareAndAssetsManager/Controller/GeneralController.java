@@ -1,5 +1,7 @@
 package com.bipsync.SoftwareAndAssetsManager.Controller;
 
+import com.bipsync.SoftwareAndAssetsManager.repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,6 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GeneralController {
+    private AdminRepository adminRepo;
+
+    @Autowired
+    public GeneralController(AdminRepository pRepo) {
+        adminRepo = pRepo;
+    }
 /**
      * This is controller for all the pages
      */
@@ -30,10 +38,11 @@ public class GeneralController {
     /*
        Assign this address to Sample page
         */
-    @RequestMapping(path="/Sample", method = RequestMethod.GET)
-    public ModelAndView SampleFunction(){
+    @RequestMapping(path="/ManageAdmin_SA", method = RequestMethod.GET)
+    public ModelAndView ManageAdmin_SA(){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("Sample");
+        mav.addObject("adminAttribute",adminRepo.findAllAdmin());
+        mav.setViewName("ManageAdmin_SA");
         return mav;
     }
 

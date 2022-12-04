@@ -30,18 +30,22 @@ public class AdminRepositoryJDBC implements AdminRepository {
 
     @Override
     public List<AdminDTO> findAllAdmin() {
+        System.out.println("Doing");
         return jdbcTemplate.query(
-                "select ID,Name,Department,Authority from admin" ,
+                "select ID,Name,Department,Authority,username from admin" ,
                 new AdminMapper());
     }
 
     public boolean AddAdmin(AddAdminForm addAdminForm) {
+        System.out.println("ID:" + addAdminForm.getUsername());
         int rows = jdbcTemplate.update(
-                "insert into admin (Name,Department,Authority) values(?,?,?)" ,
-                new Object[]{addAdminForm.getName(), addAdminForm.getDepartment(), addAdminForm.getAuthority()});
+                "insert into admin (username,Name,Department,Authority) values(?,?,?,?)" ,
+                new Object[]{addAdminForm.getUsername(),addAdminForm.getName(), addAdminForm.getDepartment(), addAdminForm.getAuthority()});
         int license = jdbcTemplate.update(
-                "insert into login (password) values(?)" ,
-                new Object[]{addAdminForm.getPassword()});
+                "insert into login (ID,password) values(?,?)" ,
+                new Object[]{addAdminForm.getUsername(), addAdminForm.getPassword()});
+        System.out.println(rows);
+        System.out.println(license);
         return (rows>0 && license>0);
     }
 
@@ -50,7 +54,7 @@ public class AdminRepositoryJDBC implements AdminRepository {
         int rows = jdbcTemplate.update("update admin set Name = ? , Department = ?, Authority = ? where id = ?",
                 editAdminForm.getName(),editAdminForm.getDepartment(),editAdminForm.getAuthority(),editAdminForm.getID());
         int license = jdbcTemplate.update(
-                "update login set password = ? where ID = ?" ,editAdminForm.getPassword(),editAdminForm.getID());
+                "update login set Username=? and password = ? where ID = ?" ,editAdminForm.getUsername(), editAdminForm.getPassword(),editAdminForm.getID());
                return(rows>0 && license>0);
     }
 

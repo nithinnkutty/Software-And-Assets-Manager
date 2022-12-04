@@ -15,6 +15,7 @@ public class AdminMapper implements RowMapper {
         return new AdminDTO(rs.getInt("ID"),
                 rs.getString("Name"),
                 rs.getString("Department"),
-                rs.getString("Authority"));
+                rs.getString("Authority"),
+                rs.getString("Username"));
     }
 }
