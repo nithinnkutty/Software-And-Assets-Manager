@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--fragments for inactive tabs-->
+    <button th:fragment="navBar_AllAssets" aria-controls="nav-assets" aria-selected="false"
+            class="nav-link"
+            data-bs-target="#nav-assets" data-bs-toggle="tab" id="nav-assets-tab" role="tab"
+            type="button" onclick="getAllAssetsTab()">Assets
+    </button>
+    <button th:fragment="navBar_AssetSearch" aria-controls="nav-assetSearch" aria-selected="false"
+            class="nav-link"
+            data-bs-target="#nav-assetSearch" data-bs-toggle="tab" id="nav-assetSearch-tab" role="tab"
+            type="button" onclick="getAssetSearchTab()">Asset Search
+    </button>
+    <button th:fragment="navBar_AssetStatus" aria-controls="nav-assetStatus" aria-selected="false"
+            class="nav-link"
+            data-bs-target="#nav-assetStatus" data-bs-toggle="tab" id="nav-assetStatus-tab" role="tab"
+            type="button" onclick="getAssetStatusTab()">Asset Status
+    </button>
+    <button th:fragment="navBar_AssetsExpiring" aria-controls="nav-expiring" aria-selected="false"
+            class="nav-link"
+            data-bs-target="#nav-expiring" data-bs-toggle="tab" id="nav-expiring-tab" role="tab"
+            type="button" onclick="getAssetsExpiringTab()">Expiring Warranties
+    </button>
+    <button th:fragment="navBar_ManageAdmin" aria-controls="nav-manageAdmin" aria-selected="false"
+            class="nav-link"
+            data-bs-target="#nav-manageAdmin" data-bs-toggle="tab" id="nav-manageAdmin-tab" role="tab"
+            type="button" onclick="getManageAdminTab()">Manage Admin
+    </button>
+
+</body>
+</html>

@@ -5,12 +5,8 @@ public class EmployeeDTO {
     //Provided with corresponding getters and setters
     private int id;
     private String Name;
-
     private String Department;
-
     private String Authority;
-
-
     public EmployeeDTO(int id, String name, String department, String authority) {
         this.id = id;
         Name = name;
