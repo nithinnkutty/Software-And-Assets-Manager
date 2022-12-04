@@ -1,5 +1,7 @@
 package com.bipsync.SoftwareAndAssetsManager.Controller;
 
+import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
+import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,6 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GeneralController {
+    private EmployeeRepository employeeRepo;
+    private AssetsRepository assetsRepository;
+
     /**
      * This is controller for all the pages
      */
@@ -51,6 +56,14 @@ public class GeneralController {
     public ModelAndView SampleFunction() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Sample");
+        return mav;
+    }
+
+    @RequestMapping(path="/manageAdminSupAdmin")
+    public ModelAndView manageAdminTab() {
+        ModelAndView mav = new ModelAndView();
+//        mav.addObject("employees",employeeRepo.findAllEmployee());
+        mav.setViewName("login");
         return mav;
     }
 

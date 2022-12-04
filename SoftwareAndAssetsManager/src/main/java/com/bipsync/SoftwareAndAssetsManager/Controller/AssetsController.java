@@ -19,7 +19,7 @@ public class AssetsController {
     public ModelAndView homePageSupAdmin() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("assets",assetsRepository.getAllAssets());
-        mav.setViewName("allAssetsSupAdmin");
+        mav.setViewName("homeSuperAdmin");
         return mav;
     }
 
