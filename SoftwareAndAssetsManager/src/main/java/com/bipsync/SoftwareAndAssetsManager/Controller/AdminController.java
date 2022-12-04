@@ -46,14 +46,16 @@ public class AdminController {
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
             mav.setViewName("Main");
+            //this line means sql error, cannot find data as expected//sql result is not bound.
         } else {
             if (adminRepo.AddAdmin(addAdminForm)) {
                 System.out.println("added admin");
                 mav.addObject("adminAttribute", adminRepo.findAllAdmin());
-
+                //here, successfully added
                 mav.setViewName("Sample");
             }else{
                 mav.setViewName("Main");
+                //add is a boolean function, boolean rows>0 is false. this is in repository.
             }
         }
         return mav;
