@@ -229,19 +229,18 @@
         </form>
     </div>
 
-    <!-- Sign In -->
+    <!-- Sign In - This has now been edited to allow the page to be used in Spring Security, posting to /login -->
     <div class="container__form container--login">
-        <form action="#" class="form" id="form2">
+        <form class="form" action="/login" method="post" id="form2">
             <h2 class="form__title">Sign In</h2>
             <label>
-                <input class="input" placeholder="Email" type="email"/>
+                <input class="input" name="username" placeholder="Username" type="username"/>
             </label>
             <label>
-                <input class="input" placeholder="Password" type="password"/>
+                <input class="input" name="password" placeholder="Password" type="password"/>
             </label>
-            <a class="link" href="#">Forgot your password?</a>
             <br>
-            <button class="btn">Sign In</button>
+            <input type="submit" value="Log In"/>
             <br>
             <footer><a href="https://twitter.com/BipsyncApp"><img alt=""
                                                                   src="https://www.svgrepo.com/show/47722/twitter-black-shape.svg"
@@ -275,22 +274,13 @@
 </div>
 
 <script>
-    const signInBtn = document.getElementById("signIn");
+     const signInBtn = document.getElementById("signIn");
     const signUpBtn = document.getElementById("signUp");
-    const fistForm = document.getElementById("form1");
-    const secondForm = document.getElementById("form2");
     const container = document.querySelector(".container");
 
     signInBtn.addEventListener("click", () => {
         container.classList.remove("right-panel-active");
     });
-
-    signUpBtn.addEventListener("click", () => {
-        container.classList.add("right-panel-active");
-    });
-
-    fistForm.addEventListener("submit", (e) => e.preventDefault());
-    secondForm.addEventListener("submit", (e) => e.preventDefault());
 
 </script>
 </body>
