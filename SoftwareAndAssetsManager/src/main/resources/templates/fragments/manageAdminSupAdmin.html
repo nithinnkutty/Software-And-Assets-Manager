@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -40,22 +40,26 @@
                    id="viewresult">
                 <thead>
                 <tr>
-                    <td>ID</td>
-                    <td>Name</td>
-                    <td>Department</td>
-                    <td>Authority</td>
+<!--                    Just for Test Run-->
+                    <th scope="col">ID</th>
+                    <th scope="col">Asset Name</th>
+                    <th scope="col">Asset Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date of Purchase</th>
+                    <th scope="col">Date of Expiry</th>
                 </tr>
                 </thead>
                 <tbody class="table-group-divider ">
                 <tbody>
-                <tr th:each="employee: ${sampleAttribute}">
-                    <td th:text="${employee.id}"></td>
-                    <td th:text="${employee.Name}"></td>
-                    <td th:text="${employee.Department}"></td>
-                    <td th:text="${employee.Authority}"></td>
-                    <td> Some data</td>
-
-                </tr>
+<!--                    Just for Test Run-->
+            <tr th:each="asset: ${assets}">
+                <td th:text="${asset.id}"></td>
+                <td th:text="${asset.assetName}"></td>
+                <td th:text="${asset.assetType}"></td>
+                <td th:text="${asset.status}"></td>
+                <td th:text="${asset.dateOfPurchase}"></td>
+                <td th:text="${asset.dateOfExpiry}"></td>
+            </tr>
                 </tbody>
             </table>
         </div>

@@ -1,7 +1,8 @@
-package com.bipsync.SoftwareAndAssetsManager.Controller;
+package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
 import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
 import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,21 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GeneralController {
-    private EmployeeRepository employeeRepo;
+    private EmployeeRepository employeeRepository;
     private AssetsRepository assetsRepository;
-
-    /**
-     * This is controller for all the pages
-     */
-    /*
-    Navigating to home
-     */
-
-//Do not use it when the setviewname is not underlined!!!!!!
-
-    /*
-        Navigating to Search
-         */
+    @Autowired
+    public GeneralController(AssetsRepository aRepo,EmployeeRepository eRepo) {
+        assetsRepository    = aRepo;
+        employeeRepository  = eRepo;
+    }
     @RequestMapping(path = "/homeSuperAdmin")
     public ModelAndView homePage() {
         ModelAndView mav = new ModelAndView();
@@ -39,31 +32,31 @@ public class GeneralController {
         return mav;
     }
 
-//    /*
-//        Navigating to Add Admin
-//         */
-//    @RequestMapping(path="/Site/AddEmployee", method = RequestMethod.GET)
-//    public ModelAndView addEmployee(){
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("AddEmployeeForm");
-//        return mav;
-//    }
-
-    /*
-       Assign this address to Sample page
-        */
     @RequestMapping(path = "/Site/Sample", method = RequestMethod.GET)
     public ModelAndView SampleFunction() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Sample");
         return mav;
     }
-
     @RequestMapping(path="/manageAdminSupAdmin")
     public ModelAndView manageAdminTab() {
         ModelAndView mav = new ModelAndView();
-//        mav.addObject("employees",employeeRepo.findAllEmployee());
-        mav.setViewName("login");
+        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.setViewName("ManageAdmin_SA");
+        return mav;
+    }
+    @RequestMapping(path="/allAssetsSupAdmin")
+    public ModelAndView allAssetsTab() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.setViewName("Home_AllAssets_SA");
+        return mav;
+    }
+    @RequestMapping(path="/assetSearchSupAdmin")
+    public ModelAndView assetSearchTab() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.setViewName("AssetSearch_SA");
         return mav;
     }
 
