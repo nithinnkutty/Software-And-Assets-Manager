@@ -70,6 +70,9 @@
                         <button class="nav-link" id="nav-expiring-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-expiring" type="button" role="tab" aria-controls="nav-expiring"
                             aria-selected="false">Expiring Warranties</button>
+                        <button class="nav-link" id="nav-logout-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-logout" type="button" role="tab" aria-controls="nav-logout"
+                                aria-selected="false">Logout</button>
                     </div>
                 </nav>
 
@@ -403,6 +406,17 @@
                                 </li>
                             </ul>
                         </nav>
+                    </div>
+                    <div class="tab-pane fade show active w-100" id="nav-logout" role="tabpanel"
+                         aria-labelledby="nav-logout-tab" tabindex="0">
+                        <br/>
+                        <div>
+                            <!-- Added tab with post form that allows the user to logout. Used some information found at https://www.javadevjournal.com/spring-security/spring-security-logout/ (Reference)-->
+                            <a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+                            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                <input hidden type="submit" value="Sign Out" />
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

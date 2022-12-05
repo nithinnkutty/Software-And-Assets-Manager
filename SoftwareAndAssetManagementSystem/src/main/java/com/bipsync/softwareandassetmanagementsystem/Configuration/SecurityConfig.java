@@ -11,7 +11,7 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 
 // This configuration file allows us to hard code user details into the memory for use (will later be replaced when we
 // move to using JPA or JDBC authentication) and then authenticate the login of an admin or superadmin to access different
-// content with a custom made login page.
+// content with a custom made login page. Also added logout configuration to each template.
 
 @Configuration
 @EnableWebSecurity
@@ -51,7 +51,13 @@ public class SecurityConfig {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .failureUrl("/login")
+                .defaultSuccessUrl("/success",true)
                 .and()
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true)
+                )
                 .httpBasic();
         return http.build();
     }
