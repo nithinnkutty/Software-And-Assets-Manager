@@ -1,9 +1,9 @@
-package com.bipsync.SoftwareAndAssetsManager.repository;
+package com.Bipsync.SoftwareAndAssetsManager.repository;
 
 
-import com.bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
-import com.bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
-import com.bipsync.SoftwareAndAssetsManager.model.AssetMapper;
+import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
+import com.Bipsync.SoftwareAndAssetsManager.model.AssetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class AssetsRepositoryJDBC implements AssetsRepository {
+public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository {
 
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;

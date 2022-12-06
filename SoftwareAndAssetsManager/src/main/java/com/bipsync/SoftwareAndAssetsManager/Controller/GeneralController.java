@@ -1,7 +1,7 @@
-package com.bipsync.SoftwareAndAssetsManager.Controller;
+package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
-import com.bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
-import com.bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
+import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
+import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

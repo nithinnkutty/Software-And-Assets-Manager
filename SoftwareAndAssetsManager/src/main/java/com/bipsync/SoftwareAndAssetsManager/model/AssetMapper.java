@@ -1,9 +1,6 @@
-package com.bipsync.SoftwareAndAssetsManager.model;
-
-
-import com.bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+package com.Bipsync.SoftwareAndAssetsManager.model;
+import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
 import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

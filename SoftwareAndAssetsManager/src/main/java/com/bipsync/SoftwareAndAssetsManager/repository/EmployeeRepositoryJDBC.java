@@ -1,9 +1,7 @@
-package com.bipsync.SoftwareAndAssetsManager.repository;
-
-
-import com.bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
-import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.bipsync.SoftwareAndAssetsManager.model.EmployeeMapper;
+package com.Bipsync.SoftwareAndAssetsManager.repository;
+import com.Bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
+import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.model.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class EmployeeRepositoryJDBC implements EmployeeRepository {
+public class EmployeeRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository {
 
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
@@ -27,7 +25,8 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
     public EmployeeDTO findEmployeeByName(String surname) {
         EmployeeDTO employeeDTO = (EmployeeDTO) jdbcTemplate.queryForObject(
                 // queryForObject(String sql, Object[] args, RowMapper<T> rowMapper)
-                "select ID,Name,Department,Authority from employee where name=?" ,
+                "select ID,Name,Department,Authority from emplo" +
+                        "yee where name=?" ,
                 new Object[]{surname}, new EmployeeMapper());
         return employeeDTO;
 

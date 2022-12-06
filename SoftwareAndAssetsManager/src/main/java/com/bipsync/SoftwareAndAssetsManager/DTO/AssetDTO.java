@@ -1,4 +1,4 @@
-package com.bipsync.SoftwareAndAssetsManager.DTO;
+package com.Bipsync.SoftwareAndAssetsManager.DTO;
 
 import java.util.Date;
 

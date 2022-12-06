@@ -1,6 +1,6 @@
-package com.bipsync.SoftwareAndAssetsManager.repository;
+package com.Bipsync.SoftwareAndAssetsManager.repository;
 
-import com.bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 
 public interface AssetsRepository {
     public boolean addAsset(AddAssetForm addAssetForm);
