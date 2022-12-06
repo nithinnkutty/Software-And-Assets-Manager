@@ -76,39 +76,39 @@
                                         class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
                                         id="viewresult2">
                                     <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Asset Name</th>
-                                        <th scope="col">Asset Type</th>
-                                        <th scope="col">Assigned Date</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Proprietary</th>
+<!--                                    <tr>-->
+<!--                                        <th scope="col">ID</th>-->
+<!--                                        <th scope="col">Asset Name</th>-->
+<!--                                        <th scope="col">Asset Type</th>-->
+<!--                                        <th scope="col">Assigned Date</th>-->
+<!--                                        <th scope="col">Status</th>-->
+<!--                                        <th scope="col">Proprietary</th>-->
 
-                                    </tr>
+<!--                                    </tr>-->
                                     </thead>
                                     <tbody class="table-group-divider ">
-                                    <tr th:each="asset: ${assets}">
-                                        <td th:text="${asset.id}"></td>
-                                        <td th:text="${asset.assetName}"></td>
-                                        <td th:text="${asset.assetType}"></td>
-                                        <td th:text="${asset.status}"></td>
-                                        <td th:text="${asset.dateOfPurchase}"></td>
-                                        <td th:text="${asset.dateOfExpiry}"></td>
-                                        <td>
-                                            <div style="white-space:nowrap">
-                                                <button class="btn btn-primary" data-bs-target="#edit"
-                                                        data-bs-toggle="modal"
-                                                        style="display: inline-block" type="submit">
-                                                    Edit
-                                                </button>
-                                                <button class="btn btn-danger" data-bs-target="#Edit"
-                                                        data-bs-toggle="modal"
-                                                        style="display: inline-block" type="submit">
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+<!--                                    <tr th:each="asset: ${assets}">-->
+<!--                                        <td th:text="${asset.id}"></td>-->
+<!--                                        <td th:text="${asset.assetName}"></td>-->
+<!--                                        <td th:text="${asset.assetType}"></td>-->
+<!--                                        <td th:text="${asset.status}"></td>-->
+<!--                                        <td th:text="${asset.dateOfPurchase}"></td>-->
+<!--                                        <td th:text="${asset.dateOfExpiry}"></td>-->
+<!--                                        <td>-->
+<!--                                            <div style="white-space:nowrap">-->
+<!--                                                <button class="btn btn-primary" data-bs-target="#edit"-->
+<!--                                                        data-bs-toggle="modal"-->
+<!--                                                        style="display: inline-block" type="submit">-->
+<!--                                                    Edit-->
+<!--                                                </button>-->
+<!--                                                <button class="btn btn-danger" data-bs-target="#Edit"-->
+<!--                                                        data-bs-toggle="modal"-->
+<!--                                                        style="display: inline-block" type="submit">-->
+<!--                                                    Delete-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     </tbody>
                                 </table>
                             </div>
