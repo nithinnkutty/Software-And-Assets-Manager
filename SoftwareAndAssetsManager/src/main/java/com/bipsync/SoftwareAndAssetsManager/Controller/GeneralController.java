@@ -13,64 +13,50 @@ import org.springframework.web.servlet.ModelAndView;
 public class GeneralController {
     private EmployeeRepository employeeRepository;
     private AssetsRepository assetsRepository;
+
     @Autowired
-    public GeneralController(AssetsRepository aRepo,EmployeeRepository eRepo) {
-        assetsRepository    = aRepo;
-        employeeRepository  = eRepo;
-    }
-    @RequestMapping(path = "/homeSuperAdmin")
-    public ModelAndView homePage() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("allAssetsSupAdmin");
-        return mav;
+    public GeneralController(AssetsRepository aRepo, EmployeeRepository eRepo) {
+        assetsRepository = aRepo;
+        employeeRepository = eRepo;
     }
 
-    @RequestMapping(path = "/Site/EmployeeSearch", method = RequestMethod.GET)
-    public ModelAndView studentSearch() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("EmployeeSearchForm");
-        return mav;
-    }
-
-    @RequestMapping(path = "/Site/Sample", method = RequestMethod.GET)
-    public ModelAndView SampleFunction() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("Sample");
-        return mav;
-    }
-    @RequestMapping(path="/manageAdminSupAdmin")
-    public ModelAndView manageAdminTab() {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("assets",assetsRepository.getAllAssets());
-        mav.setViewName("ManageAdmin_SA");
-        return mav;
-    }
-    @RequestMapping(path="/allAssetsSupAdmin")
+    @RequestMapping(path = "/allAssetsSupAdmin")
     public ModelAndView allAssetsTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("Home_AllAssets_SA");
         return mav;
     }
-    @RequestMapping(path="/assetSearchSupAdmin")
+
+    @RequestMapping(path = "/assetSearchSupAdmin")
     public ModelAndView assetSearchTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("AssetSearch_SA");
         return mav;
     }
-    @RequestMapping(path="/assetStatusSupAdmin")
+
+    @RequestMapping(path = "/assetStatusSupAdmin")
     public ModelAndView assetStatusTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("AssetStatus_SA");
         return mav;
     }
-    @RequestMapping(path="/assetsExpiringSupAdmin")
+
+    @RequestMapping(path = "/assetsExpiringSupAdmin")
     public ModelAndView assetsExpiringTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("AssetsExpiring_SA");
+        return mav;
+    }
+
+    @RequestMapping(path = "/manageAdminSupAdmin")
+    public ModelAndView manageAdminTab() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets", assetsRepository.getAllAssets());
+        mav.setViewName("ManageAdmin_SA");
         return mav;
     }
 

@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS `assets` (
   `assetType`		TEXT NOT NULL,
   `modelNumber`		TEXT,
   `version`			TEXT,
-  `status`		TEXT NOT NULL,
+  `status`			TEXT NOT NULL,
   `dateOfPurchase`	DATE NOT NULL,
-  `dateOfExpiry`	DATE NOT NULL
+  `dateOfExpiry`	DATE
 );
 
 
