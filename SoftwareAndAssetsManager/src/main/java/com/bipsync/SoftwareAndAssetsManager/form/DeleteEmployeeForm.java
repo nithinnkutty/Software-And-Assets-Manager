@@ -1,30 +1,42 @@
 package com.bipsync.SoftwareAndAssetsManager.form;
 
-public class EditAdminForm {
-    private String Name;
+public class DeleteEmployeeForm {
+
+    private String firstName;
+
+    private String lastName;
     private String Department;
     private String Authority;
 
     private int ID;
     private String Password;
 
-    private  String Username;
+    private String Region;
 
-    public EditAdminForm(String name, String department, String authority, int ID, String password, String username) {
-        Name = name;
+    public DeleteEmployeeForm(String firstName, String lastName, String department, String authority, int ID, String password, String region) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         Department = department;
         Authority = authority;
         this.ID = ID;
         Password = password;
-        Username = username;
+        Region = region;
     }
 
-    public String getName() {
-        return Name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getDepartment() {
@@ -59,11 +71,11 @@ public class EditAdminForm {
         Password = password;
     }
 
-    public String getUsername() {
-        return Username;
+    public String getRegion() {
+        return Region;
     }
 
-    public void setUsername(String username) {
-        Username = username;
+    public void setRegion(String region) {
+        Region = region;
     }
 }

@@ -1,21 +1,24 @@
 package com.bipsync.SoftwareAndAssetsManager.model;
 
-import com.bipsync.SoftwareAndAssetsManager.DTO.AdminDTO;
+import com.bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
 import org.springframework.jdbc.core.RowMapper;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AdminMapper implements RowMapper {
+public class EmployeeMapper implements RowMapper {
     //public T query(String sqlQuery, RowMapper<T> rowMapper
     //query class
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new AdminDTO(rs.getInt("ID"),
-                rs.getString("Name"),
+        return new EmployeeDTO(rs.getInt("ID"),
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("Username"),
+                rs.getString("Password"),
                 rs.getString("Department"),
                 rs.getString("Authority"),
-                rs.getString("Username"));
+                rs.getString("Region"));
     }
 }

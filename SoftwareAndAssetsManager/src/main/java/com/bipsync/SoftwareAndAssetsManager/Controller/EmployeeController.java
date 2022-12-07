@@ -2,16 +2,15 @@ package com.bipsync.SoftwareAndAssetsManager.Controller;
 
 
 
-import com.bipsync.SoftwareAndAssetsManager.form.AddAdminForm;
-import com.bipsync.SoftwareAndAssetsManager.form.DeleteAdminForm;
-import com.bipsync.SoftwareAndAssetsManager.form.EditAdminForm;
-import com.bipsync.SoftwareAndAssetsManager.repository.AdminRepository;
+import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -19,42 +18,44 @@ import org.springframework.web.servlet.ModelAndView;
 This is the controller connecting repos..
  */
 @Controller
-public class AdminController {
+public class EmployeeController {
 
-    private AdminRepository adminRepo;
+    private EmployeeRepository adminRepo;
 
     @Autowired
-    public AdminController(AdminRepository pRepo) {
+    public EmployeeController(EmployeeRepository pRepo) {
         adminRepo = pRepo;
     }
 
 
     @RequestMapping(path="/AdminAll", method = RequestMethod.GET)
-    public ModelAndView search() {
+    public ModelAndView searchAll() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("adminAttribute",adminRepo.findAllAdmin());
-        mav.setViewName("ManageAdmin_SA");
+        mav.addObject("employeeAttribute",adminRepo.findAllEmployee());
+        mav.setViewName("redirect:/ManageAdmin_SA");
         return mav;
     }
 
 
 
+
+
     //Here handles the data from the HTML page
     @RequestMapping(path="/AddAdmin", method = RequestMethod.POST)
-    public ModelAndView AddAdmin(AddAdminForm addAdminForm, BindingResult br) {
+    public ModelAndView AddAdmin(AddEmployeeForm addEmployeeForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
-            mav.setViewName("Main");
+            mav.setViewName("ManageAdmin_SA");
             //this line means sql error, cannot find data as expected//sql result is not bound.
         } else {
-            if (adminRepo.AddAdmin(addAdminForm)) {
-                System.out.println("added admin");
-                mav.addObject("adminAttribute", adminRepo.findAllAdmin());
+            if (adminRepo.AddEmployee(addEmployeeForm)) {
+                System.out.println("added employee");
+                mav.addObject("employeeAttribute", adminRepo.findAllEmployee());
                 //here, successfully added
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/ManageAdmin_SA");
             }else{
-                mav.setViewName("Main");
+                mav.setViewName("ManageAdmin_SA");
                 //add is a boolean function, boolean rows>0 is false. this is in repository.
             }
         }
@@ -63,20 +64,21 @@ public class AdminController {
 
     //Here handles the data from the HTML page
     @RequestMapping(path="/EditAdmin", method = RequestMethod.POST)
-    public ModelAndView EditAdmin(EditAdminForm editAdminForm, BindingResult br) {
+    public ModelAndView EditAdmin(EditEmployeeForm editEmployeeForm, BindingResult br) {
         System.out.println("in EditAdmin of Controller");
         ModelAndView mav = new ModelAndView();
-        //if add error the lead the user back to the home page
+        System.out.println(br);
         if (br.hasErrors()) {
-            mav.setViewName("Main");
-            System.out.println("Controller err");
+            System.out.println("br errors");
+            mav.setViewName("ManageAdmin_SA");
         } else {
-            if (adminRepo.EditAdmin(editAdminForm)) {
+            if (adminRepo.EditEmployee(editEmployeeForm)) {
                 System.out.println("Edited Admin");
-                mav.addObject("adminAttribute", adminRepo.findAllAdmin());
+                mav.addObject("employeeAttribute", adminRepo.findAllEmployee());
 
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/ManageAdmin_SA");
             }else{
+                System.out.println("added failed");
                 mav.setViewName("ManageAdmin_SA");
             }
         }
@@ -84,15 +86,15 @@ public class AdminController {
     }
 
     @RequestMapping(path="/DeleteAdmin", method = RequestMethod.POST)
-    public ModelAndView DeleteAdmin(DeleteAdminForm deleteAdminForm, BindingResult br) {
+    public ModelAndView DeleteAdmin(DeleteEmployeeForm deleteEmployeeForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
             mav.setViewName("ManageAdmin_SA");
         } else {
-            if (adminRepo.DeleteAdmin(deleteAdminForm)) {
-                mav.addObject("adminAttribute",adminRepo.findAllAdmin());
-                mav.setViewName("ManageAdmin_SA");
+            if (adminRepo.DeleteEmployee(deleteEmployeeForm)) {
+                mav.addObject("employeeAttribute",adminRepo.findAllEmployee());
+                mav.setViewName("redirect:/ManageAdmin_SA");
             }else{
                 mav.setViewName("ManageAdmin_SA");
             }
