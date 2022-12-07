@@ -55,7 +55,7 @@ public class GeneralController {
     @RequestMapping(path="/assetSearchSupAdmin")
     public ModelAndView assetSearchTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets",assetsRepository.getAllAssets());
+        mav.addObject("assignedAssets",assetsRepository.getAllAssignedAssets());
         mav.setViewName("AssetSearch_SA");
         return mav;
     }

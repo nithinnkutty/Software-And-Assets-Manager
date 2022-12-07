@@ -14,6 +14,7 @@ public class AssetsController {
     public AssetsController(AssetsRepository pRepo) {
         assetsRepository = pRepo;
     }
+
     @RequestMapping(path="/HomeSupAdmin")
     public ModelAndView homePageSupAdmin() {
         ModelAndView mav = new ModelAndView();

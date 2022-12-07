@@ -25,8 +25,7 @@ public class EmployeeRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsMana
     public EmployeeDTO findEmployeeByName(String surname) {
         EmployeeDTO employeeDTO = (EmployeeDTO) jdbcTemplate.queryForObject(
                 // queryForObject(String sql, Object[] args, RowMapper<T> rowMapper)
-                "select ID,Name,Department,Authority from emplo" +
-                        "yee where name=?" ,
+                "select ID,assetName,Department,Authority from employees where name=?" ,
                 new Object[]{surname}, new EmployeeMapper());
         return employeeDTO;
 
@@ -35,21 +34,21 @@ public class EmployeeRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsMana
     @Override
     public List<EmployeeDTO> findAllEmployee() {
         return jdbcTemplate.query(
-                "select ID,Name,Department,Authority from Employee" ,
+                "select ID,Name,Department,Authority from employees" ,
                 new EmployeeMapper());
     }
 
     @Override
     public boolean addEmployee(AddEmployeeForm addEmployeeForm) {
         int rows = jdbcTemplate.update(
-                "insert into Employee (Name,Department,Authority) values(?,?,?)" ,
+                "insert into Employees (Name,Department,Authority) values(?,?,?)" ,
                 new Object[]{addEmployeeForm.getName(),addEmployeeForm.getDepartment(),addEmployeeForm.getAuthority()});
         return rows>0;
     }
 
     public boolean SampleFunction(AddEmployeeForm addEmployeeForm) {
         int rows = jdbcTemplate.update(
-                "insert into Employee (Name,Department,Authority) values(?,?,?)" ,
+                "insert into Employees (Name,Department,Authority) values(?,?,?)" ,
                 new Object[]{addEmployeeForm.getName(),addEmployeeForm.getDepartment(),addEmployeeForm.getAuthority()});
         return rows>0;
     }
