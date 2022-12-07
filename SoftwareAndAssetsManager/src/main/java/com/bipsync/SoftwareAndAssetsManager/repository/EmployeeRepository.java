@@ -1,6 +1,6 @@
-package com.Bipsync.SoftwareAndAssetsManager.repository;
+package com.bipsync.SoftwareAndAssetsManager.repository;
 
-import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
 
 public interface EmployeeRepository {
     public Object findEmployeeByName(String surname);

@@ -1,8 +1,10 @@
-package com.Bipsync.SoftwareAndAssetsManager.repository;
+package com.bipsync.SoftwareAndAssetsManager.repository;
 
-import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
+import com.bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 
 public interface AssetsRepository {
     public boolean addAsset(AddAssetForm addAssetForm);
     public Object getAllAssets();
+
+    int updateDataBYID(int id, String state);
 }

@@ -1,9 +1,9 @@
-package com.Bipsync.SoftwareAndAssetsManager.repository;
+package com.bipsync.SoftwareAndAssetsManager.repository;
 
 
-import com.Bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
-import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.model.EmployeeMapper;
+import com.bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
+import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.model.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class EmployeeRepositoryJDBC implements EmployeeRepository {
+public class EmployeeRepositoryJDBC implements com.bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository {
 
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
 
-//? no beans of jdbc?
+    //? no beans of jdbc?
     @Autowired
     public EmployeeRepositoryJDBC(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;

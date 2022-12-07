@@ -1,7 +1,7 @@
-package com.Bipsync.SoftwareAndAssetsManager.model;
+package com.bipsync.SoftwareAndAssetsManager.model;
 
 
-import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+import com.bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -15,8 +15,14 @@ public class AssetMapper implements RowMapper {
         return new AssetDTO(rs.getInt("ID"),
                 rs.getString("assetName"),
                 rs.getString("assetType"),
+                rs.getString("serialNumber"),
                 rs.getString("status"),
+                rs.getInt("employeeID"),
+                rs.getString("department"),
+                rs.getString("region"),
                 rs.getDate("dateOfPurchase"),
-                rs.getDate("dateOfExpiry"));
+                rs.getDate("dateOfExpiry")
+
+        );
     }
 }

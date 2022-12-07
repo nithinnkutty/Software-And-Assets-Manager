@@ -1,8 +1,8 @@
-package com.Bipsync.SoftwareAndAssetsManager.controller;
+package com.bipsync.SoftwareAndAssetsManager.Controller;
 
 
-import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
+import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

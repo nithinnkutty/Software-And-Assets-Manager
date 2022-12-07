@@ -1,9 +1,8 @@
-package com.Bipsync.SoftwareAndAssetsManager.repository;
+package com.bipsync.SoftwareAndAssetsManager.repository;
 
 
-import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
-import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
-import com.Bipsync.SoftwareAndAssetsManager.model.AssetMapper;
+import com.bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+import com.bipsync.SoftwareAndAssetsManager.model.AssetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class AssetsRepositoryJDBC implements AssetsRepository {
+public class AssetsRepositoryJDBC implements com.bipsync.SoftwareAndAssetsManager.repository.AssetsRepository {
 
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
@@ -24,7 +23,7 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
 
     //in this class ,write the sql statements
     @Override
-    public boolean addAsset(AddAssetForm addAssetForm) {
+    public boolean addAsset(com.bipsync.SoftwareAndAssetsManager.form.AddAssetForm addAssetForm) {
         int rows = jdbcTemplate.update(
                 "insert into assets (assetName,assetType,status,dateOfPurchase,dateOfExpiry) values(?,?,?,?,?)" ,
                 new Object[]{addAssetForm.getAssetName(), addAssetForm.getAssetType(),
@@ -36,8 +35,28 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     @Override
     public List<AssetDTO> getAllAssets() {
         return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,dateOfPurchase,dateOfExpiry from assets" ,
+                "SELECT " +
+                        "  assets.ID, " +
+                        "  assetName, " +
+                        "  assetType, " +
+                        "  STATUS, " +
+                        "  dateOfPurchase, " +
+                        "  dateOfExpiry, " +
+                        "  employeeID , " +
+                        "  employees.department, " +
+                        "  employees.region, " +
+                        "  assets.serialNumber " +
+                        "FROM " +
+                        "  assets " +
+                        "  INNER JOIN assigned  on   assets.id = assigned.employeeID " +
+                        "  inner join  employees on employees.id = assigned.employeeID " ,
+
                 new AssetMapper());
     }
 
+    @Override
+    public int updateDataBYID(int id, String state) {
+        int update = jdbcTemplate.update("update assets set status = '" + state + "' where id = '" + id + "'");
+        return update;
+    }
 }

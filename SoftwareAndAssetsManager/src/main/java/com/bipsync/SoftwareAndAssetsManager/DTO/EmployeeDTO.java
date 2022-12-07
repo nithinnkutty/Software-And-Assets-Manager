@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.DTO;
+package com.bipsync.SoftwareAndAssetsManager.DTO;
 
 public class EmployeeDTO {
     //In this class, one line == one column in db table
