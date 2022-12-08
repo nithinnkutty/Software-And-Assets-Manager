@@ -32,7 +32,7 @@ public class EmployeeController {
     public ModelAndView searchAll() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
-        mav.setViewName("redirect:/ManageAdmin_SA");
+        mav.setViewName("ManageAdmin_SA");
         return mav;
     }
 
@@ -53,7 +53,7 @@ public class EmployeeController {
                 System.out.println("added employee");
                 mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
                 //here, successfully added
-                mav.setViewName("redirect:/ManageAdmin_SA");
+                mav.setViewName("ManageAdmin_SA");
             }else{
                 mav.setViewName("ManageAdmin_SA");
                 //add is a boolean function, boolean rows>0 is false. this is in repository.
@@ -76,7 +76,7 @@ public class EmployeeController {
                 System.out.println("Edited Admin");
                 mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
 
-                mav.setViewName("redirect:/ManageAdmin_SA");
+                mav.setViewName("ManageAdmin_SA");
             }else{
                 System.out.println("added failed");
                 mav.setViewName("ManageAdmin_SA");
@@ -96,7 +96,7 @@ public class EmployeeController {
         } else {
             if (employeeRepository.DeleteEmployee(deleteEmployeeForm)) {
                 mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
-                mav.setViewName("redirect:/ManageAdmin_SA");
+                mav.setViewName("ManageAdmin_SA");
             }else{
                 mav.setViewName("ManageAdmin_SA");
             }
