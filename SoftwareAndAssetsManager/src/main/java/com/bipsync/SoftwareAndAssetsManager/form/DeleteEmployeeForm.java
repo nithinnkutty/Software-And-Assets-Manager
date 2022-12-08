@@ -1,4 +1,4 @@
-package com.bipsync.SoftwareAndAssetsManager.form;
+package com.Bipsync.SoftwareAndAssetsManager.form;
 
 public class DeleteEmployeeForm {
     private int ID;

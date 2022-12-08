@@ -1,8 +1,8 @@
-package com.bipsync.SoftwareAndAssetsManager.repository;
+package com.Bipsync.SoftwareAndAssetsManager.repository;
 
-import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
-import com.bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
 
 public interface EmployeeRepository {
 

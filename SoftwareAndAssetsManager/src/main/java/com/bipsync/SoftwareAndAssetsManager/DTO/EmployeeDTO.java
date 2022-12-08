@@ -1,4 +1,4 @@
-package com.bipsync.SoftwareAndAssetsManager.DTO;
+package com.Bipsync.SoftwareAndAssetsManager.DTO;
 
 public class EmployeeDTO {
     private int ID;

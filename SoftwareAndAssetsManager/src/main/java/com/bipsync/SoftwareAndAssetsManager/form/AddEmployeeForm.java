@@ -1,4 +1,4 @@
-package com.bipsync.SoftwareAndAssetsManager.form;
+package com.Bipsync.SoftwareAndAssetsManager.form;
 
 public class AddEmployeeForm {
     //getter/setter/model for adding function.

@@ -1,11 +1,11 @@
-package com.bipsync.SoftwareAndAssetsManager.Controller;
+package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
 
 
-import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
-import com.bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
-import com.bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
+import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,18 +20,18 @@ This is the controller connecting repos..
 @Controller
 public class EmployeeController {
 
-    private EmployeeRepository adminRepo;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     public EmployeeController(EmployeeRepository pRepo) {
-        adminRepo = pRepo;
+        employeeRepository = pRepo;
     }
 
 
     @RequestMapping(path="/AdminAll", method = RequestMethod.GET)
     public ModelAndView searchAll() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("employeeAttribute",adminRepo.findAllEmployee());
+        mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
         mav.setViewName("redirect:/ManageAdmin_SA");
         return mav;
     }
@@ -49,9 +49,9 @@ public class EmployeeController {
             mav.setViewName("ManageAdmin_SA");
             //this line means sql error, cannot find data as expected//sql result is not bound.
         } else {
-            if (adminRepo.AddEmployee(addEmployeeForm)) {
+            if (employeeRepository.AddEmployee(addEmployeeForm)) {
                 System.out.println("added employee");
-                mav.addObject("employeeAttribute", adminRepo.findAllEmployee());
+                mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
                 //here, successfully added
                 mav.setViewName("redirect:/ManageAdmin_SA");
             }else{
@@ -72,9 +72,9 @@ public class EmployeeController {
             System.out.println("br errors");
             mav.setViewName("ManageAdmin_SA");
         } else {
-            if (adminRepo.EditEmployee(editEmployeeForm)) {
+            if (employeeRepository.EditEmployee(editEmployeeForm)) {
                 System.out.println("Edited Admin");
-                mav.addObject("employeeAttribute", adminRepo.findAllEmployee());
+                mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
 
                 mav.setViewName("redirect:/ManageAdmin_SA");
             }else{
@@ -94,8 +94,8 @@ public class EmployeeController {
             System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());
             mav.setViewName("ManageAdmin_SA");
         } else {
-            if (adminRepo.DeleteEmployee(deleteEmployeeForm)) {
-                mav.addObject("employeeAttribute",adminRepo.findAllEmployee());
+            if (employeeRepository.DeleteEmployee(deleteEmployeeForm)) {
+                mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
                 mav.setViewName("redirect:/ManageAdmin_SA");
             }else{
                 mav.setViewName("ManageAdmin_SA");
