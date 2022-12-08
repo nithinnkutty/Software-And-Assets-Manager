@@ -1,11 +1,9 @@
 package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
-import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.form.EditAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,28 +18,8 @@ public class AssetsController {
         assetsRepository = pRepo;
     }
 
-    @RequestMapping(path = "/HomeSupAdmin")
-    public ModelAndView homePageSupAdmin() {
-        ModelAndView mav = new ModelAndView();
-        System.out.println(assetForm.getDateOfExpiry());
-        System.out.println(assetForm.getDateOfPurchase());
-        if (br.hasErrors()) {
-            mav.setViewName("Home_AllAssets_SA");
-            System.out.println(br);
-        } else {
-            if (assetsRepository.addAsset(assetForm)) {
-                System.out.println("added asset");
-                mav.addObject("assets", assetsRepository.getAllAssets());
-                mav.setViewName("Home_AllAssets_SA");
-            } else {
-                mav.setViewName("Home_AllAssets_SA");
-            }
-        }
-        return mav;
-
-    }
-
-    @RequestMapping(path = "/EditAsset", method = RequestMethod.POST)
+//    Corresponds to the submission form on the front-end page and handles eidtAsset requests
+    @RequestMapping(path = "/editAsset", method = RequestMethod.POST)
     public ModelAndView EditAsset(EditAssetForm editAssetForm, BindingResult br) {
         System.out.println(editAssetForm);
         ModelAndView mav = new ModelAndView();
@@ -52,32 +30,9 @@ public class AssetsController {
             System.out.println(br);
         } else {
             if (assetsRepository.EditAsset(editAssetForm)) {
-                System.out.println("Edit asset");
-                mav.addObject("assets", assetsRepository.getAllAssignedAssets());
-                mav.setViewName("redirect:/AssetSearch_SA");
-            } else {
-                System.out.println("edit failed");
+                System.out.println("Edit asset successfully");
+                mav.addObject("assignedAssets", assetsRepository.getAllAssignedAssets());
                 mav.setViewName("AssetSearch_SA");
-            }
-        }
-        return mav;
-
-    }
-
-    @RequestMapping(path = "/EditAsset", method = RequestMethod.POST)
-    public ModelAndView EditAsset(EditAssetForm editAssetForm, BindingResult br) {
-        System.out.println(editAssetForm);
-        ModelAndView mav = new ModelAndView();
-
-        if (br.hasErrors()) {
-            System.out.println("br err" + br.hasErrors());
-            mav.setViewName("AssetSearch_SA");
-            System.out.println(br);
-        } else {
-            if (assetsRepository.EditAsset(editAssetForm)) {
-                System.out.println("Edit asset");
-                mav.addObject("assets", assetsRepository.getAllAssignedAssets());
-                mav.setViewName("redirect:/AssetSearch_SA");
             } else {
                 System.out.println("edit failed");
                 mav.setViewName("AssetSearch_SA");

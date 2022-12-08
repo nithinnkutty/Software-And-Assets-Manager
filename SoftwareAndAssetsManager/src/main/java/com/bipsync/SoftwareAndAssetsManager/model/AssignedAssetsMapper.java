@@ -18,8 +18,7 @@ public class AssignedAssetsMapper implements RowMapper {
                 rs.getDate("dateOfPurchase"),
                 rs.getDate("dateOfExpiry"),
                 rs.getDate("assignedOn"),
-                rs.getInt("employeeID"),
-                rs.getString("firstname"),
+                rs.getString("firstName"),
                 rs.getString("surname"),
                 rs.getString("region"));
 

@@ -4,7 +4,6 @@ import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssignedAssetsDTO;
 import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.form.EditAssetForm;
-import com.Bipsync.SoftwareAndAssetsManager.form.SearchAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssetMapper;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssignedAssetsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +37,6 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
 
     }
 
-    @Override
-    public Object searchAsset(SearchAssetForm searchAssetForm) {
-        return jdbcTemplate.query(
-                "select * from assets",
-                new AssetMapper());
-    }
 
     @Override
     public List<AssetDTO> getAllAssets() {
@@ -52,6 +45,8 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
                 new AssetMapper());
     }
 
+
+//    Multi-table search :Instantiate the queried AssignedAsset via the corresponding Mapper for use by the front-end
     @Override
     public List<AssignedAssetsDTO> getAllAssignedAssets() {
         return jdbcTemplate.query(
@@ -63,13 +58,14 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
                 new AssignedAssetsMapper());
     }
 
+
     @Override
     public boolean EditAsset(EditAssetForm editAssetForm) {
         int rows = jdbcTemplate.update(
-                "update assets set assetName = ? , assetType = ?, modelNumber = ?, version = ?, dateOfPurchase = ? where ID = ?",
+                "update assets set assetName = ? , assetType = ?, modelNumber = ?, version = ?,dateOfPurchase= ? where ID = ?",
                 editAssetForm.getAssetName(), editAssetForm.getAssetType(), editAssetForm.getModelNumber(),
-                editAssetForm.getVersion(), editAssetForm.getDateOfPurchase(), editAssetForm.getID());
-        return (rows > 0);
+                editAssetForm.getVersion(),editAssetForm.getDateOfPurchase(), editAssetForm.getID());
+        return rows > 0;
     }
 
 }
