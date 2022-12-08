@@ -5,24 +5,24 @@ public class DeleteEmployeeForm {
     private String firstName;
 
     private String surname;
-    private String Username;
+    private String username;
 
-    private String Password;
-    private String Department;
-    private String Authority;
+    private String password;
+    private String department;
+    private String authority;
 
 
-    private String Region;
+    private String region;
 
     public DeleteEmployeeForm(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
         this.ID = ID;
         this.firstName = firstName;
         this.surname = surname;
-        Username = username;
-        Password = password;
-        Department = department;
-        Authority = authority;
-        Region = region;
+        this.username = username;
+        this.password = password;
+        this.department = department;
+        this.authority = authority;
+        this.region = region;
     }
 
     public int getID() {
@@ -41,51 +41,51 @@ public class DeleteEmployeeForm {
         this.firstName = firstName;
     }
 
-    public String getsurname() {
+    public String getSurname() {
         return surname;
     }
 
-    public void setsurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getDepartment() {
-        return Department;
+        return department;
     }
 
     public void setDepartment(String department) {
-        Department = department;
+        this.department = department;
     }
 
     public String getAuthority() {
-        return Authority;
+        return authority;
     }
 
     public void setAuthority(String authority) {
-        Authority = authority;
+        this.authority = authority;
     }
 
     public String getRegion() {
-        return Region;
+        return region;
     }
 
     public void setRegion(String region) {
-        Region = region;
+        this.region = region;
     }
 }

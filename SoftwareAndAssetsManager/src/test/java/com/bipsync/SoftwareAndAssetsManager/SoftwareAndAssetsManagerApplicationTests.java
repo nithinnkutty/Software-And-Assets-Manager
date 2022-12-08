@@ -1,10 +1,10 @@
-package com.Bipsync.softwareandassetmanagementsystem;
+package com.Bipsync.SoftwareAndAssetsManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SoftwareAndAssetManagementSystemApplicationTests {
+class SoftwareAndAssetsManagerApplicationTests {
 
 	@Test
 	void contextLoads() {

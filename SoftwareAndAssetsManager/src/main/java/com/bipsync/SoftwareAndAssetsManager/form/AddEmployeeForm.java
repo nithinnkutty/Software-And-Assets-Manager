@@ -7,21 +7,21 @@ public class AddEmployeeForm {
     private String surname;
     private String username;
 
-    private String Password;
-    private String Department;
-    private String Authority;
+    private String password;
+    private String department;
+    private String authority;
 
 
-    private String Region;
+    private String region;
 
     public AddEmployeeForm(String firstName, String surname, String username, String password, String department, String authority, String region) {
         this.firstName = firstName;
         this.surname = surname;
         this.username = username;
-        Password = password;
-        Department = department;
-        Authority = authority;
-        Region = region;
+        this.password = password;
+        department = department;
+        this.authority = authority;
+        this.region = region;
     }
 
     public String getFirstName() {
@@ -32,11 +32,11 @@ public class AddEmployeeForm {
         this.firstName = firstName;
     }
 
-    public String getsurname() {
+    public String getSurname() {
         return surname;
     }
 
-    public void setsurname(String surname) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
@@ -49,34 +49,34 @@ public class AddEmployeeForm {
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getDepartment() {
-        return Department;
+        return department;
     }
 
     public void setDepartment(String department) {
-        Department = department;
+        department = department;
     }
 
     public String getAuthority() {
-        return Authority;
+        return authority;
     }
 
     public void setAuthority(String authority) {
-        Authority = authority;
+        this.authority = authority;
     }
 
     public String getRegion() {
-        return Region;
+        return region;
     }
 
     public void setRegion(String region) {
-        Region = region;
+        this.region = region;
     }
 }

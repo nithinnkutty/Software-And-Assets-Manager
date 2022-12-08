@@ -15,10 +15,10 @@ public class EmployeeMapper implements RowMapper {
         return new EmployeeDTO(rs.getInt("ID"),
                 rs.getString("firstName"),
                 rs.getString("surname"),
-                rs.getString("Username"),
-                rs.getString("Password"),
-                rs.getString("Department"),
-                rs.getString("Authority"),
-                rs.getString("Region"));
+                rs.getString("username"),
+                rs.getString("password"),
+                rs.getString("department"),
+                rs.getString("authority"),
+                rs.getString("region"));
     }
 }
