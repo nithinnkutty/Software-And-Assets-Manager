@@ -35,9 +35,8 @@
                             </p>
                             <br/>
                             <div class="table-responsive w-100 ">
-                                <table
-                                        class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
-                                        id="viewresult">
+                                <table class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog-scrollable display"
+                                        id="assetsSummary">
                                     <thead>
                                     <tr>
                                         <th scope="col">ID</th>
@@ -46,6 +45,8 @@
                                         <th scope="col">Model Number</th>
                                         <th scope="col">Version</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Model Number</th>
+                                        <th scope="col">Version</th>
                                         <th scope="col">Date of Purchase</th>
                                         <th scope="col">Date of Expiry</th>
                                     </tr>
@@ -58,6 +59,8 @@
                                         <td th:text="${asset.modelNumber}"></td>
                                         <td th:text="${asset.version}"></td>
                                         <td th:text="${asset.status}"></td>
+                                        <td th:text="${asset.modelNumber}"></td>
+                                        <td th:text="${asset.version}"></td>
                                         <td th:text="${asset.dateOfPurchase}"></td>
                                         <td th:text="${asset.dateOfExpiry}"></td>
                                     </tr>
@@ -66,7 +69,7 @@
                             </div>
                             <br>
                             <!--                Add Assets -->
-                            <div class="col-md-6 column">
+                            <div class="col-md-2 offset-md-5">
                                 <!--add assets button-->
                                 <button class="btn btn-primary" data-bs-target="#addAsset" data-bs-toggle="modal"
                                         type="button">
@@ -81,57 +84,81 @@
                                                         type="button"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="wrapleft ">
-                                                    <div class="row row-col-5">
+                                                <div class="wrapleft">
+                                                    <form id="addAssetForm" class="row row-col-5" action="/addAsset" method="post">
                                                         <div class="col-4 p-2">
-                                                            <label class="form-label" for="AssetName">Asset Name</label>
+                                                            <label class="form-label" for="assetName">Asset Name</label>
                                                         </div>
                                                         <div class="col-8 p-2">
-                                                            <input class="form-control" id="addAssetName"
-                                                                   placeholder="Default Name"
+                                                            <input class="form-control" id="assetName" name="assetName"
+                                                                   placeholder="Asset Name"
                                                                    type="text">
                                                         </div>
                                                         <div class="col-4 p-2">
-                                                            <label class="form-label" for="AssetType">Asset Type</label>
+                                                            <label class="form-label" for="assetType">Asset Type</label>
 
                                                         </div>
                                                         <div class="col-8 p-2">
-                                                            <input class="form-control" id="addModel"
-                                                                   placeholder="Default Model"
+                                                            <input class="form-control" id="assetType" name="assetType"
+                                                                   placeholder="Asset Type"
                                                                    type="text">
                                                         </div>
                                                         <div class="col-4 p-2">
-                                                            <label class="form-label" for="addOperatedDate">Operated
-                                                                Date</label>
+                                                            <label class="form-label" for="status"> Status</label>
                                                         </div>
                                                         <div class="col-8 p-2">
-                                                            <input class="form-control" id="addOperatedDate"
-                                                                   placeholder="Date"
+                                                            <input class="form-control" id="status" name="status"
+                                                                   placeholder="Status"
+                                                                   type="text">
+                                                        </div>
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="modelNumber">Model Number</label>
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="modelNumber" name="modelNumber"
+                                                                   placeholder="Model Number (For Assets Only)"
+                                                                   type="text">
+                                                        </div>
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="version">Version</label>
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="version" name="version"
+                                                                   placeholder="Version (For Softwares Only)"
+                                                                   type="text">
+                                                        </div>
+                                                        <div class="col-4 p-2">
+                                                            <label class="form-label" for="dateOfPurchase">Date Of Purchase</label>
+                                                        </div>
+                                                        <div class="col-8 p-2">
+                                                            <input class="form-control" id="dateOfPurchase" name="dateOfPurchase"
+                                                                   placeholder="Date of Purchase"
                                                                    type="date">
-
                                                         </div>
                                                         <div class="col-4 p-2">
-                                                            <label class="form-label" for="Operation">Operation</label>
+                                                            <label class="form-label" for="dateOfExpiry">Date Of Expiry</label>
                                                         </div>
                                                         <div class="col-8 p-2">
-                                                            <input class="form-control" id="addOperation"
-                                                                   placeholder="Operation"
-                                                                   type="text">
+                                                            <input class="form-control" id="dateOfExpiry" name="dateOfExpiry"
+                                                                   placeholder="Date of Expiry"
+                                                                   type="date">
                                                         </div>
 
-                                                    </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-success" data-bs-dismiss="modal" type="submit">
+                                                                submit
+                                                            </button>
+                                                            <button class="btn btn-danger" data-bs-dismiss="modal" type="button">
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+
+                                                    </form>
                                                 </div>
                                             </div>
 
 
-                                            <div class="modal-footer">
-                                                <button class="btn btn-success" data-bs-dismiss="modal" type="button">
-                                                    submit
-                                                </button>
-                                                <button class="btn btn-danger" data-bs-dismiss="modal" type="button">
-                                                    Cancel
-                                                </button>
-                                            </div>
+
 
                                         </div>
                                     </div>
@@ -165,27 +192,8 @@
         </div>
     </div>
 </div>
-<script>
-    var getAllAssetsTab = function () {
-        window.location = '/allAssetsSupAdmin';
-        alert("Works Fine");
-    };
-    var getAssetSearchTab = function () {
-        window.location = '/assetSearchSupAdmin';
-        alert("Works Fine");
-    };
-    var getAssetStatusTab = function () {
-        window.location = '/assetStatusSupAdmin';
-        alert("Works Fine");
-    };
-    var getAssetsExpiringTab = function () {
-        window.location = '/assetsExpiringSupAdmin';
-        alert("Works Fine");
-    };
-    var getManageAdminTab = function () {
-        window.location = '/manageAdminSupAdmin';
-        alert("Works Fine");
-    };
+<script th:replace="fragments/Script::script">
+
 </script>
 </body>
 </html>

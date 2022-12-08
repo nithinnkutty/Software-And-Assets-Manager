@@ -1,6 +1,5 @@
 package com.Bipsync.SoftwareAndAssetsManager.repository;
 
-
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssignedAssetsDTO;
 import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
@@ -17,38 +16,39 @@ import java.util.List;
 @Repository
 public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository {
 
-    //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
+    // https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
 
-//? no beans of jdbc?
+    // ? no beans of jdbc?
     @Autowired
     public AssetsRepositoryJDBC(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
     }
 
-    //in this class ,write the sql statements
+    // in this class ,write the sql statements
     @Override
     public boolean addAsset(AddAssetForm addAssetForm) {
         int rows = jdbcTemplate.update(
-                "insert into assets (assetName,assetType,status,dateOfPurchase,dateOfExpiry) values(?,?,?,?,?)" ,
-                new Object[]{addAssetForm.getAssetName(), addAssetForm.getAssetType(),
-                        addAssetForm.getStatus(), addAssetForm.getDateOfPurchase(), addAssetForm.getDateOfExpiry()});
-        return rows>0;
+                "insert into assets (assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry) values(?,?,?,?,?,?,?)",
+                new Object[] { addAssetForm.getAssetName(), addAssetForm.getAssetType(),
+                        addAssetForm.getStatus(), addAssetForm.getModelNumber(),
+                        addAssetForm.getVersion(), addAssetForm.getDateOfPurchase(),
+                        addAssetForm.getDateOfExpiry() });
+        return rows > 0;
 
     }
 
     @Override
     public Object searchAsset(SearchAssetForm searchAssetForm) {
         return jdbcTemplate.query(
-                "select * from assets" ,
+                "select * from assets",
                 new AssetMapper());
     }
-
 
     @Override
     public List<AssetDTO> getAllAssets() {
         return jdbcTemplate.query(
-                "select * from assets" ,
+                "select ID,assetName,assetType,status,dateOfPurchase,dateOfExpiry from assets",
                 new AssetMapper());
     }
 
@@ -59,16 +59,17 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
                         "from (select a.*, s.assignedOn, s.employeeID\n" +
                         "      from assets a\n" +
                         "               left join assigned s on a.id = s.assetID) b\n" +
-                        "         left join employees e on b.employeeID = e.ID" ,
+                        "         left join employees e on b.employeeID = e.ID",
                 new AssignedAssetsMapper());
     }
 
-
     @Override
     public boolean EditAsset(EditAssetForm editAssetForm) {
-        int rows = jdbcTemplate.update("update assets set assetName = ? , assetType = ?, modelNumber = ?, version = ?, dateOfPurchase = ? where ID = ?",
-                editAssetForm.getAssetName(),editAssetForm.getAssetType(),editAssetForm.getModelNumber(),editAssetForm.getVersion(),editAssetForm.getDateOfPurchase(),editAssetForm.getID());
-        return (rows>0);
+        int rows = jdbcTemplate.update(
+                "update assets set assetName = ? , assetType = ?, modelNumber = ?, version = ?, dateOfPurchase = ? where ID = ?",
+                editAssetForm.getAssetName(), editAssetForm.getAssetType(), editAssetForm.getModelNumber(),
+                editAssetForm.getVersion(), editAssetForm.getDateOfPurchase(), editAssetForm.getID());
+        return (rows > 0);
     }
 
 }

@@ -3,24 +3,29 @@ package com.Bipsync.SoftwareAndAssetsManager.DTO;
 import java.util.Date;
 
 public class AssetDTO {
-    //In this class, one line == one column in db table
-    //Provided with corresponding getters and setters
+    // In this class, one line == one column in db table
+    // Provided with corresponding getters and setters
     private int id;
     private String assetName;
     private String assetType;
     private String modelNumber;
     private String version;
     private String status;
+    private String modelNumber;
+    private String version;
     private Date dateOfPurchase;
     private Date dateOfExpiry;
 
-    public AssetDTO(int id, String assetName, String assetType, String modelNumber, String version, String status, Date dateOfPurchase, Date dateOfExpiry) {
+    public AssetDTO(int id, String assetName, String assetType, String status, String modelNumber, String version,
+            Date dateOfPurchase, Date dateOfExpiry) {
         this.id = id;
         this.assetName = assetName;
         this.assetType = assetType;
         this.modelNumber = modelNumber;
         this.version = version;
         this.status = status;
+        this.modelNumber = modelNumber;
+        this.version = version;
         this.dateOfPurchase = dateOfPurchase;
         this.dateOfExpiry = dateOfExpiry;
     }
@@ -69,8 +74,12 @@ public class AssetDTO {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getModelNumber() {
+        return modelNumber;
+    }
+
+    public String getVersion() {
+        return version;
     }
 
     public Date getDateOfPurchase() {
@@ -89,4 +98,3 @@ public class AssetDTO {
         this.dateOfExpiry = dateOfExpiry;
     }
 }
-
