@@ -1,26 +1,36 @@
 package com.bipsync.SoftwareAndAssetsManager.form;
 
 public class DeleteEmployeeForm {
-
+    private int ID;
     private String firstName;
 
-    private String lastName;
+    private String surname;
+    private String Username;
+
+    private String Password;
     private String Department;
     private String Authority;
 
-    private int ID;
-    private String Password;
 
     private String Region;
 
-    public DeleteEmployeeForm(String firstName, String lastName, String department, String authority, int ID, String password, String region) {
+    public DeleteEmployeeForm(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
+        this.ID = ID;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.surname = surname;
+        Username = username;
+        Password = password;
         Department = department;
         Authority = authority;
-        this.ID = ID;
-        Password = password;
         Region = region;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getFirstName() {
@@ -31,12 +41,28 @@ public class DeleteEmployeeForm {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getsurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setsurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 
     public String getDepartment() {
@@ -53,22 +79,6 @@ public class DeleteEmployeeForm {
 
     public void setAuthority(String authority) {
         Authority = authority;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
     }
 
     public String getRegion() {

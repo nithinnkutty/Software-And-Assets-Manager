@@ -14,7 +14,7 @@ public class EmployeeMapper implements RowMapper {
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new EmployeeDTO(rs.getInt("ID"),
                 rs.getString("firstName"),
-                rs.getString("lastName"),
+                rs.getString("surname"),
                 rs.getString("Username"),
                 rs.getString("Password"),
                 rs.getString("Department"),

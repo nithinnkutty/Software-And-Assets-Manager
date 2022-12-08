@@ -5,7 +5,7 @@ public class EditEmployeeForm {
     private int ID;
     private String firstName;
 
-    private String lastName;
+    private String surname;
     private String Username;
 
     private String Password;
@@ -15,10 +15,10 @@ public class EditEmployeeForm {
 
     private String Region;
 
-    public EditEmployeeForm(int ID, String firstName, String lastName, String username, String password, String department, String authority, String region) {
+    public EditEmployeeForm(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
         this.ID = ID;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.surname = surname;
         Username = username;
         Password = password;
         Department = department;
@@ -42,12 +42,12 @@ public class EditEmployeeForm {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getsurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setsurname(String surname) {
+        this.surname = surname;
     }
 
     public String getUsername() {

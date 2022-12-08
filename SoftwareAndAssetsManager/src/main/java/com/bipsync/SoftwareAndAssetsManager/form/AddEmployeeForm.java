@@ -4,7 +4,7 @@ public class AddEmployeeForm {
     //getter/setter/model for adding function.
     private String firstName;
 
-    private String lastName;
+    private String surname;
     private String username;
 
     private String Password;
@@ -14,9 +14,9 @@ public class AddEmployeeForm {
 
     private String Region;
 
-    public AddEmployeeForm(String firstName, String lastName, String username, String password, String department, String authority, String region) {
+    public AddEmployeeForm(String firstName, String surname, String username, String password, String department, String authority, String region) {
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.surname = surname;
         this.username = username;
         Password = password;
         Department = department;
@@ -32,12 +32,12 @@ public class AddEmployeeForm {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getsurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setsurname(String surname) {
+        this.surname = surname;
     }
 
     public String getUsername() {

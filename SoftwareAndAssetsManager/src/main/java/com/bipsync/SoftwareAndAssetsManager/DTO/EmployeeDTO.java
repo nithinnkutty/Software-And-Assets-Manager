@@ -1,11 +1,9 @@
 package com.bipsync.SoftwareAndAssetsManager.DTO;
 
 public class EmployeeDTO {
-    //In this class, one line == one column in db table
-    //Provided with corresponding getters and setters
     private int ID;
     private String firstName;
-    private String lastName;
+    private String surname;
 
     private String Username;
 
@@ -17,10 +15,10 @@ public class EmployeeDTO {
 
     private String Region;
 
-    public EmployeeDTO(int ID, String firstName, String lastName, String username, String password, String department, String authority, String region) {
+    public EmployeeDTO(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
         this.ID = ID;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.surname = surname;
         Username = username;
         Password = password;
         Department = department;
@@ -44,12 +42,12 @@ public class EmployeeDTO {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getUsername() {

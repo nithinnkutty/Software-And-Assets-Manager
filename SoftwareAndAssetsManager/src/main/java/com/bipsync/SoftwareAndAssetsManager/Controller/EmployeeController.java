@@ -88,8 +88,10 @@ public class EmployeeController {
     @RequestMapping(path="/DeleteAdmin", method = RequestMethod.POST)
     public ModelAndView DeleteAdmin(DeleteEmployeeForm deleteEmployeeForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
+        System.out.println("ID received" + deleteEmployeeForm.getID());
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
+            System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());
             mav.setViewName("ManageAdmin_SA");
         } else {
             if (adminRepo.DeleteEmployee(deleteEmployeeForm)) {

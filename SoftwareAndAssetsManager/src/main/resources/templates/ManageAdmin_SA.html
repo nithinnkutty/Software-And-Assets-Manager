@@ -69,7 +69,7 @@
                 <tr>
                     <td>ID</td>
                     <td>FirstName</td>
-                    <td>LastName</td>
+                    <td>Surname</td>
                     <td>Username</td>
                     <td>Password</td>
                     <td>Department</td>
@@ -82,7 +82,7 @@
                 <tr th:each="employee: ${employeeAttribute}">
                     <td th:text="${employee.ID}"></td>
                     <td th:text="${employee.firstName}"></td>
-                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.surname}"></td>
                     <td th:text="${employee.Username}"></td>
                     <td th:text="${employee.Password}"></td>
                     <td th:text="${employee.Department}"></td>
@@ -92,7 +92,7 @@
                 <tfoot>
                 <td>ID</td>
                 <td>FirstName</td>
-                <td>LastName</td>
+                <td>surname</td>
                 <td>Username</td>
                 <td>Password</td>
                 <td>Department</td>
@@ -197,7 +197,7 @@
                                     <div class="col-4 p-2"><label>First Name: </label></div>
                                     <div class="col-8 p-2"><input name="firstName" id = "aFName" type="text"></div><br>
                                     <div class="col-4 p-2"><label>Last Name: </label></div>
-                                    <div class="col-8 p-2"><input name="lastName" id = "aLName" type="text"></div><br>
+                                    <div class="col-8 p-2"><input name="surname" id = "aLName" type="text"></div><br>
                                     <div class="col-4 p-2"><label>Username: </label></div>
                                     <div class="col-8 p-2"><input name="Username" id = "aUsername" type="text"></div><br>
                                     <div class="col-4 p-2"><label>Password:</label></div>
@@ -263,7 +263,7 @@
                                 <div class="col-4 p-2"><label>First Name: </label></div>
                                 <div class="col-8 p-2"><input name="firstName" id = "eFName" type="text"></div>
                                 <div class="col-4 p-2"><label>Last Name:</label></div>
-                                <div class="col-8 p-2"><input name="lastName" id = "eLName" type="text"></div>
+                                <div class="col-8 p-2"><input name="surname" id = "eLName" type="text"></div>
                                 <div class="col-4 p-2"><label>Username: </label></div>
                                 <div class="col-8 p-2"><input name="Username" id = "eUsername" type="text"></div>
                                 <div class="col-4 p-2"><label>Password:</label></div>
