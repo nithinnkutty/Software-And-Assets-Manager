@@ -40,5 +40,11 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
                 "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
                 new AssetMapper());
     }
+    @Override
+    public List<AssetDTO> getAssetsSummary() {
+        return jdbcTemplate.query(
+                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+                new AssetMapper());
+    }
 
 }

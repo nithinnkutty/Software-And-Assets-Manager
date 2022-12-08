@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.controller;
+package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
 
 import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;

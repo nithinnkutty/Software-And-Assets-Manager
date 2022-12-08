@@ -24,7 +24,7 @@ public class AddAssetForm {
         this.dateOfExpiry = formatDate(dateOfExpiry);
     }
 
-    private Date formatDate(String dateOfExpiry) throws ParseException {
+    public Date formatDate(String dateOfExpiry) throws ParseException {
         String dateString = dateOfExpiry;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = formatter.parse(dateString);
