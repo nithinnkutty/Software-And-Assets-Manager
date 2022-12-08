@@ -108,7 +108,7 @@
                                         <th scope="col">Date of Assigned</th>
                                         <th scope="col">Assignee</th>
                                         <th scope="col">Region</th>
-                                        <th scope="col">Operations</th>
+<!--                                        <th scope="col">Operations</th>-->
                                     </tr>
                                     </thead>
                                     <tbody class="table-group-divider ">
@@ -126,173 +126,182 @@
                                         <td th:text="${asset.firstname} +${asset.surname}"></td>
                                         <!--                                        <td th:text="${asset.surname}"></td>-->
                                         <td th:text="${asset.region}"></td>
-                                        <td>
-                                            <script>
 
-
-                                            </script>
-                                            <div style="white-space:nowrap">
-                                                <button class="btn btn-primary"
-                                                        data-bs-toggle="modal"
-                                                        onclick="showDialog()" type="button">
-                                                    Edit
-                                                </button>
-                                                <div class="modal fade" th:id="${asset.ID}">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <form action='/EditAsset/' id='editAssetForm' method='post'>
-
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Edit</h4>
-                                                                    <button class="btn-close" data-bs-dismiss="modal"
-                                                                            type="button"></button>
-                                                                </div>
-
-
-                                                                <div class="modal-body">
-                                                                    <div class="wrap-left ">
-                                                                        <div class="row row-col-5">
-                                                                            <div class="col-4 p-2">
-                                                                                <label class="form-label"
-                                                                                       for="editAssetID">Asset
-                                                                                    ID</label>
-                                                                            </div>
-                                                                            <div class="col-8 p-2">
-                                                                                <input class="form-control"
-                                                                                       id="editAssetID"
-
-                                                                                       name="ID"
-                                                                                       th:value="${asset.ID}"
-                                                                                       type="number">
-
-                                                                            </div>
-                                                                            <div class="col-4 p-2">
-                                                                                <label class="form-label"
-                                                                                       for="editAssetName">Asset
-                                                                                    Name</label>
-                                                                            </div>
-                                                                            <div class="col-8 p-2">
-                                                                                <input class="form-control"
-                                                                                       id="editAssetName"
-                                                                                       name="assetName"
-                                                                                       placeholder="Asset Name"
-                                                                                       th:value="${asset.assetName}"
-                                                                                       type="text">
-                                                                            </div>
-                                                                            <div class="col-4 p-2">
-                                                                                <label class="form-label"
-                                                                                       for="editAssetType">Asset
-                                                                                    Type</label>
-                                                                            </div>
-                                                                            <div class="col-8 p-2">
-                                                                                <input class="form-control"
-                                                                                       id="editAssetType"
-                                                                                       name="assetType"
-                                                                                       placeholder="Asset Type"
-                                                                                       th:value="${asset.assetType}"
-                                                                                       type="text">
-                                                                            </div>
-                                                                            <div class="col-4 p-2">
-                                                                                <label class="form-label"
-                                                                                       for="editModelNumber">Model
-                                                                                    Number</label>
-                                                                            </div>
-                                                                            <div class="col-8 p-2">
-                                                                                <input class="form-control"
-                                                                                       id="editModelNumber"
-                                                                                       name="modelNumber"
-                                                                                       placeholder="Model Number"
-                                                                                       th:value="${asset.modelNumber}"
-                                                                                       type="text">
-                                                                            </div>
-
-                                                                            <div class="col-4 p-2">
-                                                                                <label class="form-label"
-                                                                                       for="editAssetVersion">Asset
-                                                                                    Version</label>
-                                                                            </div>
-                                                                            <div class="col-8 p-2">
-                                                                                <input class="form-control"
-                                                                                       id="editAssetVersion"
-                                                                                       name="version"
-                                                                                       placeholder="Asset Status"
-                                                                                       th:value="${asset.version}"
-                                                                                       type="text">
-                                                                            </div>
-                                                                            <div class="col-4 p-2">
-                                                                                <label class="form-label"
-                                                                                       for="editPurchaseDate">Date of
-                                                                                    Purchase</label>
-                                                                            </div>
-                                                                            <div class="col-8 p-2">
-                                                                                <input class="form-control"
-                                                                                       id="editPurchaseDate"
-                                                                                       name="dateOfPurchase"
-                                                                                       placeholder="Date of Purchase"
-                                                                                       th:value="${asset.dateOfPurchase}"
-                                                                                       type="text">
-                                                                            </div>
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div class="modal-footer">
-                                                                    <button class="btn btn-success"
-                                                                            data-bs-dismiss="modal"
-                                                                            type="submit">
-                                                                        submit
-                                                                    </button>
-                                                                    <button class="btn btn-ready"
-                                                                            data-bs-dismiss="modal"
-                                                                            type="button">
-                                                                        Cancel
-                                                                    </button>
-                                                                </div>
-                                                            </form>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-danger">delete</button>
-
-
-                                            </div>
-                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
+
+
+
+
 
                                 <script type="text/javascript">
                                     // $(document).ready( function () {
                                     //     $('#resultTable').DataTable();
                                     // } );
-                                    var rowData
+
                                     $(document).ready(function () {
 
                                         var table = $('#resultTable').DataTable({
                                             select: true,
                                         });
                                         table.on('click', 'tr', function () {
-                                            rowData = table.row(this).data()[0];
-                                            console.log(rowData);
-                                            // document.getElementById("test") .value = rowData;
+                                            var ID = table.row(this).data()[0];
+                                            var assetName = table.row(this).data()[1];
+                                            var modelType = table.row(this).data()[2];
+                                            var modelNumber = table.row(this).data()[3];
+                                            var version= table.row(this).data()[4];
+                                            var dateOfPuraches= table.row(this).data()[6];
+
+                                            console.log(ID);
+                                            document.getElementById("editAssetID") .value = ID;
+                                            document.getElementById("editAssetName") .value = assetName;
+                                            document.getElementById("editModelType") .value = modelType;
+                                            document.getElementById("editModelNumber") .value = modelNumber;
+                                            document.getElementById("editVersion") .value = version;
+                                            document.getElementById("editPurchaseDate") .value = dateOfPuraches;
+
 
 
                                         });
 
                                     });
 
-                                    function showDialog(obj) {
-
-                                        $("#" + rowData).modal('show');
-
-                                    }
                                 </script>
                             </div>
                             <br>
+                            <div style="white-space:nowrap;float: left">
+
+                                <button class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#editAsset"
+                                        type="button">
+
+                                    Edit Asset
+                                </button>
+                                <div class="modal fade" id="editAsset" >
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <form action='/EditAsset/' id='editAssetForm' method='post'>
+
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Edit</h4>
+                                                    <button class="btn-close" data-bs-dismiss="modal"
+                                                            type="button"></button>
+                                                </div>
+
+
+                                                <div class="modal-body">
+                                                    <div class="wrap-left ">
+                                                        <div class="row row-col-5">
+                                                            <div class="col-4 p-2">
+
+                                                                <label class="form-label"
+                                                                       for="editAssetID">Asset
+                                                                    ID</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editAssetID"
+
+                                                                       name="ID"
+
+                                                                       type="number">
+
+                                                            </div>
+                                                            <div class="col-4 p-2">
+                                                                <label class="form-label"
+                                                                       for="editAssetName">Asset
+                                                                    Name</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editAssetName"
+                                                                       name="assetName"
+                                                                       placeholder="Asset Name"
+
+                                                                       type="text">
+                                                            </div>
+                                                            <div class="col-4 p-2">
+                                                                <label class="form-label"
+                                                                       for="editAssetType">Asset
+                                                                    Type</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editAssetType"
+                                                                       name="assetType"
+                                                                       placeholder="Asset Type"
+
+                                                                       type="text">
+                                                            </div>
+                                                            <div class="col-4 p-2">
+                                                                <label class="form-label"
+                                                                       for="editModelNumber">Model
+                                                                    Number</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editModelNumber"
+                                                                       name="modelNumber"
+                                                                       placeholder="Model Number"
+
+                                                                       type="text">
+                                                            </div>
+
+                                                            <div class="col-4 p-2">
+                                                                <label class="form-label"
+                                                                       for="editAssetVersion">Asset
+                                                                    Version</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editAssetVersion"
+                                                                       name="version"
+                                                                       placeholder="Asset Status"
+
+                                                                       type="text">
+                                                            </div>
+                                                            <div class="col-4 p-2">
+                                                                <label class="form-label"
+                                                                       for="editPurchaseDate">Date of
+                                                                    Purchase</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editPurchaseDate"
+                                                                       name="dateOfPurchase"
+                                                                       placeholder="Date of Purchase"
+
+                                                                       type="text">
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-success"
+                                                            data-bs-dismiss="modal"
+                                                            type="submit">
+                                                        submit
+                                                    </button>
+                                                    <button class="btn btn-ready"
+                                                            data-bs-dismiss="modal"
+                                                            type="button">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-danger">Delete Asset</button>
+
+
+                            </div>
 
                         </div>
                     </div>
