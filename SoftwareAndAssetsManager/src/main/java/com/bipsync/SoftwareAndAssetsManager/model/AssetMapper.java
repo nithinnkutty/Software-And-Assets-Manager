@@ -16,6 +16,8 @@ public class AssetMapper implements RowMapper {
                 rs.getString("assetName"),
                 rs.getString("assetType"),
                 rs.getString("status"),
+                rs.getString("modelNumber"),
+                rs.getString("version"),
                 rs.getDate("dateOfPurchase"),
                 rs.getDate("dateOfExpiry"));
     }

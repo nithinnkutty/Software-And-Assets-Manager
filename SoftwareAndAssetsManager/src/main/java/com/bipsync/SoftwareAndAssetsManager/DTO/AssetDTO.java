@@ -9,16 +9,19 @@ public class AssetDTO {
     private String assetName;
     private String assetType;
     private String status;
+    private String modelNumber;
+    private String version;
     private Date dateOfPurchase;
     private Date dateOfExpiry;
 
 
-    public AssetDTO(int id, String assetName, String assetType, String status,
-                    Date dateOfPurchase,Date dateOfExpiry ) {
+    public AssetDTO(int id, String assetName, String assetType, String status, String modelNumber, String version, Date dateOfPurchase, Date dateOfExpiry) {
         this.id = id;
         this.assetName = assetName;
         this.assetType = assetType;
         this.status = status;
+        this.modelNumber = modelNumber;
+        this.version = version;
         this.dateOfPurchase = dateOfPurchase;
         this.dateOfExpiry = dateOfExpiry;
     }
@@ -37,6 +40,14 @@ public class AssetDTO {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getModelNumber() {
+        return modelNumber;
+    }
+
+    public String getVersion() {
+        return version;
     }
 
     public Date getDateOfPurchase() {

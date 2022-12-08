@@ -26,17 +26,18 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     @Override
     public boolean addAsset(AddAssetForm addAssetForm) {
         int rows = jdbcTemplate.update(
-                "insert into assets (assetName,assetType,status,dateOfPurchase,dateOfExpiry) values(?,?,?,?,?)" ,
+                "insert into assets (assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry) values(?,?,?,?,?,?,?)" ,
                 new Object[]{addAssetForm.getAssetName(), addAssetForm.getAssetType(),
-                        addAssetForm.getStatus(), addAssetForm.getDateOfPurchase(), addAssetForm.getDateOfExpiry()});
+                        addAssetForm.getStatus(),addAssetForm.getModelNumber(),
+                        addAssetForm.getVersion(), addAssetForm.getDateOfPurchase(),
+                        addAssetForm.getDateOfExpiry()});
         return rows>0;
 
     }
-
     @Override
     public List<AssetDTO> getAllAssets() {
         return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,dateOfPurchase,dateOfExpiry from assets" ,
+                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
                 new AssetMapper());
     }
 
