@@ -85,7 +85,7 @@
                                         <th scope="col">Asset Type</th>
                                         <th scope="col">Model Number</th>
                                         <th scope="col">Version</th>
-                                        <th scope="col">Status</th>
+<!--                                        <th scope="col">Status</th>-->
                                         <th scope="col">Assigned ID</th>
                                         <th scope="col">Assignee</th>
                                         <th scope="col">Department</th>
@@ -106,7 +106,7 @@
                                         <td th:text="${asset.assetType}"></td>
                                         <td th:text="${asset.modelNumber}"></td>
                                         <td th:text="${asset.version}"></td>
-                                        <td th:text="${asset.status}"></td>
+<!--                                        <td th:text="${asset.status}"></td>-->
                                         <td th:text="${asset.employeeID}"></td>
                                         <td th:text="${asset.firstName} +${asset.surname}"></td>
                                         <td th:text="${asset.department}"></td>
@@ -150,9 +150,9 @@
                                             var assetType = table.row(this).data()[2];
                                             var modelNumber = table.row(this).data()[3];
                                             var version = table.row(this).data()[4];
-                                            var employeeID = table.row(this).data()[6];
-                                            var dateOfAssigned = table.row(this).data()[10];
-                                            var dateOfPuraches = table.row(this).data()[11];
+                                            var employeeID = table.row(this).data()[5];
+                                            var dateOfAssigned = table.row(this).data()[9];
+                                            var dateOfPuraches = table.row(this).data()[10];
 
 
                                             console.log(ID);
@@ -221,8 +221,8 @@
                                                             <div class="col-8 p-2">
                                                                 <input class="form-control"
                                                                        id="editEmployeeID" name="employeeID"
-                                                                       placeholder="employeeID"
-
+                                                                       placeholder="Please enter 0 for no allocation at this time"
+                                                                       required="required"
                                                                         type="number">
                                                             </div>
 
@@ -249,7 +249,7 @@
                                                                        id="editAssetType"
                                                                        name="assetType"
                                                                        placeholder="Asset Type"
-
+                                                                       required="required"
                                                                        type="text">
                                                             </div>
                                                             <div class="col-4 p-2">
@@ -289,6 +289,7 @@
                                                                        id="editPurchaseDate"
                                                                        name="dateOfPurchase"
                                                                        placeholder="Date of Purchase"
+                                                                       required="required"
                                                                        type="date">
                                                             </div>
 
@@ -313,7 +314,7 @@
 
                                                 <div class="modal-footer">
                                                     <button class="btn btn-success"
-                                                            data-bs-dismiss="modal"
+
                                                             type="submit">
                                                         submit
                                                     </button>

@@ -45,6 +45,7 @@ public class AssetsController {
     @RequestMapping(path="/deleteAsset", method = RequestMethod.POST)
     public ModelAndView DeleteAdmin(EditAssetForm editAssetForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
+        System.out.println(editAssetForm);
         System.out.println("Delete ID :" + editAssetForm.getID());
         if (br.hasErrors()) {
             System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());

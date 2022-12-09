@@ -50,11 +50,7 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
     @Override
     public List<AssignedAssetsDTO> getAllAssignedAssets() {
         return jdbcTemplate.query(
-                "select b.*, e.firstname, e.surname, e.region\n" +
-                        "from (select a.*, s.assignedOn, s.employeeID\n" +
-                        "      from assets a\n" +
-                        "               left join assigned s on a.id = s.assetID) b\n" +
-                        "         left join employees e on b.employeeID = e.ID",
+                "select a.*,e.firstName,e.surname,e.department,e.region from assets a left join employees e on a.employeeID = e.ID",
                 new AssignedAssetsMapper());
     }
 
@@ -62,9 +58,9 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
     @Override
     public boolean EditAsset(EditAssetForm editAssetForm) {
         int rows = jdbcTemplate.update(
-                "update assets set assetName = ? , assetType = ?, modelNumber = ?, version = ?,dateOfPurchase= ? where ID = ?",
-                editAssetForm.getAssetName(), editAssetForm.getAssetType(), editAssetForm.getModelNumber(),
-                editAssetForm.getVersion(),editAssetForm.getDateOfPurchase(), editAssetForm.getID());
+                "update assets set assetName = ? ,employeeID=?, assetType = ?, modelNumber = ?, version = ?,dateOfPurchase= ?,assignedOn= ? where ID = ?",
+                editAssetForm.getAssetName(), editAssetForm.getEmployeeID(),editAssetForm.getAssetType(), editAssetForm.getModelNumber(),
+                editAssetForm.getVersion(),editAssetForm.getDateOfPurchase(),editAssetForm.getAssignedOn(), editAssetForm.getID());
         return rows > 0;
     }
 

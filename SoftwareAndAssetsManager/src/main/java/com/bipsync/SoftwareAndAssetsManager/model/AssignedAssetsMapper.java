@@ -9,7 +9,8 @@ public class AssignedAssetsMapper implements RowMapper {
 
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new AssignedAssetsDTO(rs.getInt("ID"),
+        AssignedAssetsDTO assignedAssetsDTO= new AssignedAssetsDTO(rs.getInt("ID"),
+                rs.getInt("employeeID"),
                 rs.getString("assetName"),
                 rs.getString("assetType"),
                 rs.getString("modelNumber"),
@@ -20,7 +21,9 @@ public class AssignedAssetsMapper implements RowMapper {
                 rs.getDate("assignedOn"),
                 rs.getString("firstName"),
                 rs.getString("surname"),
+                rs.getString("department"),
                 rs.getString("region"));
-
+//             System.out.println(assignedAssetsDTO);
+            return assignedAssetsDTO;
     }
 }
