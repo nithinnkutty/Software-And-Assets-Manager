@@ -68,4 +68,11 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
         return rows > 0;
     }
 
+    @Override
+    public boolean DeleteAsset(EditAssetForm editAssetForm) {
+        int rows = jdbcTemplate.update("delete from assets where ID = ?", editAssetForm.getID());
+        System.out.println("deleted");
+        return rows>0 ;
+    }
+
 }

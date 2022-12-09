@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 //Collection of editing forms obtained from the front end
+//This class is used for both edit and delete functions
 public class EditAssetForm {
     private int ID;
     private String assetName;

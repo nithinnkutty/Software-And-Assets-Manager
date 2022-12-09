@@ -39,7 +39,25 @@ public class AssetsController {
             }
         }
         return mav;
+    }
 
+//    Since the delete function only requires an ID, the EditAssetForm class was borrowed to improve code reusability
+    @RequestMapping(path="/deleteAsset", method = RequestMethod.POST)
+    public ModelAndView DeleteAdmin(EditAssetForm editAssetForm, BindingResult br) {
+        ModelAndView mav = new ModelAndView();
+        System.out.println("Delete ID :" + editAssetForm.getID());
+        if (br.hasErrors()) {
+            System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());
+            mav.setViewName("AssetSearch_SA");
+        } else {
+            if (assetsRepository.DeleteAsset(editAssetForm)) {
+                mav.addObject("assignedAssets",assetsRepository.getAllAssignedAssets());
+                mav.setViewName("AssetSearch_SA");
+            }else{
+                mav.setViewName("AssetSearch_SA");
+            }
+        }
+        return mav;
     }
 
 }

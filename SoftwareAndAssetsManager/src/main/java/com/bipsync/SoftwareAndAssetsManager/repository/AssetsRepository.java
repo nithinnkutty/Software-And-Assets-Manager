@@ -10,4 +10,5 @@ public interface AssetsRepository {
     public Object getAllAssets();
     public Object getAllAssignedAssets();
     boolean EditAsset(EditAssetForm editAssetForm);
+    boolean DeleteAsset(EditAssetForm editAssetForm);
 }

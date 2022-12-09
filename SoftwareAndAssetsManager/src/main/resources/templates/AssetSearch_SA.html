@@ -120,11 +120,20 @@
                                     //     $('#resultTable').DataTable();
                                     // } );
 
+                                    // The action button bar is hidden by default and is displayed when the form is clicked
                                     $(document).ready(function () {
+                                        $("#manage").hide();
+                                        $("td").click(function(){
+                                            $("#manage").show()
+                                        });
+
 
                                         var table = $('#resultTable').DataTable({
                                             select: true,
                                         });
+
+
+                                        // Click on a specific line to get information about that line and assign it to the input that follows
                                         table.on('click', 'tr', function () {
                                             var ID = table.row(this).data()[0];
                                             var assetName = table.row(this).data()[1];
@@ -141,6 +150,9 @@
                                             document.getElementById("editAssetVersion").value = version;
                                             document.getElementById("editPurchaseDate").value = dateOfPuraches;
 
+                                            document.getElementById("deleteAssetID").value = ID;
+                                            console.log("Delete ID =" + document.getElementById("deleteAssetID").value);
+                                            document.getElementById("deletePurchaseDate").value = dateOfPuraches;
 
                                         });
 
@@ -149,14 +161,17 @@
                                 </script>
                             </div>
                             <br>
-                            <div style="white-space:nowrap;float: right">
 
-                                <button class="btn btn-primary"
+                            <!--                            This div contains two action buttons-->
+                            <div style="white-space:nowrap;float: right" id="manage">
+
+                                <button class="btn btn-primary btn-lg"
                                         data-bs-target="#editAsset" data-bs-toggle="modal"
                                         type="button">
 
                                     Edit Asset
                                 </button>
+                                <!--                                editAsset modal box-->
                                 <div class="modal fade" id="editAsset">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -175,12 +190,13 @@
 
                                                             <div class="col-4 p-2">
 
-                                                                <label class="form-label" for="editAssetID">Asset  ID</label>
+                                                                <label class="form-label" for="editAssetID">Asset
+                                                                    ID</label>
                                                             </div>
                                                             <div class="col-8 p-2">
                                                                 <input class="form-control"
                                                                        id="editAssetID" name="ID"
-                                                                       type="number" readonly>
+                                                                       readonly type="number">
                                                             </div>
                                                             <div class="col-4 p-2">
                                                                 <label class="form-label"
@@ -192,7 +208,7 @@
                                                                        id="editAssetName"
                                                                        name="assetName"
                                                                        placeholder="Asset Name"
-
+                                                                       required="required"
                                                                        type="text">
                                                             </div>
                                                             <div class="col-4 p-2">
@@ -247,8 +263,6 @@
                                                                        placeholder="Date of Purchase"
                                                                        type="date">
                                                             </div>
-
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -271,20 +285,70 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-danger">Delete Asset</button>
 
 
+
+                                <button class="btn btn-danger btn-lg" data-bs-target="#deleteAsset"
+                                        data-bs-toggle="modal"
+                                        type="button">
+                                    Delete Asset
+                                </button>
+
+                                <div class="modal fade" id="deleteAsset">
+                                    <form action="deleteAsset" method="post">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+
+
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Warning</h4>
+                                                    <button class="btn-close" data-bs-dismiss="modal"
+                                                            type="button"></button>
+                                                </div>
+
+
+                                                <div class="modal-body">
+                                                    Confirm this deletion?
+
+<!--                                                    Use null to fill the class to avoid reporting errors, but only use the ID-->
+                                                    <input id="deleteAssetID" name="ID" type="hidden">
+                                                    <input name="assetName" type="hidden" value="null">
+                                                    <input name="assetTypeD" type="hidden" value="null">
+                                                    <input name="modelNumber" type="hidden" value="null">
+                                                    <input name="version" type="hidden" value="null">
+                                                    <input name="dateOfPurchase" id="deletePurchaseDate" type="hidden" >
+                                                </div>
+
+
+                                                <div class="modal-footer">
+
+
+                                                    <button class="btn btn-warning" data-bs-dismiss="modal"
+                                                            type="submit">
+                                                        Delete
+                                                    </button>
+
+                                                    <button class="btn btn-secondary" data-bs-dismiss="modal"
+                                                            type="button">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
 
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
+
 <script th:replace="fragments/Script::script">
 
 
