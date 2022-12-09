@@ -1,7 +1,5 @@
 package com.Bipsync.SoftwareAndAssetsManager.model;
 
-
-
 import com.Bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -15,8 +13,12 @@ public class EmployeeMapper implements RowMapper {
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new EmployeeDTO(rs.getInt("ID"),
-                rs.getString("Name"),
-                rs.getString("Department"),
-                rs.getString("Authority"));
+                rs.getString("firstName"),
+                rs.getString("surname"),
+                rs.getString("username"),
+                rs.getString("password"),
+                rs.getString("department"),
+                rs.getString("authority"),
+                rs.getString("region"));
     }
 }

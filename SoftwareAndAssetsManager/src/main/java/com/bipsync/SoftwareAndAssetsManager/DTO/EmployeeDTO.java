@@ -1,49 +1,92 @@
 package com.Bipsync.SoftwareAndAssetsManager.DTO;
 
 public class EmployeeDTO {
-    //In this class, one line == one column in db table
-    //Provided with corresponding getters and setters
-    private int id;
-    private String Name;
-    private String Department;
-    private String Authority;
-    public EmployeeDTO(int id, String name, String department, String authority) {
-        this.id = id;
-        Name = name;
-        Department = department;
-        Authority = authority;
+    private int ID;
+    private String firstName;
+    private String surname;
+
+    private String username;
+
+    private String password;
+
+    private String department;
+    private String authority;
+
+    private String region;
+
+    public EmployeeDTO(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
+        this.ID = ID;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.department = department;
+        this.authority = authority;
+        this.region = region;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public String getName() {
-        return Name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDepartment() {
-        return Department;
+        return department;
     }
 
     public void setDepartment(String department) {
-        Department = department;
+        this.department = department;
     }
 
     public String getAuthority() {
-        return Authority;
+        return authority;
     }
 
     public void setAuthority(String authority) {
-        Authority = authority;
+        this.authority = authority;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 }
 

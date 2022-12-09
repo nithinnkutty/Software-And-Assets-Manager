@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.Thymeleaf.org">
 
-<!--This is the Home Page template for SuperAdmin Access-->
 <head th:replace="fragments/Head::siteHead"></head>
+
+
+
+
+
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
 
-    <div class="row">
-        <div class="col col-lg-8 offset-lg-2 text-center">
+<div class="col col-lg-8 offset-lg-2 text-center">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button th:replace="fragments/navBar_Inactive::navBar_AllAssets"></button>
@@ -17,228 +20,330 @@
                     <button th:replace="fragments/navBar_Active::navBar_ManageAdmin"></button>
                 </div>
             </nav>
+    <div class="tab-content" id="nav-tabContent">
+    <div aria-labelledby="nav-manageAdmin-tab" class="tab-pane fade show active w-100" id="nav-manageAdmin"
+         role="tabpanel" tabindex="0">
+        <div class="row">
+            <div style="text-align: start">
+                <div class="table text-wrap">
 
-            <div class="tab-content" id="nav-tabContent">
-                <!--                Manage Admin-->
-                <div aria-labelledby="nav-manageAdmin-tab" class="tab-pane fade show active w-100" id="nav-manageAdmin" role="tabpanel" tabindex="0">
-                    <div class="row">
-                        <div style="text-align: center">
-                            <br>
-                            <br>
-                            <div class="wrapleft">
+
+<!--            <form name="generalAll" action='/GeneralAll/' method='get' style="text-align: start">-->
+<!--                <button class="btn btn-primary" name="GeneralAll" type="submit">General Admin</button>-->
+<!--            </form>-->
+<!--            <form name="generalAll" action='/SuperAll/' method='get' style="text-align: start">-->
+<!--                <button class="btn btn-primary" name=class="dropdown-item" type="submit">Super Admin</button>-->
+<!--            </form>-->
+
+
+                <table  id="AdminTable" class="table table-striped display" >
+
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>FirstName</td>
+                    <td>Surname</td>
+                    <td>username</td>
+                    <td>Password</td>
+                    <td>Department</td>
+                    <td>authority</td>
+                    <td>region</td>
+
+                </tr>
+                </thead>
+                    <tbody class="table-group-divider ">
+                <tr th:each="employee: ${employeeAttribute}">
+                    <td th:text="${employee.ID}"></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.surname}"></td>
+                    <td th:text="${employee.username}"></td>
+                    <td th:text="${employee.Password}"></td>
+                    <td th:text="${employee.Department}"></td>
+                    <td th:text="${employee.authority}"></td>
+                    <td th:text="${employee.region}"></td>
+                </tr>
+                <tfoot>
+                <td>ID</td>
+                <td>FirstName</td>
+                <td>surname</td>
+                <td>username</td>
+                <td>Password</td>
+                <td>Department</td>
+                <td>authority</td>
+                <td>region</td>
+                </tfoot>
+            </table>
+                <!--datatable plugin functions-->
+                <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#AdminTable tfoot td').each(function () {
+                        var title = $(this).text();
+                        $(this).html('<input type="text" placeholder="Search ' +title+ '"/>');
+                    });
+                    var table = $('#AdminTable').DataTable(
+                        {
+                            select: true,
+                            initComplete: function () {
+                                // Apply the search
+                                this.api()
+                                    .columns()
+                                    .every(function () {
+                                        var that = this;
+
+                                        $('input', this.footer()).on('keyup change clear', function () {
+                                            if (that.search() !== this.value) {
+                                                that.search(this.value).draw();
+                                            }
+                                        });
+                                    });
+                            },
+                            pagingType: 'first_last_numbers',
+                            pageLength: 5,
+                            lengthMenu: [5, 10, 500],
+                            autoWidth: false,
+                            aoColumnDefs: [
+                                { 'bSortable': false, 'aTargets': [ 4 ] },
+                                {'width': "10px", "aTargets": [0] }
+                            ],
+
+                        }
+
+                    );
+                    table.on( 'click', 'tr', function () {
+
+                        var rowID =  table.row( this ).data()[0];
+                        var rowfName =  table.row( this ).data()[1];
+                        var rowlName =  table.row( this ).data()[2];
+                        var rowusername =  table.row( this ).data()[3];
+                        var rowPassword =  table.row( this ).data()[4];
+                        var rowDepartment =  table.row( this ).data()[5];
+                        var rowauthority =  table.row( this ).data()[6];
+                        var rowregion =  table.row( this ).data()[7];
+                        document.getElementById("aFName").value = rowfName;
+                        document.getElementById("aLName").value = rowlName;
+                        document.getElementById("ausername").value = rowusername;
+                        document.getElementById("aPassword").value = rowPassword;
+                        // document.getElementById("aDepartment").value = rowDepartment;
+                        // document.getElementById("aauthority").value = rowauthority;
+                        document.getElementById("aregion").value = rowregion;
+                        document.getElementById("eID").value = rowID;
+                        document.getElementById("eFName").value = rowfName;
+                        document.getElementById("eLName").value = rowlName;
+                        document.getElementById("eusername").value = rowusername;
+                        document.getElementById("ePassword").value = rowPassword;
+                        // document.getElementById("eDepartment").value = rowDepartment;
+                        // document.getElementById("eauthority").value = rowauthority;
+                        document.getElementById("eregion").value = rowregion;
+                        document.getElementById("dID").value = rowID;
+
+                    });
+                });
+            </script>
+
+                </div>
+
+            <br>
+       <div class="col-md-8 column">
+
+           <form name="myForm3" id='myForm3' action='/AdminAll/' method='get'></form>
+           <button class="btn btn-primary" name="AdminAll" id="AdminAll"onclick="Adminall()"> Admin Refresh</button>
+            <script>
+                function Adminall() {
+                    document.getElementById("myForm3").submit();
+                }
+            </script>
+            <button class="btn btn-primary" data-bs-target="#addAdmin"
+                    data-bs-toggle="modal"
+                    type="button"> Add Admin
+            </button>
+            <div class="modal fade" id="addAdmin">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header"><h4 class="modal-title">Add Admin</h4></div>
+                                <button class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+
+                            <form action='/AddAdmin/' id='myForm' method='post'>
+                            <div class="modal-body">
                                 <div class="row row-col-5">
-                                    <div class="col-4 p-2">
-                                        <label for="AdminName" class="form-label">Admin Name</label>
-                                    </div>
+                                <!--Now, the data posed will be sent to controllers-->
+                                    <div class="col-4 p-2"><label>First Name: </label></div>
+                                    <div class="col-8 p-2"><input name="firstName" id = "aFName" type="text"></div><br>
+                                    <div class="col-4 p-2"><label>Last Name: </label></div>
+                                    <div class="col-8 p-2"><input name="surname" id = "aLName" type="text"></div><br>
+                                    <div class="col-4 p-2"><label>username: </label></div>
+                                    <div class="col-8 p-2"><input name="username" id = "ausername" type="text"></div><br>
+                                    <div class="col-4 p-2"><label>Password:</label></div>
+                                    <div class="col-8 p-2"><input name="Password" id = "aPassword" type="text"></div><br>
+                                    <div class="col-4 p-2"><label for="aDepartment">Department: </label></div>
                                     <div class="col-8 p-2">
-                                        <input type="text" class="form-control" id="AdminName"
-                                               placeholder="Default Name">
+                                        <select name="Department" id="aDepartment" form="myForm">
+                                        <option value="COMSC">COMSC</option>
+                                        <option value="FINANCE">FINANCE</option>
+                                        <option value="ARTS">ARTS</option>
+                                        </select>
                                     </div>
-                                    <div class="col-4 p-2">
-                                        <label for="Department" class="form-label">Department</label>
+                                <br>
+                                    <div class="col-4 p-2"><label for="aauthority">authority: </label></div>
+                                    <div class="col-8 p-2">
+                                        <select name="authority" id="aauthority" form="myForm">
+                                        <option value="Super">Super</option>
+                                        <option value="General">General</option>
+                                        <option value="Not">Not</option>
+                                        </select>
+                                    </div>
+                                <br>
+                                    <div class="col-4 p-2"><label>region: </label></div>
+                                    <div class="col-8 p-2"><input name="region" id = "aregion" type="text">
+                                    </div><br>
 
-                                    </div>
-                                    <div class="col-8 p-2">
-                                        <input type="text" class="form-control" id="Department"
-                                               placeholder="Default Department">
-                                    </div>
-                                    <div class="col-4 p-2">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive w-100 ">
-                            <table class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
-                                   id="viewresult">
-                                <thead>
-                                <tr>
-                                    <!--                    Just for Test Run-->
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Asset Name</th>
-                                    <th scope="col">Asset Type</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Date of Purchase</th>
-                                    <th scope="col">Date of Expiry</th>
-                                </tr>
-                                </thead>
-                                <tbody class="table-group-divider ">
-                                <tbody>
-                                <!--                    Just for Test Run-->
-                                <tr th:each="asset: ${assets}">
-                                    <td th:text="${asset.id}"></td>
-                                    <td th:text="${asset.assetName}"></td>
-                                    <td th:text="${asset.assetType}"></td>
-                                    <td th:text="${asset.status}"></td>
-                                    <td th:text="${asset.dateOfPurchase}"></td>
-                                    <td th:text="${asset.dateOfExpiry}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
 
-                        <br>
-                        <!--                                Paged navigation bar and button to add admins-->
-                        <div class="container">
-                            <div class="row clearfix">
-                                <div class="col-md-6 column">
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination justify-content-start">
-                                            <li class="page-item disabled">
-                                                <a class="page-link">Previous</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                                <div class="col-md-6 column">
-                                    <!--add assets button-->
-                                    <button class="btn btn-primary" data-bs-target="#addAdmin"
-                                            data-bs-toggle="modal"
-                                            type="button"> Add Admin
-                                    </button>
-                                    <div class="modal fade" id="addAdmin">
-                                        <div class="modal-dialog modal-lg">
-
-                                            <div class="modal-content">
-                                                <form action='/Sample/' id='myForm' method='post'>
-                                                    <div class="modal-header"><h4 class="modal-title">Add Admin</h4>
-                                                        <button class="btn-close" data-bs-dismiss="modal"
-                                                                type="button"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        <!--Now, the data posed will be sent to controllers--> <label>Name:
-                                                        <input name="Name"
-                                                               type="text"></label><br>
-                                                        <label>Department: <input name="Department"
-                                                                                  type="text"></label><br> <label>Authority:
-                                                        <input name="Authority"
-                                                               type="text"></label><br>
-
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-success" data-bs-dismiss="modal"
-                                                                type="submit"> submit
-                                                        </button>
-                                                        <button class="btn btn-danger" data-bs-dismiss="modal"
-                                                                type="button"> Cancel
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--                                            Edit admin/delete-->
-                                    <!--                                            Here the implementation is different from the search tag-->
-                                    <button class="btn btn-danger" data-bs-target="#editAdmin" data-bs-toggle="modal"
-                                            type="button">
-                                        Edit Admin
-                                    </button>
-                                    <div class="modal fade" id="editAdmin">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-
-
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Edit Admin</h4>
-                                                    <button class="btn-close" data-bs-dismiss="modal"
-                                                            type="button"></button>
-                                                </div>
-
-
-                                                <div class="modal-body">
-                                                    <div class="wrapleft ">
-                                                        <div class="row row-col-5">
-                                                            <div class="col-4 p-2">
-                                                                <label class="form-label" for="adminId">Admin
-                                                                    ID</label>
-                                                            </div>
-                                                            <div class="col-8 p-2">
-                                                                <input class="form-control" id="adminId"
-                                                                       placeholder="required"
-                                                                       type="text">
-                                                            </div>
-                                                            <div class="col-4 p-2">
-                                                                <label class="form-label" for="editAdminName">Admin
-                                                                    Name</label>
-                                                            </div>
-                                                            <div class="col-8 p-2">
-                                                                <input class="form-control" id="editAdminName"
-                                                                       placeholder="Name"
-                                                                       type="text">
-                                                            </div>
-                                                            <div class="col-4 p-2">
-                                                                <label class="form-label"
-                                                                       for="editDepartment">Department</label>
-                                                            </div>
-                                                            <div class="col-8 p-2">
-                                                                <input class="form-control" id="editDepartment"
-                                                                       placeholder="Default Department"
-                                                                       type="text">
-                                                            </div>
-                                                            <div class="col-4 p-2">
-                                                                <label class="form-label"
-                                                                       for="editAccessibility">Accessibility </label>
-                                                            </div>
-                                                            <div class="col-8 p-2">
-                                                                <input class="form-control" id="editAccessibility"
-                                                                       placeholder="Default Department"
-                                                                       type="text">
-                                                            </div>
-
-                                                            <div class="col-4 p-2">
-                                                                <label class="form-label" for="editPassword">Password </label>
-                                                            </div>
-                                                            <div class="col-8 p-2">
-                                                                <input class="form-control" id="editPassword"
-                                                                       placeholder="required"
-                                                                       type="text">
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-danger" data-bs-dismiss="modal"
-                                                            type="button">
-                                                        DELETE!
-                                                    </button>
-                                                    <button class="btn btn-success" data-bs-dismiss="modal"
-                                                            type="button">
-                                                        submit
-                                                    </button>
-                                                    <button class="btn btn-ready" data-bs-dismiss="modal"
-                                                            type="button">
-                                                        Cancel
-                                                    </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-bs-dismiss="modal"
+                                        type="submit"> submit
+                                </button>
+                                <button class="btn btn-danger" data-bs-dismiss="modal"
+                                        type="button"> Cancel
+                                </button>
                             </div>
-                        </div>
-                        <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Edit admin/delete-->
+            <!--Here the implementation is different from the search tag-->
+            <button class="btn btn-danger" data-bs-target="#editAdmin"
+                    data-bs-toggle="modal"
+                    type="button">
+                Edit Admin
+            </button>
+            <div class="modal fade" id="editAdmin">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form action='/EditAdmin/' id='myForm2' method='post'>
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Admin</h4>
+                                <button class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row row-col-5">
+                                <div class="col-4 p-2"><label>ID: </label></div>
+                                <div class="col-8 p-2"><input name="ID" id = "eID" type="text"></div>
+                                <div class="col-4 p-2"><label>First Name: </label></div>
+                                <div class="col-8 p-2"><input name="firstName" id = "eFName" type="text"></div>
+                                <div class="col-4 p-2"><label>Last Name:</label></div>
+                                <div class="col-8 p-2"><input name="surname" id = "eLName" type="text"></div>
+                                <div class="col-4 p-2"><label>username: </label></div>
+                                <div class="col-8 p-2"><input name="username" id = "eusername" type="text"></div>
+                                <div class="col-4 p-2"><label>Password:</label></div>
+                                <div class="col-8 p-2"><input name="Password" id = "ePassword" type="text"></div>
+                                <div class="col-4 p-2"><label for="eDepartment">Department: </label></div>
+                                <div class="col-8 p-2"><select name="Department" id="eDepartment" form="myForm2">
+                                    <option value="COMSC">COMSC</option>
+                                    <option value="FINANCE">FINANCE</option>
+                                    <option value="ARTS">ARTS</option>
+                                </select></div>
+                                <div class="col-4 p-2"><label for="eauthority">authority:</label></div>
+                                <div class="col-8 p-2"><select name="authority" id="eauthority" form="myForm2">
+                                    <option value="General">General</option>
+                                    <option value="Super">Super</option>
+                                    <option value="Not">Not</option>
+                                </select></div>
+                                <div class="col-4 p-2"><label>region: </label></div>
+                                <div class="col-8 p-2"><input name="region" id = "eregion" type="text"></div>
+
+
+                                <!--leave a place for editpassword, this should be edited into another table in db-->
+                            </div>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <!--                                                            may not use the same form action, have to make one more form-->
+                                <!--                                                            <button class="btn btn-danger" data-bs-dismiss="modal"-->
+                                <!--                                                                    type="button">-->
+                                <!--                                                                DELETE!-->
+                                <!--                                                            </button>-->
+                                <button class="btn btn-success" data-bs-dismiss="modal"
+                                        type="submit">
+                                    submit
+                                </button>
+                                <button class="btn btn-ready" data-bs-dismiss="modal"
+                                        type="button">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
+                </div>
+            </div>
+
+            <button class="btn btn-warning" data-bs-target="#deleteAdmin"
+                    data-bs-toggle="modal"
+                    type="button">
+                Delete Admin
+            </button>
+            <div class="modal fade" id="deleteAdmin">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form action='/DeleteAdmin/' id='myForm4' method='post'>
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Admin</h4>
+                                <button class="btn-close" data-bs-dismiss="modal"
+                                        type="button"></button>
+                            </div>
+
+
+                            <div class="modal-body">
+                                <div class="row row-col-5">
+                                <div class="col-6 p-2">
+                                You are going to delete this Admin...
+                                <label>ID: </label>
+                                </div>
+                                <div class="col-6 p-2">
+                                    <input name="ID" id = "dID" type="text">
+                                </div>
+
+                                <br>
+                                </div>
+                                <!--leave a place for editpassword, this should be edited into another table in db-->
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button class="btn btn-success" data-bs-dismiss="modal"
+                                        type="submit">
+                                    submit
+                                </button>
+                                <button class="btn btn-ready" data-bs-dismiss="modal"
+                                        type="button">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+       </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script th:replace="fragments/Script::script">
 
-</script>
+<script th:replace="fragments/Script::script"></script>
+
 </body>
+
+
 </html>

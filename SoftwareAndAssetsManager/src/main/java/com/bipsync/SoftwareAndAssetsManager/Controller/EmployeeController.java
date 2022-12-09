@@ -1,14 +1,16 @@
-package com.Bipsync.SoftwareAndAssetsManager.controller;
+package com.Bipsync.SoftwareAndAssetsManager.Controller;
+
 
 
 import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
 import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -18,73 +20,85 @@ This is the controller connecting repos..
 @Controller
 public class EmployeeController {
 
-    private EmployeeRepository employeeRepo;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     public EmployeeController(EmployeeRepository pRepo) {
-        employeeRepo = pRepo;
+        employeeRepository = pRepo;
     }
 
 
-    @RequestMapping(path="/Employee", method = RequestMethod.GET)
-    // path="/Employee" calls the method "/Employee/" using GET,this method is from the HTML file
-    //if a form in the html is called, this method will be invoked
-    public ModelAndView search(@RequestParam(value="surname", defaultValue="null") String surnameString) {
-        //ModelAndView is a holder for both Model and View in the web MVC framework
-        //make it possible for a controller to return both model and view in a single return value.
+    @RequestMapping(path="/AdminAll", method = RequestMethod.GET)
+    public ModelAndView searchAll() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject(employeeRepo.findEmployeeByName(surnameString));
-        //Result find, and set the result in the following html
-        //Each result return to a different html, and assigned to different address.
-        mav.setViewName("EmployeeDetails");
-
+        mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
+        mav.setViewName("ManageAdmin_SA");
         return mav;
     }
 
-    //different from the previous one, this mapping calls for a POST method
-    @RequestMapping(path="/Employee", method = RequestMethod.POST)
-    public ModelAndView addEmployee(AddEmployeeForm addEmployeeForm, BindingResult br) {
+
+
+
+
+    //Here handles the data from the HTML page
+    @RequestMapping(path="/AddAdmin", method = RequestMethod.POST)
+    public ModelAndView AddAdmin(AddEmployeeForm addEmployeeForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
-            mav.setViewName("Main");
+            mav.setViewName("ManageAdmin_SA");
+            //this line means sql error, cannot find data as expected//sql result is not bound.
         } else {
-            if (employeeRepo.addEmployee(addEmployeeForm)) {
-                System.out.println("added student");
-                mav.addObject("employees", employeeRepo.findAllEmployee());
-                mav.setViewName("AllEmployeeDetails");
+            if (employeeRepository.AddEmployee(addEmployeeForm)) {
+                System.out.println("added employee");
+                mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
+                //here, successfully added
+                mav.setViewName("ManageAdmin_SA");
             }else{
-                mav.setViewName("Main");
+                mav.setViewName("ManageAdmin_SA");
+                //add is a boolean function, boolean rows>0 is false. this is in repository.
             }
         }
         return mav;
     }
 
-    @RequestMapping(path="/EmployeeAll", method = RequestMethod.GET)
-    public ModelAndView search() {
+    //Here handles the data from the HTML page
+    @RequestMapping(path="/EditAdmin", method = RequestMethod.POST)
+    public ModelAndView EditAdmin(EditEmployeeForm editEmployeeForm, BindingResult br) {
+        System.out.println("in EditAdmin of Controller");
         ModelAndView mav = new ModelAndView();
-        mav.addObject("employees",employeeRepo.findAllEmployee());
-        mav.setViewName("AllEmployeeDetails");
+        System.out.println(br);
+        if (br.hasErrors()) {
+            System.out.println("br errors");
+            mav.setViewName("ManageAdmin_SA");
+        } else {
+            if (employeeRepository.EditEmployee(editEmployeeForm)) {
+                System.out.println("Edited Admin");
+                mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
+
+                mav.setViewName("ManageAdmin_SA");
+            }else{
+                System.out.println("added failed");
+                mav.setViewName("ManageAdmin_SA");
+            }
+        }
         return mav;
     }
 
-
-
-    //Here handles the data from the HTML page
-    @RequestMapping(path="/Sample", method = RequestMethod.POST)
-    public ModelAndView SampleFunction(AddEmployeeForm addEmployeeForm, BindingResult br) {
+    @RequestMapping(path="/DeleteAdmin", method = RequestMethod.POST)
+    public ModelAndView DeleteAdmin(DeleteEmployeeForm deleteEmployeeForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
+        System.out.println("ID received" + deleteEmployeeForm.getID());
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
-            mav.setViewName("Main");
+            System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());
+            mav.setViewName("ManageAdmin_SA");
         } else {
-            if (employeeRepo.SampleFunction(addEmployeeForm)) {
-                System.out.println("added employee");
-                mav.addObject("sampleAttribute", employeeRepo.findAllEmployee());
-
-                mav.setViewName("Sample");
+            if (employeeRepository.DeleteEmployee(deleteEmployeeForm)) {
+                mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
+                mav.setViewName("ManageAdmin_SA");
             }else{
-                mav.setViewName("Main");
+                mav.setViewName("ManageAdmin_SA");
             }
         }
         return mav;
