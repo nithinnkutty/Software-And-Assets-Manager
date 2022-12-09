@@ -86,11 +86,16 @@
                                         <th scope="col">Model Number</th>
                                         <th scope="col">Version</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Assigned ID</th>
+                                        <th scope="col">Assignee</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Region</th>
+                                        <th scope="col">Date of Assigned</th>
                                         <th scope="col">Date of Purchase</th>
                                         <!--                                        <th scope="col">Date of Expiry</th>-->
-                                        <th scope="col">Date of Assigned</th>
-                                        <th scope="col">Assignee</th>
-                                        <th scope="col">Region</th>
+
+
+
                                         <!--                                        <th scope="col">Operations</th>-->
                                     </tr>
                                     </thead>
@@ -102,13 +107,18 @@
                                         <td th:text="${asset.modelNumber}"></td>
                                         <td th:text="${asset.version}"></td>
                                         <td th:text="${asset.status}"></td>
+                                        <td th:text="${asset.employeeID}"></td>
+                                        <td th:text="${asset.firstName} +${asset.surname}"></td>
+                                        <td th:text="${asset.department}"></td>
+                                        <td th:text="${asset.region}"></td>
+                                        <td th:text="${asset.assignedOn}"></td>
                                         <td th:text="${asset.dateOfPurchase}"></td>
                                         <!--                                        <td th:text="${asset.dateOfExpiry}"></td>-->
-                                        <td th:text="${asset.assignedOn}"></td>
+
                                         <!--                                        <td th:text="${asset.employeeID}"></td>-->
-                                        <td th:text="${asset.firstName} +${asset.surname}"></td>
+
                                         <!--                                        <td th:text="${asset.surname}"></td>-->
-                                        <td th:text="${asset.region}"></td>
+
 
                                     </tr>
                                     </tbody>
@@ -140,7 +150,10 @@
                                             var assetType = table.row(this).data()[2];
                                             var modelNumber = table.row(this).data()[3];
                                             var version = table.row(this).data()[4];
-                                            var dateOfPuraches = table.row(this).data()[6];
+                                            var employeeID = table.row(this).data()[6];
+                                            var dateOfAssigned = table.row(this).data()[10];
+                                            var dateOfPuraches = table.row(this).data()[11];
+
 
                                             console.log(ID);
                                             document.getElementById("editAssetID").value = ID;
@@ -148,11 +161,12 @@
                                             document.getElementById("editAssetType").value = assetType;
                                             document.getElementById("editModelNumber").value = modelNumber;
                                             document.getElementById("editAssetVersion").value = version;
+                                            document.getElementById("editEmployeeID").value = employeeID;
+                                            document.getElementById("editAssignedDate").value = dateOfAssigned;
                                             document.getElementById("editPurchaseDate").value = dateOfPuraches;
-
                                             document.getElementById("deleteAssetID").value = ID;
                                             console.log("Delete ID =" + document.getElementById("deleteAssetID").value);
-                                            document.getElementById("deletePurchaseDate").value = dateOfPuraches;
+                                            console.log("Assigned ID =" + document.getElementById("editAssignedDate").value);
 
                                         });
 
@@ -198,6 +212,20 @@
                                                                        id="editAssetID" name="ID"
                                                                        readonly type="number">
                                                             </div>
+
+                                                            <div class="col-4 p-2">
+
+                                                                <label class="form-label" for="editEmployeeID">Assignee
+                                                                    ID</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editEmployeeID" name="employeeID"
+                                                                       placeholder="employeeID"
+
+                                                                        type="number">
+                                                            </div>
+
                                                             <div class="col-4 p-2">
                                                                 <label class="form-label"
                                                                        for="editAssetName">Asset
@@ -263,6 +291,21 @@
                                                                        placeholder="Date of Purchase"
                                                                        type="date">
                                                             </div>
+
+                                                            <div class="col-4 p-2">
+                                                                <label class="form-label"
+                                                                       for="editAssignedDate">Date of
+                                                                    Assigned</label>
+                                                            </div>
+                                                            <div class="col-8 p-2">
+                                                                <input class="form-control"
+                                                                       id="editAssignedDate"
+                                                                       name="assignedOn"
+                                                                       placeholder="Date of Assigned"
+                                                                       type="date"
+
+                                                                >
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -312,11 +355,13 @@
 
 <!--                                                    Use null to fill the class to avoid reporting errors, but only use the ID-->
                                                     <input id="deleteAssetID" name="ID" type="hidden">
+                                                    <input name="employeeID" type="hidden" value="0">
                                                     <input name="assetName" type="hidden" value="null">
-                                                    <input name="assetTypeD" type="hidden" value="null">
+                                                    <input name="assetType" type="hidden" value="null">
                                                     <input name="modelNumber" type="hidden" value="null">
                                                     <input name="version" type="hidden" value="null">
-                                                    <input name="dateOfPurchase" id="deletePurchaseDate" type="hidden" >
+                                                    <input name="dateOfPurchase" type="hidden" value="2022-1-1">
+                                                    <input name="assignedOn"  type="hidden" value="2022-1-1" >
                                                 </div>
 
 
