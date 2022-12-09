@@ -1,14 +1,21 @@
 package com.Bipsync.SoftwareAndAssetsManager.repository;
 
 import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.Bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
 
 public interface EmployeeRepository {
-    public Object findEmployeeByName(String surname);
+
     public Object findAllEmployee();
-    boolean addEmployee(AddEmployeeForm addEmployeeForm);
+//    public Object findGeneral();
+//    public Object findSuper();
 
-    boolean SampleFunction(AddEmployeeForm addEmployeeForm);
 
+
+    boolean AddEmployee(AddEmployeeForm addEmployeeForm);
+
+    boolean EditEmployee(EditEmployeeForm editEmployeeForm);
+    boolean DeleteEmployee(DeleteEmployeeForm deleteEmployeeForm);
 
 
 }
