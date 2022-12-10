@@ -84,14 +84,17 @@
                                 <!--Add asset Pop Up-->
                                             <div class="modal-body">
                                                 <div class="wrapleft">
-                                                    <form id="addAssetForm" class="row row-col-5" action="/addAsset" method="GET">
+                                                    <form id="addAssetForm" class="row row-col-5 needs-validation" action="/addAsset" method="POST">
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="assetName">Asset Name</label>
                                                         </div>
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="assetName" name="assetName"
                                                                    placeholder="Asset Name"
-                                                                   type="text" aria-required="true">
+                                                                   type="text" required>
+                                                        </div>
+                                                        <div class="valid-feedback">
+                                                            Looks good!
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="assetType">Asset Type</label>
@@ -100,7 +103,7 @@
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="assetType" name="assetType"
                                                                    placeholder="Asset Type"
-                                                                   type="text" aria-required="true">
+                                                                   type="text" required>
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="status"> Status</label>
@@ -108,7 +111,7 @@
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="status" name="status"
                                                                    placeholder="Status"
-                                                                   type="text" aria-required="true">
+                                                                   type="text" required>
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="modelNumber">Model Number</label>
@@ -132,7 +135,7 @@
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="dateOfPurchase" name="dateOfPurchase"
                                                                    placeholder="Date of Purchase"
-                                                                   type="date" aria-required="true">
+                                                                   type="date" required>
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="dateOfExpiry">Date Of Expiry</label>
@@ -144,7 +147,7 @@
                                                         </div>
 
                                                         <div class="modal-footer">
-                                                            <button class="btn btn-success" data-bs-dismiss="modal" type="submit">
+                                                            <button class="btn btn-success" type="submit">
                                                                 submit
                                                             </button>
                                                             <button class="btn btn-danger" data-bs-dismiss="modal" type="button">
@@ -170,6 +173,5 @@
     </div>
 </div>
 <script th:replace="fragments/Script::script"></script>
-<script></script>
 </body>
 </html>

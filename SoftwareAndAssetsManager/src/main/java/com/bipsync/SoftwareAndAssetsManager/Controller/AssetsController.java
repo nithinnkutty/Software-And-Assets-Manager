@@ -18,7 +18,7 @@ public class AssetsController {
     public AssetsController(AssetsRepository pRepo) {
         assetsRepository = pRepo;
     }
-    @RequestMapping(path="/addAsset", method = RequestMethod.GET)
+    @RequestMapping(path="/addAsset", method = RequestMethod.POST)
     public ModelAndView addAsset(AddAssetForm assetForm, BindingResult br) {
         ModelAndView mav =  new ModelAndView();
         System.out.println(assetForm.getDateOfExpiry());
