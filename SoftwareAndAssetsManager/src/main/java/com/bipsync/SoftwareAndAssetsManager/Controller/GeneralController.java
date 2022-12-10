@@ -24,10 +24,17 @@ public class GeneralController {
     }
 
     @RequestMapping(path = "/assetSearchSupAdmin")
-    public ModelAndView assetSearchTab() {
+    public ModelAndView assetSearchTabSA() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("assignedAssets", assetsRepository.getAllAssignedAssets());
         mav.setViewName("AssetSearch_SA");
+        return mav;
+    }
+    @RequestMapping(path = "/assetSearchGenAdmin")
+    public ModelAndView assetSearchTabGA() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assignedAssets", assetsRepository.getAllAssignedAssets());
+        mav.setViewName("AssetSearch_GA");
         return mav;
     }
 

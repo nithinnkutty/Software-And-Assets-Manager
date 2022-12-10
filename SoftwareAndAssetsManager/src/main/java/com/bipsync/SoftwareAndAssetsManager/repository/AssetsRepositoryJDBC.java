@@ -2,7 +2,6 @@ package com.Bipsync.SoftwareAndAssetsManager.repository;
 
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssignedAssetsDTO;
-import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.form.EditAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssetMapper;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssignedAssetsMapper;
@@ -25,17 +24,7 @@ public class AssetsRepositoryJDBC implements com.Bipsync.SoftwareAndAssetsManage
     }
 
     // in this class ,write the sql statements
-    @Override
-    public boolean addAsset(AddAssetForm addAssetForm) {
-        int rows = jdbcTemplate.update(
-                "insert into assets (assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry) values(?,?,?,?,?,?,?)",
-                new Object[] { addAssetForm.getAssetName(), addAssetForm.getAssetType(),
-                        addAssetForm.getStatus(), addAssetForm.getModelNumber(),
-                        addAssetForm.getVersion(), addAssetForm.getDateOfPurchase(),
-                        addAssetForm.getDateOfExpiry() });
-        return rows > 0;
 
-    }
 
 
     @Override
