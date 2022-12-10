@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.Thymeleaf.org">
 
+<!--This is the ManageEmployee Page template for SuperAdmin Access-->
 <head th:replace="fragments/Head::siteHead"></head>
-
-
-
-
-
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
-
+<div class="row">
 <div class="col col-lg-8 offset-lg-2 text-center">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -114,26 +110,26 @@
                         var rowID =  table.row( this ).data()[0];
                         var rowfName =  table.row( this ).data()[1];
                         var rowlName =  table.row( this ).data()[2];
-                        var rowusername =  table.row( this ).data()[3];
+                        var rowUsername =  table.row( this ).data()[3];
                         var rowPassword =  table.row( this ).data()[4];
                         var rowDepartment =  table.row( this ).data()[5];
                         var rowauthority =  table.row( this ).data()[6];
                         var rowregion =  table.row( this ).data()[7];
                         document.getElementById("aFName").value = rowfName;
                         document.getElementById("aLName").value = rowlName;
-                        document.getElementById("ausername").value = rowusername;
+                        document.getElementById("aUsername").value = rowUsername;
                         document.getElementById("aPassword").value = rowPassword;
                         // document.getElementById("aDepartment").value = rowDepartment;
                         // document.getElementById("aauthority").value = rowauthority;
-                        document.getElementById("aregion").value = rowregion;
+                        document.getElementById("aRegion").value = rowregion;
                         document.getElementById("eID").value = rowID;
                         document.getElementById("eFName").value = rowfName;
                         document.getElementById("eLName").value = rowlName;
-                        document.getElementById("eusername").value = rowusername;
+                        document.getElementById("eUsername").value = rowusername;
                         document.getElementById("ePassword").value = rowPassword;
                         // document.getElementById("eDepartment").value = rowDepartment;
                         // document.getElementById("eauthority").value = rowauthority;
-                        document.getElementById("eregion").value = rowregion;
+                        document.getElementById("eRegion").value = rowregion;
                         document.getElementById("dID").value = rowID;
 
                     });
@@ -168,11 +164,11 @@
                                 <div class="row row-col-5">
                                 <!--Now, the data posed will be sent to controllers-->
                                     <div class="col-4 p-2"><label>First Name: </label></div>
-                                    <div class="col-8 p-2"><input name="firstName" id = "aFName" type="text"></div><br>
+                                    <div class="col-8 p-2"><input name="firstName" id = "aFName" type="text" required="required"></div><br>
                                     <div class="col-4 p-2"><label>Last Name: </label></div>
-                                    <div class="col-8 p-2"><input name="surname" id = "aLName" type="text"></div><br>
+                                    <div class="col-8 p-2"><input name="surname" id = "aLName" type="text" required="required"></div><br>
                                     <div class="col-4 p-2"><label>username: </label></div>
-                                    <div class="col-8 p-2"><input name="username" id = "ausername" type="text"></div><br>
+                                    <div class="col-8 p-2"><input name="username" id = "aUsername" type="text"></div><br>
                                     <div class="col-4 p-2"><label>Password:</label></div>
                                     <div class="col-8 p-2"><input name="Password" id = "aPassword" type="text"></div><br>
                                     <div class="col-4 p-2"><label for="aDepartment">Department: </label></div>
@@ -184,9 +180,9 @@
                                         </select>
                                     </div>
                                 <br>
-                                    <div class="col-4 p-2"><label for="aauthority">authority: </label></div>
+                                    <div class="col-4 p-2"><label for="aAuthority">authority: </label></div>
                                     <div class="col-8 p-2">
-                                        <select name="authority" id="aauthority" form="myForm">
+                                        <select name="authority" id="aAuthority" form="myForm">
                                         <option value="Super">Super</option>
                                         <option value="General">General</option>
                                         <option value="Not">Not</option>
@@ -194,7 +190,7 @@
                                     </div>
                                 <br>
                                     <div class="col-4 p-2"><label>region: </label></div>
-                                    <div class="col-8 p-2"><input name="region" id = "aregion" type="text">
+                                    <div class="col-8 p-2"><input name="region" id = "aRegion" type="text" required="required">
                                     </div><br>
 
                                 </div>
@@ -232,13 +228,13 @@
                             <div class="modal-body">
                                 <div class="row row-col-5">
                                 <div class="col-4 p-2"><label>ID: </label></div>
-                                <div class="col-8 p-2"><input name="ID" id = "eID" type="text"></div>
+                                <div class="col-8 p-2"><input name="ID" id = "eID" type="text" readonly required="required"></div>
                                 <div class="col-4 p-2"><label>First Name: </label></div>
-                                <div class="col-8 p-2"><input name="firstName" id = "eFName" type="text"></div>
+                                <div class="col-8 p-2"><input name="firstName" id = "eFName" type="text" required="required"></div>
                                 <div class="col-4 p-2"><label>Last Name:</label></div>
-                                <div class="col-8 p-2"><input name="surname" id = "eLName" type="text"></div>
+                                <div class="col-8 p-2"><input name="surname" id = "eLName" type="text" required="required"></div>
                                 <div class="col-4 p-2"><label>username: </label></div>
-                                <div class="col-8 p-2"><input name="username" id = "eusername" type="text"></div>
+                                <div class="col-8 p-2"><input name="username" id = "eUsername" type="text" ></div>
                                 <div class="col-4 p-2"><label>Password:</label></div>
                                 <div class="col-8 p-2"><input name="Password" id = "ePassword" type="text"></div>
                                 <div class="col-4 p-2"><label for="eDepartment">Department: </label></div>
@@ -247,14 +243,14 @@
                                     <option value="FINANCE">FINANCE</option>
                                     <option value="ARTS">ARTS</option>
                                 </select></div>
-                                <div class="col-4 p-2"><label for="eauthority">authority:</label></div>
-                                <div class="col-8 p-2"><select name="authority" id="eauthority" form="myForm2">
+                                <div class="col-4 p-2"><label for="eAuthority">authority:</label></div>
+                                <div class="col-8 p-2"><select name="authority" id="eAuthority" form="myForm2">
                                     <option value="General">General</option>
                                     <option value="Super">Super</option>
                                     <option value="Not">Not</option>
                                 </select></div>
                                 <div class="col-4 p-2"><label>region: </label></div>
-                                <div class="col-8 p-2"><input name="region" id = "eregion" type="text"></div>
+                                <div class="col-8 p-2"><input name="region" id = "eRegion" type="text" required="required"></div>
 
 
                                 <!--leave a place for editpassword, this should be edited into another table in db-->
@@ -307,7 +303,7 @@
                                 <label>ID: </label>
                                 </div>
                                 <div class="col-6 p-2">
-                                    <input name="ID" id = "dID" type="text">
+                                    <input name="ID" id = "dID" type="text" readonly required="required">
                                 </div>
 
                                 <br>
@@ -340,7 +336,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <script th:replace="fragments/Script::script"></script>
 
 </body>
