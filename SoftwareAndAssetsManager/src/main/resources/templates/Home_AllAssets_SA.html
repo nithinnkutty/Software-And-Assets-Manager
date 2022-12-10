@@ -64,8 +64,9 @@
                                 </table>
                             </div>
                             <br>
-                            <!--                Add Assets -->
+                            <!--Add Assets -->
                             <div class="col-md-2 offset-md-5">
+
                                 <!--add assets button-->
                                 <button class="btn btn-primary" data-bs-target="#addAsset" data-bs-toggle="modal"
                                         type="button">
@@ -79,16 +80,18 @@
                                                 <button class="btn-close" data-bs-dismiss="modal"
                                                         type="button"></button>
                                             </div>
+
+                                <!--Add asset Pop Up-->
                                             <div class="modal-body">
                                                 <div class="wrapleft">
-                                                    <form id="addAssetForm" class="row row-col-5" action="/addAsset" method="post">
+                                                    <form id="addAssetForm" class="row row-col-5" action="/addAsset" method="GET">
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="assetName">Asset Name</label>
                                                         </div>
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="assetName" name="assetName"
                                                                    placeholder="Asset Name"
-                                                                   type="text">
+                                                                   type="text" aria-required="true">
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="assetType">Asset Type</label>
@@ -97,7 +100,7 @@
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="assetType" name="assetType"
                                                                    placeholder="Asset Type"
-                                                                   type="text">
+                                                                   type="text" aria-required="true">
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="status"> Status</label>
@@ -105,7 +108,7 @@
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="status" name="status"
                                                                    placeholder="Status"
-                                                                   type="text">
+                                                                   type="text" aria-required="true">
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="modelNumber">Model Number</label>
@@ -129,7 +132,7 @@
                                                         <div class="col-8 p-2">
                                                             <input class="form-control" id="dateOfPurchase" name="dateOfPurchase"
                                                                    placeholder="Date of Purchase"
-                                                                   type="date">
+                                                                   type="date" aria-required="true">
                                                         </div>
                                                         <div class="col-4 p-2">
                                                             <label class="form-label" for="dateOfExpiry">Date Of Expiry</label>
@@ -152,33 +155,12 @@
                                                     </form>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--                Page navigation-->
-                            <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-md-6 column">
-                                        <nav aria-label="Page navigation">
-                                            <ul class="pagination justify-content-start">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
+
+<!--                            Page navigation removed as pagination covers in datatables functionality-->
                         </div>
                     </div>
                 </div>
@@ -187,8 +169,7 @@
         </div>
     </div>
 </div>
-<script th:replace="fragments/Script::script">
-
-</script>
+<script th:replace="fragments/Script::script"></script>
+<script></script>
 </body>
 </html>

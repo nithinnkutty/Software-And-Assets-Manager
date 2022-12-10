@@ -18,7 +18,7 @@ public class AssetsController {
     public AssetsController(AssetsRepository pRepo) {
         assetsRepository = pRepo;
     }
-    @RequestMapping(path="/addAsset", method = RequestMethod.POST)
+    @RequestMapping(path="/addAsset", method = RequestMethod.GET)
     public ModelAndView addAsset(AddAssetForm assetForm, BindingResult br) {
         ModelAndView mav =  new ModelAndView();
         System.out.println(assetForm.getDateOfExpiry());
@@ -28,8 +28,10 @@ public class AssetsController {
         } else {
             if (assetsRepository.addAsset(assetForm)) {
                 mav.addObject("assets", assetsRepository.getAllAssets());
+                System.out.println("Added an Asset");
                 mav.setViewName("Home_AllAssets_SA");
             }else{
+                System.out.println("Adding asset failed");
                 mav.setViewName("Home_AllAssets_SA");
             }
         }

@@ -29,7 +29,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
     public List<EmployeeDTO> findAllEmployee() {
 
         return jdbcTemplate.query(
-                "select ID,firstName,surname,username,Password,Department,authority,region from employees" ,
+                "select ID,firstName,surname,username,password ,department,authority,region from employees" ,
                 new EmployeeMapper());
     }
 
@@ -37,7 +37,9 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 //    public List<EmployeeDTO> findGeneral() {
 //        String GeneralAdmin = "General";
 //        return jdbcTemplate.query(
-//                "select ID,firstName,surname,username,Password,Department,authority,region from employee where authority = '" + GeneralAdmin + "'",
+//                "select ID,firstName,surname,username,password
+
+//,department,authority,region from employee where authority = '" + GeneralAdmin + "'",
 //                new EmployeeMapper());
 //    }
 //
@@ -45,12 +47,14 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 //    public List<EmployeeDTO> findSuper() {
 //        String SuperAdmin = "Super";
 //        return jdbcTemplate.query(
-//                "select ID,firstName,surname,username,Password,Department,authority,region from employee where authority = '" + SuperAdmin + "'",
+//                "select ID,firstName,surname,username,password
+
+//,department,authority,region from employee where authority = '" + SuperAdmin + "'",
 //                new EmployeeMapper());
 //    }
 
     public boolean AddEmployee(AddEmployeeForm addEmployeeForm) {
-        System.out.println("this ispassword value from input" + addEmployeeForm.getAuthority());
+        System.out.println("this is password value from input" + addEmployeeForm.getAuthority());
         int rows = jdbcTemplate.update(
                 "insert into employees (firstName,surname,username,password,department,authority,region) values(?,?,?,?,?,?,?)" ,
                 new Object[]{addEmployeeForm.getFirstName(),
@@ -69,7 +73,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
     public boolean EditEmployee(EditEmployeeForm editEmployeeForm) {
         System.out.println(editEmployeeForm.getAuthority());
 
-        int rows = jdbcTemplate.update("update employees set firstName= ?, surname = ? , username=?,password = ?, Department = ?, authority = ? , region = ? where id = ?",
+        int rows = jdbcTemplate.update("update employees set firstName= ?, surname = ? , username=?,password = ?, department= ?, authority = ? , region = ? where id = ?",
                 editEmployeeForm.getFirstName(), editEmployeeForm.getSurname(), editEmployeeForm.getSurname(),editEmployeeForm.getPassword(), editEmployeeForm.getDepartment(), editEmployeeForm.getAuthority(), editEmployeeForm.getRegion(), editEmployeeForm.getID());
         System.out.println("rows = " + rows);
         return(rows>0);

@@ -24,11 +24,14 @@ public class AddAssetForm {
         this.dateOfExpiry = formatDate(dateOfExpiry);
     }
 
-    public Date formatDate(String dateOfExpiry) throws ParseException {
-        String dateString = dateOfExpiry;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse(dateString);
-        System.out.println("Date value: "+date);
+    public Date formatDate(String dateToFormat) throws ParseException {
+        Date date = null;
+        if (dateToFormat != "") {
+            String dateString = dateToFormat;
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            date = formatter.parse(dateString);
+        }
+        System.out.println("Date value: " + date);
         return date;
     }
 
