@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+
+<!--This is the ManageEmployee Page template for SuperAdmin Access-->
+<head th:replace="fragments/Head::siteHead"></head>
+<body>
+<header th:replace="fragments/Header::siteHeader"></header>
+<div class="row">
+<div class="col col-lg-8 offset-lg-2 text-center">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button th:replace="fragments/navBar_Inactive::navBar_AllAssets"></button>
+                    <button th:replace="fragments/navBar_Inactive::navBar_AssetSearch"></button>
+                    <button th:replace="fragments/navBar_Inactive::navBar_AssetStatus"></button>
+                    <button th:replace="fragments/navBar_Inactive::navBar_AssetsExpiring"></button>
+                    <button th:replace="fragments/navBar_Active::navBar_ManageAdmin"></button>
+                </div>
+            </nav>
+    <div class="tab-content" id="nav-tabContent">
+    <div aria-labelledby="nav-manageAdmin-tab" class="tab-pane fade show active w-100" id="nav-manageAdmin"
+         role="tabpanel" tabindex="0">
+        <div class="row">
+            <div style="text-align: start">
+                <div class="table text-wrap">
+
+
+<!--            <form name="generalAll" action='/GeneralAll/' method='get' style="text-align: start">-->
+<!--                <button class="btn btn-primary" name="GeneralAll" type="submit">General Admin</button>-->
+<!--            </form>-->
+<!--            <form name="generalAll" action='/SuperAll/' method='get' style="text-align: start">-->
+<!--                <button class="btn btn-primary" name=class="dropdown-item" type="submit">Super Admin</button>-->
+<!--            </form>-->
+
+
+                <table  id="AdminTable" class="table table-striped display" >
+
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>FirstName</td>
+                    <td>Surname</td>
+                    <td>username</td>
+                    <td>Password</td>
+                    <td>Department</td>
+                    <td>authority</td>
+                    <td>region</td>
+
+                </tr>
+                </thead>
+                    <tbody class="table-group-divider ">
+                <tr th:each="employee: ${employeeAttribute}">
+                    <td th:text="${employee.ID}"></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.surname}"></td>
+                    <td th:text="${employee.username}"></td>
+                    <td th:text="${employee.Password}"></td>
+                    <td th:text="${employee.Department}"></td>
+                    <td th:text="${employee.authority}"></td>
+                    <td th:text="${employee.region}"></td>
+                </tr>
+                <tfoot>
+                <td>ID</td>
+                <td>FirstName</td>
+                <td>surname</td>
+                <td>username</td>
+                <td>Password</td>
+                <td>Department</td>
+                <td>authority</td>
+                <td>region</td>
+                </tfoot>
+            </table>
+                <!--datatable plugin functions-->
+                <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#AdminTable tfoot td').each(function () {
+                        var title = $(this).text();
+                        $(this).html('<input type="text" placeholder="Search ' +title+ '"/>');
+                    });
+                    var table = $('#AdminTable').DataTable(
+                        {
+                            select: true,
+                            initComplete: function () {
+                                // Apply the search
+                                this.api()
+                                    .columns()
+                                    .every(function () {
+                                        var that = this;
+
+                                        $('input', this.footer()).on('keyup change clear', function () {
+                                            if (that.search() !== this.value) {
+                                                that.search(this.value).draw();
+                                            }
+                                        });
+                                    });
+                            },
+                            pagingType: 'first_last_numbers',
+                            pageLength: 5,
+                            lengthMenu: [5, 10, 500],
+                            autoWidth: false,
+                            aoColumnDefs: [
+                                { 'bSortable': false, 'aTargets': [ 4 ] },
+                                {'width': "10px", "aTargets": [0] }
+                            ],
+
+                        }
+
+                    );
+
+                });
+            </script>
+
+                </div>
+
+            <br>
+       <div class="col-md-8 column">
+
+           <form name="myForm3" id='myForm3' action='/AdminAll/' method='get'></form>
+           <button class="btn btn-primary" name="AdminAll" id="AdminAll"onclick="Adminall()"> Admin Refresh</button>
+            <script>
+                function Adminall() {
+                    document.getElementById("myForm3").submit();
+                }
+            </script>
+
+
+
+
+       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script th:replace="fragments/Script::script"></script>
+
+</body>
+
+
+</html>
