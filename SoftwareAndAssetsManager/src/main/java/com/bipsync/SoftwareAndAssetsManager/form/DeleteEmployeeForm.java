@@ -1,6 +1,7 @@
 package com.Bipsync.SoftwareAndAssetsManager.form;
-public class AddEmployeeForm {
-    //getter/setter/model for adding function.
+
+public class DeleteEmployeeForm {
+    private int ID;
     private String firstName;
 
     private String surname;
@@ -13,7 +14,8 @@ public class AddEmployeeForm {
 
     private String region;
 
-    public AddEmployeeForm(String firstName, String surname, String username, String password, String department, String authority, String region) {
+    public DeleteEmployeeForm(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
+        this.ID = ID;
         this.firstName = firstName;
         this.surname = surname;
         this.username = username;
@@ -21,6 +23,14 @@ public class AddEmployeeForm {
         this.department = department;
         this.authority = authority;
         this.region = region;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getFirstName() {

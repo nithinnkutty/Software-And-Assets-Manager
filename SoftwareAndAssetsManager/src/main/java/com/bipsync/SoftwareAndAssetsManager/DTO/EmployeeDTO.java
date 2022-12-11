@@ -1,19 +1,21 @@
-package com.Bipsync.SoftwareAndAssetsManager.form;
-public class AddEmployeeForm {
-    //getter/setter/model for adding function.
-    private String firstName;
+package com.Bipsync.SoftwareAndAssetsManager.DTO;
 
+public class EmployeeDTO {
+    private int ID;
+    private String firstName;
     private String surname;
+
     private String username;
 
     private String password;
+
     private String department;
     private String authority;
 
-
     private String region;
 
-    public AddEmployeeForm(String firstName, String surname, String username, String password, String department, String authority, String region) {
+    public EmployeeDTO(int ID, String firstName, String surname, String username, String password, String department, String authority, String region) {
+        this.ID = ID;
         this.firstName = firstName;
         this.surname = surname;
         this.username = username;
@@ -21,6 +23,14 @@ public class AddEmployeeForm {
         this.department = department;
         this.authority = authority;
         this.region = region;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getFirstName() {
@@ -79,3 +89,4 @@ public class AddEmployeeForm {
         this.region = region;
     }
 }
+

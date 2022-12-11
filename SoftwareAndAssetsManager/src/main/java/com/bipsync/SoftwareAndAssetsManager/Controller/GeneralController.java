@@ -57,9 +57,15 @@ public class GeneralController {
     @RequestMapping(path = "/manageAdminSupAdmin")
     public ModelAndView manageAdminTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets());
+        mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
         mav.setViewName("ManageAdmin_SA");
         return mav;
+
     }
+
+
+
+
+
 
 }
