@@ -34,11 +34,42 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
         return rows>0;
 
     }
+//    @Override
+//    public List<AssetDTO> getAllAssets() {
+//        return jdbcTemplate.query(
+//                "select ID,employeeID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+//                new AssetMapper());
+//    }
     @Override
-    public List<AssetDTO> getAllAssets() {
-        return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+    public List<AssetDTO> getAllAssets(String status) {
+        String andSql = "";
+        if(status != null){
+            andSql= "where STATUS = '"+status+"'";
+        }
+        List query = jdbcTemplate.query(
+                "SELECT " +
+                        "  assets.ID, " +
+                        "    assets.employeeID, " +
+                        "  assetName, " +
+                        "  assetType, " +
+                        "  version, " +
+                        "  STATUS, " +
+                        "  dateOfPurchase, " +
+                        "  dateOfExpiry, " +
+                        "  employees.department, " +
+                        "  employees.region, " +
+                        "  assets.modelNumber " +
+                        "FROM " +
+                        "  assets " +
+                        " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
+
                 new AssetMapper());
+        return  query;
     }
 
+    @Override
+    public int updateDataBYID(int id, String state) {
+        int update = jdbcTemplate.update("update assets set status = '" + state + "' where id = '" + id + "'");
+        return update;
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.Thymeleaf.org">
 
 <!--This is the Home Page template for SuperAdmin Access-->
-<head th:replace="fragments/Head::siteHead"></head>
+<head th:replace="fragments/Head::siteHead"><title></title></head>
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
 
@@ -27,50 +27,94 @@
                         <br/>
                         <div class="col-5">
                             <p style="text-align:left">
-                                <select aria-label=".select status" class="form-select form-select-md mb-3">
+                                <select id="sel" onchange="selDataByStatus" aria-label=".select status" class="form-select form-select-md mb-3">
                                     <option selected>Sort By...</option>
-                                    <option value="1">Update Required</option>
-                                    <option value="2">Damaged</option>
-                                    <option value="3">Return</option>
+                                    <option value="New">New</option>
+                                    <option value="Damaged">Damaged</option>
+                                    <option value="Refurbished">Refurbished</option>
+                                    <option value="Needs Repair">Needs Repair</option>
+                                    <option value="Expired Warranty">Expired Warranty</option>
+                                    <option value="Updated">Updated</option>
+                                    <option value="Update required">Update required</option>
+                                    <option value="Expired License">Expired License</option>
                                 </select>
                             </p>
+
                         </div>
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
 
-                                    <div class="table-wrapheight">
-                                        <div class="table-responsive-sm w-100 ">
+                                    <div>
+                                        <div class="table-responsive-sm w-100">
                                             <table
                                                     class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
                                                     id="viewresult">
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">ID</th>
+                                                    <th scope="col">Assignees</th>
                                                     <th scope="col">Asset Name</th>
                                                     <th scope="col">Asset Type</th>
-                                                    <th scope="col">Assigned Date</th>
+                                                    <th scope="col">Model Number</th>
+                                                    <th scope="col">Version</th>
                                                     <th scope="col">Status</th>
-                                                    <th scope="col">Proprietary</th>
+                                                    <th scope="col">Department</th>
+                                                    <th scope="col">Region</th>
+                                                    <th scope="col">Date of Purchase</th>
+                                                    <th scope="col">Manage</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider ">
                                                 <tr th:each="asset: ${assets}">
                                                     <td th:text="${asset.id}"></td>
+                                                    <td th:text="${asset.employeeID}"></td>
                                                     <td th:text="${asset.assetName}"></td>
                                                     <td th:text="${asset.assetType}"></td>
+                                                    <td th:text="${asset.ModelNumber}"></td>
+                                                    <td th:text="${asset.version}"></td>
                                                     <td th:text="${asset.status}"></td>
+                                                    <td th:text="${asset.department}"></td>
+                                                    <td th:text="${asset.region}"></td>
                                                     <td th:text="${asset.dateOfPurchase}"></td>
-                                                    <td th:text="${asset.dateOfExpiry}"></td>
                                                     <td>
                                                         <div style="white-space:nowrap">
-                                                            <button class="btn btn-primary" data-bs-target="#edit"
-                                                                    data-bs-toggle="modal"
-                                                                    style="display: inline-block" type="button">
+                                                            <!-- Button trigger modal -->
+<!--                                                            type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  th:onclick="|showModel(${asset.id})|" >
                                                                 Change Status
                                                             </button>
 
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Input Status</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div>
+                                                                                <label for="input"></label><input id="input">
+                                                                                <input id="itemId" TYPE="hidden">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button id="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                                                                            <button type="button" class="btn btn-primary"
+                                                                                    data-bs-target="#edit"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    style="display: inline-block"
+                                                                                    th:onclick="|changeStatus(${asset.id})|">Save changes</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
                                                         </div>
+
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -78,19 +122,19 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <nav aria-label="Page navigation">
-                                        <ul class="pagination justify-content-start">
-                                            <li class="page-item disabled">
-                                                <a class="page-link">Previous</a>
-                                            </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+<!--                                    <nav aria-label="Page navigation">-->
+<!--                                        <ul class="pagination justify-content-start">-->
+<!--                                            <li class="page-item disabled">-->
+<!--                                                <a class="page-link">Previous</a>-->
+<!--                                            </li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                                            <li class="page-item">-->
+<!--                                                <a class="page-link" href="#">Next</a>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </nav>-->
                                 </div>
                             </div>
                         </div>
@@ -101,9 +145,50 @@
         </div>
     </div>
 </div>
-</div>
-<script th:replace="fragments/Script::script">
+<script type="text/javascript" src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1-edb203c114.10.2.js"></script>
+<script>
+    let getAllAssetsTab = function () {
+        window.location = '/allAssetsSupAdmin';
+        alert("Works Fine");
+    };
+    let getAssetSearchTab = function () {
+        window.location = '/assetSearchSupAdmin';
+        alert("Works Fine");
+    };
+    let getAssetStatusTab = function () {
+        window.location = '/assetStatusSupAdmin';
+        alert("Works Fine");
+    };
+    let getAssetsExpiringTab = function () {
+        window.location = '/assetsExpiringSupAdmin';
+        alert("Works Fine");
+    };
+    let getManageAdminTab = function () {
+        window.location = '/manageAdminSupAdmin';
+        alert("Works Fine");
+    };
 
+
+    function changeStatus(id){
+        $.ajax({
+            url:"/changeStatus",
+            data:{state:$("#input").val(),id:$("#itemId").val()},
+            success:function(){
+            }
+        })
+    }
+    function showModel(id){
+        $("#itemId").val(id)
+    }
+    function selDataByStatus (){
+        alert($("#sel").val())
+    }
+
+    $("#sel").change(function(){
+
+        window.location = '/assetStatusSupAdmin?status='+ $("#sel").val();
+    })
 </script>
+
 </body>
 </html>
