@@ -1,4 +1,4 @@
-package com.bipsync.SoftwareAndAssetsManager;
+package com.Bipsync.SoftwareAndAssetsManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

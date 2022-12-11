@@ -1,11 +1,11 @@
-package com.Bipsync.SoftwareAndAssetsManager.DTO;
+package com.Bipsync.SoftwareAndAssetsManager.form;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AssetDTO {
-    //In this class, one line == one column in db table
-    //Provided with corresponding getters and setters
-    private int id;
+
+public class AddAssetForm {
     private String assetName;
     private String assetType;
     private String status;
@@ -14,20 +14,22 @@ public class AssetDTO {
     private Date dateOfPurchase;
     private Date dateOfExpiry;
 
-
-    public AssetDTO(int id, String assetName, String assetType, String status, String modelNumber, String version, Date dateOfPurchase, Date dateOfExpiry) {
-        this.id = id;
+    public AddAssetForm(String assetName, String assetType, String status, String modelNumber, String version, String dateOfPurchase, String dateOfExpiry) throws ParseException {
         this.assetName = assetName;
         this.assetType = assetType;
         this.status = status;
         this.modelNumber = modelNumber;
         this.version = version;
-        this.dateOfPurchase = dateOfPurchase;
-        this.dateOfExpiry = dateOfExpiry;
+        this.dateOfPurchase = formatDate(dateOfPurchase);
+        this.dateOfExpiry = formatDate(dateOfExpiry);
     }
 
-    public int getId() {
-        return id;
+    private Date formatDate(String dateOfExpiry) throws ParseException {
+        String dateString = dateOfExpiry;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(dateString);
+        System.out.println("Date value: "+date);
+        return date;
     }
 
     public String getAssetName() {
@@ -58,4 +60,3 @@ public class AssetDTO {
         return dateOfExpiry;
     }
 }
-

@@ -1,18 +1,23 @@
 package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
 import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
+import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class GeneralController {
+    private EmployeeRepository employeeRepository;
     private AssetsRepository assetsRepository;
 
     @Autowired
-    public GeneralController(AssetsRepository aRepo) {
+    public GeneralController(AssetsRepository aRepo, EmployeeRepository eRepo) {
         assetsRepository = aRepo;
+        employeeRepository = eRepo;
     }
 
     @RequestMapping(path = "/allAssetsSupAdmin")

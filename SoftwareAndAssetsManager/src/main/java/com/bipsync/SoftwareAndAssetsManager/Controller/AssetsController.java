@@ -1,5 +1,6 @@
 package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
+import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.form.EditAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,26 @@ public class AssetsController {
     public AssetsController(AssetsRepository pRepo) {
         assetsRepository = pRepo;
     }
+    @RequestMapping(path="/addAsset", method = RequestMethod.POST)
+    public ModelAndView homePageSupAdmin(AddAssetForm assetForm, BindingResult br) {
+        ModelAndView mav = new ModelAndView();
+        System.out.println(assetForm.getDateOfExpiry());
+        System.out.println(assetForm.getDateOfPurchase());
+        if (br.hasErrors()) {
+            mav.setViewName("Home_AllAssets_SA");
+            System.out.println(br);
+        } else {
+            if (assetsRepository.addAsset(assetForm)) {
+                System.out.println("added asset");
+                mav.addObject("assets", assetsRepository.getAllAssets());
+                mav.setViewName("Home_AllAssets_SA");
+            }else{
+                mav.setViewName("Home_AllAssets_SA");
+            }
+        }
+        return mav;
 
+    }
 //    Corresponds to the submission form on the front-end page and handles editAsset requests
     @RequestMapping(path = "/editAsset", method = RequestMethod.POST)
     public ModelAndView EditAsset(EditAssetForm editAssetForm, BindingResult br) {
