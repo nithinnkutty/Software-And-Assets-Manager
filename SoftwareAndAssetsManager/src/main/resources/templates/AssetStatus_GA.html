@@ -63,7 +63,7 @@
                                                     <th scope="col">Department</th>
                                                     <th scope="col">Region</th>
                                                     <th scope="col">Date of Purchase</th>
-                                                    <th scope="col">Manage</th>
+                                                    <!--                          <th scope="col">Manage</th>-->
                                                 </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider ">
@@ -78,59 +78,45 @@
                                                     <td th:text="${asset.department}"></td>
                                                     <td th:text="${asset.region}"></td>
                                                     <td th:text="${asset.dateOfPurchase}"></td>
-                                                    <td>
-                                                        <div style="white-space:nowrap">
-                                                            <!-- Button trigger modal -->
-                                                            <!--                                                            type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
-                                                            <button class="btn btn-primary" data-bs-target="#exampleModal"
-                                                                    data-bs-toggle="modal"
-                                                                    th:onclick="|showModel(${asset.id})|"
-                                                                    type="button">
-                                                                Change Status
-                                                            </button>
+                                                    <!--                          <td>-->
+                                                    <!--                            <div style="white-space:nowrap">-->
+                                                    <!--                              &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+                                                    <!--                              &lt;!&ndash;                                                            type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"&ndash;&gt;-->
+                                                    <!--                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  th:onclick="|showModel(${asset.id})|" >-->
+                                                    <!--                                Change Status-->
+                                                    <!--                              </button>-->
 
-                                                            <!-- Modal -->
-                                                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
-                                                                 id="exampleModal" tabindex="-1">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title"
-                                                                                id="exampleModalLabel">Input Status</h5>
-                                                                            <button aria-label="Close" class="btn-close"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    type="button"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div>
-                                                                                <label for="input"></label><input
-                                                                                    id="input">
-                                                                                <input TYPE="hidden" id="itemId">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button class="btn btn-secondary" data-bs-dismiss="modal"
-                                                                                    id=""
-                                                                                    type="button">Back
-                                                                            </button>
-                                                                            <button class="btn btn-primary"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    data-bs-target="#edit"
-                                                                                    data-bs-toggle="modal"
-                                                                                    style="display: inline-block"
-                                                                                    th:onclick="|changeStatus(${asset.id})|"
-                                                                                    type="button">
-                                                                                Save changes
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <!--                              &lt;!&ndash; Modal &ndash;&gt;-->
+                                                    <!--                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+                                                    <!--                                <div class="modal-dialog">-->
+                                                    <!--                                  <div class="modal-content">-->
+                                                    <!--                                    <div class="modal-header">-->
+                                                    <!--                                      <h5 class="modal-title" id="exampleModalLabel">Input Status</h5>-->
+                                                    <!--                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                                    <!--                                    </div>-->
+                                                    <!--                                    <div class="modal-body">-->
+                                                    <!--                                      <div>-->
+                                                    <!--                                        <label for="input"></label><input id="input">-->
+                                                    <!--                                        <input id="itemId" TYPE="hidden">-->
+                                                    <!--                                      </div>-->
+                                                    <!--                                    </div>-->
+                                                    <!--                                    <div class="modal-footer">-->
+                                                    <!--                                      <button id="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>-->
+                                                    <!--                                      <button type="button" class="btn btn-primary"-->
+                                                    <!--                                              data-bs-target="#edit"-->
+                                                    <!--                                              data-bs-toggle="modal"-->
+                                                    <!--                                              data-bs-dismiss="modal"-->
+                                                    <!--                                              style="display: inline-block"-->
+                                                    <!--                                              th:onclick="|changeStatus(${asset.id})|">Save changes</button>-->
+                                                    <!--                                    </div>-->
+                                                    <!--                                  </div>-->
+                                                    <!--                                </div>-->
+                                                    <!--                              </div>-->
 
 
-                                                        </div>
+                                                    <!--                            </div>-->
 
-                                                    </td>
+                                                    <!--                          </td>-->
                                                 </tr>
                                                 </tbody>
                                             </table>

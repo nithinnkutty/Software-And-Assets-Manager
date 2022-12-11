@@ -12,13 +12,18 @@ public class AssetMapper implements RowMapper {
     //query class
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new AssetDTO(rs.getInt("ID"),
+        return new AssetDTO(
+                rs.getInt("ID"),
                 rs.getString("assetName"),
                 rs.getString("assetType"),
                 rs.getString("status"),
                 rs.getString("modelNumber"),
                 rs.getString("version"),
                 rs.getDate("dateOfPurchase"),
-                rs.getDate("dateOfExpiry"));
+                rs.getDate("dateOfExpiry"),
+                rs.getInt("employeeID"),
+                rs.getString("department"),
+                rs.getString("region")
+        );
     }
 }

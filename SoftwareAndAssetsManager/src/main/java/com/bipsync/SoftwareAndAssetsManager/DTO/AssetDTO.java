@@ -13,9 +13,30 @@ public class AssetDTO {
     private String version;
     private Date dateOfPurchase;
     private Date dateOfExpiry;
+    private Integer employeeID;
+
+    private String department;
+    private String region;
 
 
-    public AssetDTO(int id, String assetName, String assetType, String status, String modelNumber, String version, Date dateOfPurchase, Date dateOfExpiry) {
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public AssetDTO(int id, String assetName, String assetType, String status, String modelNumber, String version, Date dateOfPurchase,
+                    Date dateOfExpiry, Integer employeeID, String department, String region) {
         this.id = id;
         this.assetName = assetName;
         this.assetType = assetType;
@@ -24,12 +45,17 @@ public class AssetDTO {
         this.version = version;
         this.dateOfPurchase = dateOfPurchase;
         this.dateOfExpiry = dateOfExpiry;
+        this.employeeID = employeeID;
+        this.department = department;
+        this.region = region;
     }
 
     public int getId() {
         return id;
     }
-
+    public Integer getEmployeeID() {
+        return employeeID;
+    }
     public String getAssetName() {
         return assetName;
     }
