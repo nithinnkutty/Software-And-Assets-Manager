@@ -32,7 +32,7 @@ public class EmployeeController {
     public ModelAndView searchAll() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
-        mav.setViewName("ManageAdmin_SA");
+        mav.setViewName("redirect:/manageAdminSupAdmin");
         return mav;
     }
 
@@ -46,16 +46,16 @@ public class EmployeeController {
         ModelAndView mav = new ModelAndView();
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
-            mav.setViewName("ManageAdmin_SA");
+            mav.setViewName("redirect:/manageAdminSupAdmin");
             //this line means sql error, cannot find data as expected//sql result is not bound.
         } else {
             if (employeeRepository.AddEmployee(addEmployeeForm)) {
                 System.out.println("added employee");
                 mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
                 //here, successfully added
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/manageAdminSupAdmin");
             }else{
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/manageAdminSupAdmin");
                 //add is a boolean function, boolean rows>0 is false. this is in repository.
             }
         }
@@ -70,16 +70,16 @@ public class EmployeeController {
         System.out.println(br);
         if (br.hasErrors()) {
             System.out.println("br errors");
-            mav.setViewName("ManageAdmin_SA");
+            mav.setViewName("redirect:/manageAdminSupAdmin");
         } else {
             if (employeeRepository.EditEmployee(editEmployeeForm)) {
                 System.out.println("Edited Admin");
                 mav.addObject("employeeAttribute", employeeRepository.findAllEmployee());
 
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/manageAdminSupAdmin");
             }else{
                 System.out.println("added failed");
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/manageAdminSupAdmin");
             }
         }
         return mav;
@@ -92,13 +92,13 @@ public class EmployeeController {
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
             System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());
-            mav.setViewName("ManageAdmin_SA");
+            mav.setViewName("redirect:/manageAdminSupAdmin");
         } else {
             if (employeeRepository.DeleteEmployee(deleteEmployeeForm)) {
                 mav.addObject("employeeAttribute",employeeRepository.findAllEmployee());
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/manageAdminSupAdmin");
             }else{
-                mav.setViewName("ManageAdmin_SA");
+                mav.setViewName("redirect:/manageAdminSupAdmin");
             }
         }
         return mav;
