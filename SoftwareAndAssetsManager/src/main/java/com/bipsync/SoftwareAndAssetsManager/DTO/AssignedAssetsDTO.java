@@ -29,8 +29,14 @@ public class AssignedAssetsDTO {
         this.dateOfPurchase = dateOfPurchase;
         this.dateOfExpiry = dateOfExpiry;
         this.assignedOn = assignedOn;
-        this.firstName = firstName;
-        this.surname = surname;
+        //        If the asset is unallocated, it will show "unallocated" on the front end to make it easier for the user to understand
+        if(employeeID==0){
+            this.firstName="Un";
+            this.surname = "allocated";
+        }else {
+//            If allocation information exists, it is displayed normally
+            this.firstName = firstName;
+            this.surname = surname;}
         this.department = department;
         this.region = region;
     }
