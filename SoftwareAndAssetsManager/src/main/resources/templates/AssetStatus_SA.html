@@ -27,7 +27,8 @@
                         <br/>
                         <div class="col-5">
                             <p style="text-align:left">
-                                <select id="sel" onchange="selDataByStatus" aria-label=".select status" class="form-select form-select-md mb-3">
+                                <select aria-label=".select status" class="form-select form-select-md mb-3" id="sel"
+                                        onchange="selDataByStatus">
                                     <option selected>Sort By...</option>
                                     <option value="New">New</option>
                                     <option value="Damaged">Damaged</option>
@@ -80,33 +81,47 @@
                                                     <td>
                                                         <div style="white-space:nowrap">
                                                             <!-- Button trigger modal -->
-<!--                                                            type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
-                                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  th:onclick="|showModel(${asset.id})|" >
+                                                            <!--                                                            type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+                                                            <button class="btn btn-primary" data-bs-target="#exampleModal"
+                                                                    data-bs-toggle="modal"
+                                                                    th:onclick="|showModel(${asset.id})|"
+                                                                    type="button">
                                                                 Change Status
                                                             </button>
 
                                                             <!-- Modal -->
-                                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+                                                                 id="exampleModal" tabindex="-1">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Input Status</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalLabel">Input Status</h5>
+                                                                            <button aria-label="Close" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    type="button"></button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div>
-                                                                                <label for="input"></label><input id="input">
-                                                                                <input id="itemId" TYPE="hidden">
+                                                                                <label for="input"></label><input
+                                                                                    id="input">
+                                                                                <input TYPE="hidden" id="itemId">
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button id="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-                                                                            <button type="button" class="btn btn-primary"
+                                                                            <button class="btn btn-secondary" data-bs-dismiss="modal"
+                                                                                    id=""
+                                                                                    type="button">Back
+                                                                            </button>
+                                                                            <button class="btn btn-primary"
+                                                                                    data-bs-dismiss="modal"
                                                                                     data-bs-target="#edit"
                                                                                     data-bs-toggle="modal"
-                                                                                    data-bs-dismiss="modal"
                                                                                     style="display: inline-block"
-                                                                                    th:onclick="|changeStatus(${asset.id})|">Save changes</button>
+                                                                                    th:onclick="|changeStatus(${asset.id})|"
+                                                                                    type="button">
+                                                                                Save changes
+                                                                            </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -122,19 +137,19 @@
                                         </div>
                                     </div>
                                     <br>
-<!--                                    <nav aria-label="Page navigation">-->
-<!--                                        <ul class="pagination justify-content-start">-->
-<!--                                            <li class="page-item disabled">-->
-<!--                                                <a class="page-link">Previous</a>-->
-<!--                                            </li>-->
-<!--                                            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--                                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--                                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--                                            <li class="page-item">-->
-<!--                                                <a class="page-link" href="#">Next</a>-->
-<!--                                            </li>-->
-<!--                                        </ul>-->
-<!--                                    </nav>-->
+                                    <!--                                    <nav aria-label="Page navigation">-->
+                                    <!--                                        <ul class="pagination justify-content-start">-->
+                                    <!--                                            <li class="page-item disabled">-->
+                                    <!--                                                <a class="page-link">Previous</a>-->
+                                    <!--                                            </li>-->
+                                    <!--                                            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+                                    <!--                                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+                                    <!--                                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                                    <!--                                            <li class="page-item">-->
+                                    <!--                                                <a class="page-link" href="#">Next</a>-->
+                                    <!--                                            </li>-->
+                                    <!--                                        </ul>-->
+                                    <!--                                    </nav>-->
                                 </div>
                             </div>
                         </div>
@@ -145,7 +160,8 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1-edb203c114.10.2.js"></script>
+<script src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1-edb203c114.10.2.js"
+        type="text/javascript"></script>
 <script>
     let getAllAssetsTab = function () {
         window.location = '/allAssetsSupAdmin';
@@ -169,24 +185,26 @@
     };
 
 
-    function changeStatus(id){
+    function changeStatus(id) {
         $.ajax({
-            url:"/changeStatus",
-            data:{state:$("#input").val(),id:$("#itemId").val()},
-            success:function(){
+            url: "/changeStatus",
+            data: {state: $("#input").val(), id: $("#itemId").val()},
+            success: function () {
             }
         })
     }
-    function showModel(id){
+
+    function showModel(id) {
         $("#itemId").val(id)
     }
-    function selDataByStatus (){
+
+    function selDataByStatus() {
         alert($("#sel").val())
     }
 
-    $("#sel").change(function(){
+    $("#sel").change(function () {
 
-        window.location = '/assetStatusSupAdmin?status='+ $("#sel").val();
+        window.location = '/assetStatusSupAdmin?status=' + $("#sel").val();
     })
 </script>
 
