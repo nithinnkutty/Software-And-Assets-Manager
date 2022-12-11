@@ -18,7 +18,7 @@ public class AssetsController {
         assetsRepository = pRepo;
     }
 
-//    Corresponds to the submission form on the front-end page and handles eidtAsset requests
+//    Corresponds to the submission form on the front-end page and handles editAsset requests
     @RequestMapping(path = "/editAsset", method = RequestMethod.POST)
     public ModelAndView EditAsset(EditAssetForm editAssetForm, BindingResult br) {
         System.out.println(editAssetForm);
