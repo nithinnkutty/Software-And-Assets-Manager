@@ -65,7 +65,6 @@ public class EmployeeController {
     //Here handles the data from the HTML page
     @RequestMapping(path="/EditAdmin", method = RequestMethod.POST)
     public ModelAndView EditAdmin(EditEmployeeForm editEmployeeForm, BindingResult br) {
-        System.out.println("in EditAdmin of Controller");
         ModelAndView mav = new ModelAndView();
         System.out.println(br);
         if (br.hasErrors()) {
@@ -88,7 +87,6 @@ public class EmployeeController {
     @RequestMapping(path="/DeleteAdmin", method = RequestMethod.POST)
     public ModelAndView DeleteAdmin(DeleteEmployeeForm deleteEmployeeForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
-        System.out.println("ID received" + deleteEmployeeForm.getID());
         //if add error the lead the user back to the home page
         if (br.hasErrors()) {
             System.out.println("br error delete:" + br.hasErrors() +br.getAllErrors());

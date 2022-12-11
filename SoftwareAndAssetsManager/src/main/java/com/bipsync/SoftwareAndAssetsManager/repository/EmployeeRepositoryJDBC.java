@@ -50,7 +50,6 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 //    }
 
     public boolean AddEmployee(AddEmployeeForm addEmployeeForm) {
-        System.out.println("this ispassword value from input" + addEmployeeForm.getAuthority());
         int rows = jdbcTemplate.update(
                 "insert into employees (firstName,surname,username,password,department,authority,region) values(?,?,?,?,?,?,?)" ,
                 new Object[]{addEmployeeForm.getFirstName(),
@@ -67,7 +66,6 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
 
     @Override
     public boolean EditEmployee(EditEmployeeForm editEmployeeForm) {
-        System.out.println(editEmployeeForm.getAuthority());
 
         int rows = jdbcTemplate.update("update employees set firstName= ?, surname = ? , username=?,password = ?, Department = ?, authority = ? , region = ? where id = ?",
                 editEmployeeForm.getFirstName(), editEmployeeForm.getSurname(), editEmployeeForm.getSurname(),editEmployeeForm.getPassword(), editEmployeeForm.getDepartment(), editEmployeeForm.getAuthority(), editEmployeeForm.getRegion(), editEmployeeForm.getID());

@@ -127,6 +127,22 @@
                         //document.getElementById("ePassword").value = rowPassword;
                         document.getElementById("eRegion").value = rowregion;
                         document.getElementById("dID").value = rowID;
+                        if (rowUsername == ""){
+                            document.getElementById("aUsername").value = "";
+                            document.getElementById("eUsername").value = "";
+                        }
+                        else {
+                            document.getElementById("aUsername").value = rowUsername;
+                            document.getElementById("eUsername").value = rowUsername;
+                        }
+                        if (rowPassword == ""){
+                            document.getElementById("aPassword").value = "";
+                            document.getElementById("ePassword").value = "";
+                        }
+                        else{
+                            document.getElementById("aPassword").value = rowPassword;
+                            document.getElementById("ePassword").value = rowPassword;
+                        }
 
                     });
                 });
@@ -134,7 +150,73 @@
 
                 </div>
 
-            <br>
+        <script>
+            function submitAdd() {
+                if(
+                    document.getElementById("aAuthority").value == "None"
+                    && (document.getElementById("aUsername").value !== ""
+                    || document.getElementById("aPassword").value !== "")
+                ){
+                    alert("A person who is not Admin cannot have Username and Password.");
+                }
+                else if((document.getElementById("aAuthority").value == "Super"
+                    ||document.getElementById("aAuthority").value == "General")
+                    &&((document.getElementById("aUsername").value == ""
+                    ||document.getElementById("aPassword").value==""))
+                ){
+                    alert("An Admin must have username and password");
+                }
+                else if (
+                    document.getElementById("aFName").value == ""
+                    || document.getElementById("aLName").value ==""
+                    || document.getElementById("aDepartment").value ==""
+                    || document.getElementById("aAuthority").value ==""
+                    || document.getElementById("aRegion").value ==""
+                ){
+                    alert("You have to fill in all necessary fields");
+                }
+                else{document.getElementById("myForm").submit();}
+            }
+
+
+            function submitEdit() {
+                if(
+                    document.getElementById("eAuthority").value == "None"
+                    && (document.getElementById("eUsername").value !== ""
+                        || document.getElementById("ePassword").value !== "")
+                ){
+                    alert("A person who is not Admin cannot have Username and Password.");
+                }
+                else if((document.getElementById("eAuthority").value == "Super"
+                        ||document.getElementById("eAuthority").value == "General")
+                    &&((document.getElementById("eUsername").value == ""
+                        ||document.getElementById("ePassword").value==""))
+                ){
+                    alert("An Admin must have username and password");
+                }
+                else if (
+                    document.getElementById("eFName").value == ""
+                    || document.getElementById("eLName").value ==""
+                    || document.getElementById("eDepartment").value ==""
+                    || document.getElementById("eAuthority").value ==""
+                    || document.getElementById("eRegion").value ==""
+                ){
+                    alert("You have to fill in all necessary fields");
+                }
+                else{document.getElementById("myForm2").submit();}
+            }
+            function submitdelete(){
+                if (document.getElementById("dID").value == ""){
+                    alert("Please click on the Employee You are going to delete");
+                }
+
+                else{document.getElementById("myForm4").submit();}
+
+            }
+
+        </script>
+
+
        <div class="col-md-8 column">
 
            <form name="myForm3" id='myForm3' action='/AdminAll/' method='get'></form>
@@ -179,9 +261,11 @@
                                     <div class="col-4 p-2"><label for="aAuthority">authority: </label></div>
                                     <div class="col-8 p-2">
                                         <select name="authority" id="aAuthority" form="myForm">
-                                        <option value="Super">Super</option>
-                                        <option value="General">General</option>
-                                        <option value="Not">Not</option>
+                                            <option value="None">None</option>
+                                            <option value="General">General</option>
+                                            <option value="Super">Super</option>
+
+
                                         </select>
                                     </div>
                                 <br>
@@ -193,8 +277,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button class="btn btn-success" data-bs-dismiss="modal"
-                                        type="submit"> submit
+                                <button class="btn btn-success" data-bs-dismiss="modal" id="addSubmit"
+                                        onclick="submitAdd()"> submit
                                 </button>
                                 <button class="btn btn-danger" data-bs-dismiss="modal"
                                         type="button"> Cancel
@@ -241,9 +325,10 @@
                                 </select></div>
                                 <div class="col-4 p-2"><label for="eAuthority">authority:</label></div>
                                 <div class="col-8 p-2"><select name="authority" id="eAuthority" form="myForm2">
+                                    <option value="None">None</option>
                                     <option value="General">General</option>
                                     <option value="Super">Super</option>
-                                    <option value="Not">Not</option>
+
                                 </select></div>
                                 <div class="col-4 p-2"><label>region: </label></div>
                                 <div class="col-8 p-2"><input name="region" id = "eRegion" type="text" required="required"></div>
@@ -261,7 +346,7 @@
                                 <!--                                                                DELETE!-->
                                 <!--                                                            </button>-->
                                 <button class="btn btn-success" data-bs-dismiss="modal"
-                                        type="submit">
+                                        onclick="submitEdit()">
                                     submit
                                 </button>
                                 <button class="btn btn-ready" data-bs-dismiss="modal"
