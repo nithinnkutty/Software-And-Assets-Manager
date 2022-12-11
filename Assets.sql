@@ -50,6 +50,7 @@ INSERT INTO assets (employeeID, assetName, assetType, status, modelNumber, dateO
 INSERT INTO assets (employeeID, assetName, assetType, status, modelNumber, dateOfPurchase, dateOfExpiry, assignedOn ) VALUES (1, 'dell 7440','Laptop','Needs Repair','BW1253','2021-05-17','2025-05-17','2021-12-17');
 INSERT INTO assets (employeeID, assetName, assetType, status, version, dateOfPurchase, dateOfExpiry, assignedOn ) VALUES (2, 'PhotoShop','Software','Damage','V 12.03.02','2020-02-16','2024-05-17','2021-12-17');
 INSERT INTO assets (assetName, assetType, status, version, dateOfPurchase, dateOfExpiry ) VALUES ('kaspersky','Software','New','V 10.30','2019-06-21','2023-05-17');
+INSERT INTO assets (employeeID, assetName, assetType, status, modelNUmber, dateOfPurchase, dateOfExpiry ) VALUES (3,'Hp inspiron','Laptop','New','FG1456','2019-06-21','2023-05-17');
 
 
 INSERT INTO  employees (firstName, surname, authority, department, region ) VALUES ('Mathew','Philip','None', 'IT', 'India');
@@ -59,7 +60,7 @@ SELECT * FROM assets WHERE ID IN (1,4);
 SELECT * FROM assets WHERE employeeID is null;
 SELECT * FROM assets WHERE employeeID = 1;
 
-SELECT assets.assetName, assets.assetType, employees.firstName, employees.region FROM employees JOIN assets ON assets.employeeID = employees.ID
+SELECT assets.ID,assets.employeeID, assets.assetName, assets.assetType, assets.modelNumber, assets.version, assets.status, assets.dateOfPurchase,assets.dateOfExpiry,assets.assignedOn,employees.firstName,employees.surname,employees.department, employees.region FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID
 
 
 

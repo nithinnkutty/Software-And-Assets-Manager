@@ -16,7 +16,6 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
 
-//? no beans of jdbc?
     @Autowired
     public AssetsRepositoryJDBC(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
@@ -37,7 +36,7 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     @Override
     public List<AssetDTO> getAllAssets() {
         return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+                "SELECT assets.ID,assets.employeeID, assets.assetName, assets.assetType, assets.modelNumber, assets.version,assets.status, assets.dateOfPurchase,assets.dateOfExpiry,assets.assignedOn,employees.firstName,employees.surname,employees.department, employees.region FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID" ,
                 new AssetMapper());
     }
     @Override

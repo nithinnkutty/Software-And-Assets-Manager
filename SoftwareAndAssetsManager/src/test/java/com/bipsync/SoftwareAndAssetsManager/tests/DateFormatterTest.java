@@ -9,6 +9,11 @@ import java.text.ParseException;
 import static org.apache.catalina.util.ConcurrentDateFormat.GMT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * This test is for date formatter function used in Add Asset Form.
+ * This function takes string value of Date in "yyyy-MM-dd" format and returns the date as 'Date' datatype.
+ * @author Nithin Narayanan Kutty
+ */
 public class DateFormatterTest {
 
     public static AddAssetForm addAssetForm;

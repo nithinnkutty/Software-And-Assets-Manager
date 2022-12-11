@@ -40,11 +40,12 @@
                                     <th scope="col">Version</th>
                                     <th scope="col">Date of Purchase</th>
                                     <th scope="col">Date of Expiry</th>
+                                    <th scope="col">Date of Assign</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-group-divider ">
                                 <tr th:each="asset: ${assets}">
-                                    <td th:text="${asset.id}"></td>
+                                    <td th:text="${asset.ID}"></td>
                                     <td th:text="${asset.assetName}"></td>
                                     <td th:text="${asset.assetType}"></td>
                                     <td th:text="${asset.status}"></td>
@@ -52,6 +53,7 @@
                                     <td th:text="${asset.version}"></td>
                                     <td th:text="${asset.dateOfPurchase}"></td>
                                     <td th:text="${asset.dateOfExpiry}"></td>
+                                    <td th:text="${asset.assignedOn}"></td>
                                 </tr>
                                 </tbody>
                             </table>
