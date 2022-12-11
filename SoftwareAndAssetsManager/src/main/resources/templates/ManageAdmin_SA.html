@@ -150,71 +150,7 @@
 
                 </div>
 
-        <script>
-            function submitAdd() {
-                if(
-                    document.getElementById("aAuthority").value == "None"
-                    && (document.getElementById("aUsername").value !== ""
-                    || document.getElementById("aPassword").value !== "")
-                ){
-                    alert("A person who is not Admin cannot have Username and Password.");
-                }
-                else if((document.getElementById("aAuthority").value == "Super"
-                    ||document.getElementById("aAuthority").value == "General")
-                    &&((document.getElementById("aUsername").value == ""
-                    ||document.getElementById("aPassword").value==""))
-                ){
-                    alert("An Admin must have username and password");
-                }
-                else if (
-                    document.getElementById("aFName").value == ""
-                    || document.getElementById("aLName").value ==""
-                    || document.getElementById("aDepartment").value ==""
-                    || document.getElementById("aAuthority").value ==""
-                    || document.getElementById("aRegion").value ==""
-                ){
-                    alert("You have to fill in all necessary fields");
-                }
-                else{document.getElementById("myForm").submit();}
-            }
 
-
-            function submitEdit() {
-                if(
-                    document.getElementById("eAuthority").value == "None"
-                    && (document.getElementById("eUsername").value !== ""
-                        || document.getElementById("ePassword").value !== "")
-                ){
-                    alert("A person who is not Admin cannot have Username and Password.");
-                }
-                else if((document.getElementById("eAuthority").value == "Super"
-                        ||document.getElementById("eAuthority").value == "General")
-                    &&((document.getElementById("eUsername").value == ""
-                        ||document.getElementById("ePassword").value==""))
-                ){
-                    alert("An Admin must have username and password");
-                }
-                else if (
-                    document.getElementById("eFName").value == ""
-                    || document.getElementById("eLName").value ==""
-                    || document.getElementById("eDepartment").value ==""
-                    || document.getElementById("eAuthority").value ==""
-                    || document.getElementById("eRegion").value ==""
-                ){
-                    alert("You have to fill in all necessary fields");
-                }
-                else{document.getElementById("myForm2").submit();}
-            }
-            function submitdelete(){
-                if (document.getElementById("dID").value == ""){
-                    alert("Please click on the Employee You are going to delete");
-                }
-
-                else{document.getElementById("myForm4").submit();}
-
-            }
-
-        </script>
 
 
        <div class="col-md-8 column">
@@ -237,7 +173,7 @@
                                 <button class="btn-close" data-bs-dismiss="modal"
                                         type="button"></button>
 
-                            <form action='/AddAdmin/' id='myForm' method='post'>
+                            <form action='/AddAdmin/' id='myForm' method='post' onsubmit="return validateAdd()">
                             <div class="modal-body">
                                 <div class="row row-col-5">
                                 <!--Now, the data posed will be sent to controllers-->
@@ -277,7 +213,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button class="btn btn-success" data-bs-dismiss="modal" id="addSubmit"
+                                <button class="btn btn-success" data-bs-dismiss="modal" id="addSubmit" type="button"
                                         onclick="submitAdd()"> submit
                                 </button>
                                 <button class="btn btn-danger" data-bs-dismiss="modal"
@@ -298,7 +234,7 @@
             <div class="modal fade" id="editAdmin">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <form action='/EditAdmin/' id='myForm2' method='post'>
+                        <form action='/EditAdmin/' id='myForm2' method='post' onsubmit="return validateEdit()">
 
                             <div class="modal-header">
                                 <h4 class="modal-title">Edit Admin</h4>
@@ -368,7 +304,7 @@
             <div class="modal fade" id="deleteAdmin">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <form action='/DeleteAdmin/' id='myForm4' method='post'>
+                        <form action='/DeleteAdmin/' id='myForm4' method='post' onsubmit="return validateDelete()">
 
                             <div class="modal-header">
                                 <h4 class="modal-title">Delete Admin</h4>
@@ -395,7 +331,7 @@
 
                             <div class="modal-footer">
                                 <button class="btn btn-success" data-bs-dismiss="modal"
-                                        type="submit">
+                                        onclick="submitdelete()">
                                     submit
                                 </button>
                                 <button class="btn btn-ready" data-bs-dismiss="modal"
@@ -418,6 +354,110 @@
     </div>
 </div>
 </div>
+<script>
+    function validateAdd(){
+        if(
+            document.getElementById("aAuthority").value == "None"
+            && (document.getElementById("aUsername").value !== ""
+                || document.getElementById("aPassword").value !== "")
+        ){  return false;
+            alert("A person who is not Admin cannot have Username and Password.");
+
+        }
+        else if((document.getElementById("aAuthority").value == "Super"
+                ||document.getElementById("aAuthority").value == "General")
+            &&((document.getElementById("aUsername").value == ""
+                ||document.getElementById("aPassword").value==""))
+        ){
+            alert("An Admin must have username and password");
+            return false;
+        }
+        else if (
+            document.getElementById("aFName").value == ""
+            || document.getElementById("aLName").value ==""
+            || document.getElementById("aDepartment").value ==""
+            || document.getElementById("aAuthority").value ==""
+            || document.getElementById("aRegion").value ==""
+        ){
+            alert("You have to fill in all necessary fields");
+            return false;
+        }
+        else{
+            return  true;
+        }
+
+    }
+
+
+    function submitAdd() {
+    if (validateAdd()===true){
+            document.getElementById("myForm").submit();
+    }
+    else
+    {
+        window.location.replace("http://localhost:8080/manageAdminSupAdmin");
+    }}
+
+    function validateEdit(){
+        if(
+            document.getElementById("eAuthority").value == "None"
+            && (document.getElementById("eUsername").value !== ""
+                || document.getElementById("ePassword").value !== "")
+        ){
+            alert("A person who is not Admin cannot have Username and Password.");
+            return false;
+        }
+        else if((document.getElementById("eAuthority").value == "Super"
+                ||document.getElementById("eAuthority").value == "General")
+            &&((document.getElementById("eUsername").value == ""
+                ||document.getElementById("ePassword").value==""))
+        ){
+            alert("An Admin must have username and password");
+            return false;
+        }
+        else if (
+            document.getElementById("eFName").value == ""
+            || document.getElementById("eLName").value ==""
+            || document.getElementById("eDepartment").value ==""
+            || document.getElementById("eAuthority").value ==""
+            || document.getElementById("eRegion").value ==""
+        ){
+            alert("You have to fill in all necessary fields");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    function submitEdit() {
+        if (validateEdit()===true)
+        {document.getElementById("myForm2").submit();}
+        else
+        {
+            window.location.replace("http://localhost:8080/manageAdminSupAdmin");
+        }
+    }
+    function validateDelete(){
+        if (document.getElementById("dID").value == ""){
+            alert("Please click on the Employee You are going to delete");
+            return false;
+        }
+        else
+        {return true;}
+    }
+    function submitdelete(){
+        if (
+            validateDelete()===true
+        )
+        {document.getElementById("myForm4").submit();}
+        else
+        {
+            window.location.replace("http://localhost:8080/manageAdminSupAdmin");
+        }
+
+    }
+
+</script>
 <script th:replace="fragments/Script::script"></script>
 
 </body>

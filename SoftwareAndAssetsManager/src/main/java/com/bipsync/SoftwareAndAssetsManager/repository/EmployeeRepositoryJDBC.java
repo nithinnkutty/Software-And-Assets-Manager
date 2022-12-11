@@ -68,7 +68,7 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
     public boolean EditEmployee(EditEmployeeForm editEmployeeForm) {
 
         int rows = jdbcTemplate.update("update employees set firstName= ?, surname = ? , username=?,password = ?, Department = ?, authority = ? , region = ? where id = ?",
-                editEmployeeForm.getFirstName(), editEmployeeForm.getSurname(), editEmployeeForm.getSurname(),editEmployeeForm.getPassword(), editEmployeeForm.getDepartment(), editEmployeeForm.getAuthority(), editEmployeeForm.getRegion(), editEmployeeForm.getID());
+                editEmployeeForm.getFirstName(), editEmployeeForm.getSurname(), editEmployeeForm.getUsername(),editEmployeeForm.getPassword(), editEmployeeForm.getDepartment(), editEmployeeForm.getAuthority(), editEmployeeForm.getRegion(), editEmployeeForm.getID());
         System.out.println("rows = " + rows);
         return(rows>0);
     }
