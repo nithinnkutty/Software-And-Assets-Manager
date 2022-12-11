@@ -19,7 +19,7 @@ public class AddEmployeeForm {
         this.surname = surname;
         this.username = username;
         this.password = password;
-        department = department;
+        this.department = department;
         this.authority = authority;
         this.region = region;
     }
@@ -61,7 +61,7 @@ public class AddEmployeeForm {
     }
 
     public void setDepartment(String department) {
-        department = department;
+        this.department = department;
     }
 
     public String getAuthority() {
