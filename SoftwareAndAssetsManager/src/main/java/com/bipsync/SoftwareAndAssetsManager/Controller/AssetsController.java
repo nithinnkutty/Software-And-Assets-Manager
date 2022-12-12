@@ -27,6 +27,8 @@ public class AssetsController {
             System.out.println(br);
         } else {
             if (assetsRepository.addAsset(assetForm)) {
+                System.out.println("added asset");
+                mav.addObject("assets", assetsRepository.getAllAssets(null));
                 mav.addObject("assets", assetsRepository.getAllAssets());
                 System.out.println("Added an Asset");
                 mav.setViewName("Home_AllAssets_SA");
