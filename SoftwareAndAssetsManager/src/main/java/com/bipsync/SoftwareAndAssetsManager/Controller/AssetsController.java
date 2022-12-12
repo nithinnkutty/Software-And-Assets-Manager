@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,24 +19,24 @@ public class AssetsController {
         assetsRepository = pRepo;
     }
     @RequestMapping(path="/addAsset", method = RequestMethod.POST)
-    public ModelAndView homePageSupAdmin(AddAssetForm assetForm, BindingResult br) {
-        ModelAndView mav = new ModelAndView();
+    public ModelAndView addAsset(AddAssetForm assetForm, BindingResult br) {
+        ModelAndView mav =  new ModelAndView();
         System.out.println(assetForm.getDateOfExpiry());
         System.out.println(assetForm.getDateOfPurchase());
         if (br.hasErrors()) {
-            mav.setViewName("Home_AllAssets_SA");
             System.out.println(br);
         } else {
             if (assetsRepository.addAsset(assetForm)) {
                 System.out.println("added asset");
-                mav.addObject("assets", assetsRepository.getAllAssets(null));
+                mav.addObject("assets", assetsRepository.getAllAssets());
+                System.out.println("Added an Asset");
                 mav.setViewName("Home_AllAssets_SA");
             }else{
+                System.out.println("Adding asset failed");
                 mav.setViewName("Home_AllAssets_SA");
             }
         }
         return mav;
-
     }
 
 }

@@ -16,7 +16,6 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
 
-//? no beans of jdbc?
     @Autowired
     public AssetsRepositoryJDBC(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
@@ -34,38 +33,44 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
         return rows>0;
 
     }
-//    @Override
-//    public List<AssetDTO> getAllAssets() {
-//        return jdbcTemplate.query(
-//                "select ID,employeeID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
-//                new AssetMapper());
-//    }
-    @Override
-    public List<AssetDTO> getAllAssets(String status) {
-        String andSql = "";
-        if(status != null){
-            andSql= "where STATUS = '"+status+"'";
-        }
-        List query = jdbcTemplate.query(
-                "SELECT " +
-                        "  assets.ID, " +
-                        "    assets.employeeID, " +
-                        "  assetName, " +
-                        "  assetType, " +
-                        "  version, " +
-                        "  STATUS, " +
-                        "  dateOfPurchase, " +
-                        "  dateOfExpiry, " +
-                        "  employees.department, " +
-                        "  employees.region, " +
-                        "  assets.modelNumber " +
-                        "FROM " +
-                        "  assets " +
-                        " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
 
+    @Override
+    public List<AssetDTO> getAllAssets() {
+        return jdbcTemplate.query(
+                "SELECT assets.*," +
+                        "employees.firstName," +
+                        "employees.surname," +
+                        "employees.department," +
+                        "employees.region " +
+                        "FROM assets LEFT OUTER JOIN employees " +
+                        "ON assets.employeeID = employees.ID" ,
                 new AssetMapper());
-        return  query;
     }
+    @Override
+    public List<AssetDTO> getAssetsSummary() {
+        return jdbcTemplate.query(
+                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+                new AssetMapper());
+    }
+    @Override
+    public List<AssetDTO> getAllAssetsByStatus(String status) {
+            String andSql = "";
+            if(status != null){
+                andSql= "where STATUS = '"+status+"'";
+            }
+            List query = jdbcTemplate.query(
+                    "SELECT assets.*," +
+                            "employees.firstName," +
+                            "employees.surname," +
+                            "employees.department," +
+                            "employees.region " +
+                            "FROM " +
+                            "  assets " +
+                            " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
+
+                    new AssetMapper());
+            return  query;
+        }
 
     @Override
     public int updateDataBYID(int id, String state) {
