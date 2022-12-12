@@ -360,8 +360,8 @@
             document.getElementById("aAuthority").value == "None"
             && (document.getElementById("aUsername").value !== ""
                 || document.getElementById("aPassword").value !== "")
-        ){  return false;
-            alert("A person who is not Admin cannot have Username and Password.");
+        ){  alert("A person who is not Admin cannot have Username and Password.");
+            return false;
 
         }
         else if((document.getElementById("aAuthority").value == "Super"
