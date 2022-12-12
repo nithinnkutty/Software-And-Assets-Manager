@@ -33,47 +33,44 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
         return rows>0;
 
     }
-//    @Override
-//    public List<AssetDTO> getAllAssets() {
-//        return jdbcTemplate.query(
-//                "select ID,employeeID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
-//                new AssetMapper());
-//    }
+
     @Override
     public List<AssetDTO> getAllAssets() {
         return jdbcTemplate.query(
-                "SELECT assets.ID,assets.employeeID, assets.assetName, assets.assetType, assets.modelNumber, assets.version,assets.status, assets.dateOfPurchase,assets.dateOfExpiry,assets.assignedOn,employees.firstName,employees.surname,employees.department, employees.region FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID" ,
+                "SELECT assets.*," +
+                        "employees.firstName," +
+                        "employees.surname," +
+                        "employees.department," +
+                        "employees.region " +
+                        "FROM assets LEFT OUTER JOIN employees " +
+                        "ON assets.employeeID = employees.ID" ,
                 new AssetMapper());
     }
     @Override
     public List<AssetDTO> getAssetsSummary() {
         return jdbcTemplate.query(
                 "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
-    public List<AssetDTO> getAllAssets(String status) {
-        String andSql = "";
-        if(status != null){
-            andSql= "where STATUS = '"+status+"'";
-        }
-        List query = jdbcTemplate.query(
-                "SELECT " +
-                        "  assets.ID, " +
-                        "    assets.employeeID, " +
-                        "  assetName, " +
-                        "  assetType, " +
-                        "  version, " +
-                        "  STATUS, " +
-                        "  dateOfPurchase, " +
-                        "  dateOfExpiry, " +
-                        "  employees.department, " +
-                        "  employees.region, " +
-                        "  assets.modelNumber " +
-                        "FROM " +
-                        "  assets " +
-                        " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
-
                 new AssetMapper());
-        return  query;
     }
+    @Override
+    public List<AssetDTO> getAllAssetsByStatus(String status) {
+            String andSql = "";
+            if(status != null){
+                andSql= "where STATUS = '"+status+"'";
+            }
+            List query = jdbcTemplate.query(
+                    "SELECT assets.*," +
+                            "employees.firstName," +
+                            "employees.surname," +
+                            "employees.department," +
+                            "employees.region " +
+                            "FROM " +
+                            "  assets " +
+                            " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
+
+                    new AssetMapper());
+            return  query;
+        }
 
     @Override
     public int updateDataBYID(int id, String state) {

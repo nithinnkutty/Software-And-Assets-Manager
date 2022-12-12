@@ -24,7 +24,7 @@ public class GeneralController {
     @RequestMapping(path = "/allAssetsSupAdmin")
     public ModelAndView allAssetsTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets(null));
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("Home_AllAssets_SA");
         return mav;
     }
@@ -32,7 +32,7 @@ public class GeneralController {
     @RequestMapping(path = "/assetSearchSupAdmin")
     public ModelAndView assetSearchTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets(null));
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("AssetSearch_SA");
         return mav;
     }
@@ -40,7 +40,7 @@ public class GeneralController {
     @RequestMapping(path = "/assetStatusSupAdmin")
     public ModelAndView assetStatusTab(String status) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets(status));
+        mav.addObject("assets", assetsRepository.getAllAssetsByStatus(status));
         mav.setViewName("AssetStatus_SA");
         return mav;
     }
@@ -48,7 +48,7 @@ public class GeneralController {
     @RequestMapping(path = "/assetsExpiringSupAdmin")
     public ModelAndView assetsExpiringTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets(null));
+        mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("AssetsExpiring_SA");
         return mav;
     }
