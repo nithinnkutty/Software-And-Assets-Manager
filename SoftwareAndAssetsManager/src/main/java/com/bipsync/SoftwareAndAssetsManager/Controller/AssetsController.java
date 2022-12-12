@@ -63,7 +63,7 @@ public class AssetsController {
         return mav;
     }
 
-//    Since the delete function only requires an ID, the EditAssetForm class was borrowed to improve code reusability
+//    Since the delete function only requires an ID, the EditAssetForm class was borrowed to improve code usability
     @RequestMapping(path="/deleteAsset", method = RequestMethod.POST)
     public ModelAndView DeleteAdmin(EditAssetForm editAssetForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
