@@ -18,7 +18,6 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     //https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
     private JdbcTemplate jdbcTemplate;
 
-    // ? no beans of jdbc?
     @Autowired
     public AssetsRepositoryJDBC(JdbcTemplate aTemplate) {
         jdbcTemplate = aTemplate;
@@ -39,11 +38,22 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     @Override
     public List<AssetDTO> getAllAssets() {
         return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+                "SELECT assets.*," +
+                        "employees.firstName," +
+                        "employees.surname," +
+                        "employees.department," +
+                        "employees.region " +
+                        "FROM assets LEFT OUTER JOIN employees " +
+                        "ON assets.employeeID = employees.ID" ,
                 new AssetMapper());
     }
 
-
+    @Override
+    public List<AssetDTO> getAssetsSummary() {
+        return jdbcTemplate.query(
+                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
+                new AssetMapper());
+    }
 //    Multi-table search :Instantiate the queried AssignedAsset via the corresponding Mapper for use by the front-end
     @Override
     public List<AssignedAssetsDTO> getAllAssignedAssets() {
@@ -51,7 +61,31 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
                 "select a.*,e.firstName,e.surname,e.department,e.region from assets a left join employees e on a.employeeID = e.ID",
                 new AssignedAssetsMapper());
     }
+    @Override
+    public List<AssetDTO> getAllAssetsByStatus(String status) {
+        String andSql = "";
+        if(status != null){
+            andSql= "where STATUS = '"+status+"'";
+        }
+        List query = jdbcTemplate.query(
+                "SELECT assets.*," +
+                        "employees.firstName," +
+                        "employees.surname," +
+                        "employees.department," +
+                        "employees.region " +
+                        "FROM " +
+                        "  assets " +
+                        " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
 
+                new AssetMapper());
+        return  query;
+    }
+
+    @Override
+    public int updateDataBYID(int id, String state) {
+        int update = jdbcTemplate.update("update assets set status = '" + state + "' where id = '" + id + "'");
+        return update;
+    }
 
     @Override
     public boolean EditAsset(EditAssetForm editAssetForm) {

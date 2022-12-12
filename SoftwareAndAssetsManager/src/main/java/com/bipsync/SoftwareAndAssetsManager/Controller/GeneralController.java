@@ -1,11 +1,12 @@
 package com.Bipsync.SoftwareAndAssetsManager.Controller;
 
+import com.Bipsync.SoftwareAndAssetsManager.DTO.AjaxRes;
 import com.Bipsync.SoftwareAndAssetsManager.repository.AssetsRepository;
 import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -44,9 +45,9 @@ public class GeneralController {
     }
 
     @RequestMapping(path = "/assetStatusSupAdmin")
-    public ModelAndView assetStatusTab() {
+    public ModelAndView assetStatusTab(String status) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets());
+        mav.addObject("assets", assetsRepository.getAllAssetsByStatus(status));
         mav.setViewName("AssetStatus_SA");
         return mav;
     }
@@ -68,9 +69,11 @@ public class GeneralController {
 
     }
 
-
-
-
-
+    @RequestMapping(path="/changeStatus")
+    @ResponseBody
+    public AjaxRes changeStatus(int id, String state, ModelAndView mo) {
+        int update = assetsRepository.updateDataBYID(id,state);
+        return AjaxRes.success();
+    }
 
 }
