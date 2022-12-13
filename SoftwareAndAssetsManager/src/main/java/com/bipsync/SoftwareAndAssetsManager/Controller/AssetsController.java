@@ -38,7 +38,6 @@ public class AssetsController {
             }
         }
         return mav;
-
     }
 //    Corresponds to the submission form on the front-end page and handles editAsset requests
     @RequestMapping(path = "/editAsset", method = RequestMethod.POST)

@@ -5,7 +5,7 @@ use assetsManager;
  DROP TABLE IF EXISTS employees;
 
 -- Database changing to one to many relationship.
--- Removed the assigned table
+-- Removed the assigned table 
 CREATE TABLE IF NOT EXISTS `assets` (
   `ID`				INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `employeeID`		INTEGER,
