@@ -30,10 +30,10 @@ public class AssetsController {
                 System.out.println("added asset");
                 mav.addObject("assets", assetsRepository.getAllAssets());
                 System.out.println("Added an Asset");
-                mav.setViewName("Home_AllAssets_SA");
+                mav.setViewName("redirect:/assetsSummarySupAdmin");
             }else{
                 System.out.println("Adding asset failed");
-                mav.setViewName("Home_AllAssets_SA");
+                mav.setViewName("redirect:/assetsSummarySupAdmin");
             }
         }
         return mav;

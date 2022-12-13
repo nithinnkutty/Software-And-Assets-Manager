@@ -6,7 +6,6 @@ public interface AssetsRepository {
     public boolean addAsset(AddAssetForm addAssetForm);
     public Object getAllAssetsByStatus(String status);
     public Object getAllAssets();
-
     int updateDataBYID(int id, String state);
     public Object getAssetsSummary();
 }

@@ -2,8 +2,10 @@ package com.Bipsync.SoftwareAndAssetsManager.repository;
 
 
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetSummaryDTO;
 import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssetMapper;
+import com.Bipsync.SoftwareAndAssetsManager.model.AssetSummaryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -47,10 +49,17 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
                 new AssetMapper());
     }
     @Override
-    public List<AssetDTO> getAssetsSummary() {
+    public List<AssetSummaryDTO> getAssetsSummary() {
         return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
-                new AssetMapper());
+                "SELECT assets.assetName," +
+                        "assets.assetType," +
+                        "count(assets.employeeID) as assigned," +
+                        "count(*)-count(assets.employeeID) as Unassigned," +
+                        "count(*) as total" +
+                        " FROM assets LEFT OUTER JOIN employees " +
+                        "ON assets.employeeID = employees.ID " +
+                        "group by assets.assetName,assets.assetType" ,
+                new AssetSummaryMapper());
     }
     @Override
     public List<AssetDTO> getAllAssetsByStatus(String status) {
