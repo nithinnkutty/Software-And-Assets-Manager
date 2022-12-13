@@ -93,7 +93,7 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
                 "update assets set assetName = ? ,employeeID=?, assetType = ?, modelNumber = ?, version = ?,dateOfPurchase= ?,assignedOn= ? where ID = ?",
                 editAssetForm.getAssetName(), editAssetForm.getEmployeeID(),editAssetForm.getAssetType(), editAssetForm.getModelNumber(),
                 editAssetForm.getVersion(),editAssetForm.getDateOfPurchase(),editAssetForm.getAssignedOn(), editAssetForm.getID());
-        return rows > 0;
+        return rows>0;
     }
 
     @Override

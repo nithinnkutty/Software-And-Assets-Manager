@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -64,7 +63,7 @@ public class AssetsController {
 
 //    Since the delete function only requires an ID, the EditAssetForm class was borrowed to improve code usability
     @RequestMapping(path="/deleteAsset", method = RequestMethod.POST)
-    public ModelAndView DeleteAdmin(EditAssetForm editAssetForm, BindingResult br) {
+    public ModelAndView deleteAsset(EditAssetForm editAssetForm, BindingResult br) {
         ModelAndView mav = new ModelAndView();
         System.out.println(editAssetForm);
         System.out.println("Delete ID :" + editAssetForm.getID());
