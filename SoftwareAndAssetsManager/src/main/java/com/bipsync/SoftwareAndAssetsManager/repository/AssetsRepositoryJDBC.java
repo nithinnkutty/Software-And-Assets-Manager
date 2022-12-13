@@ -74,7 +74,7 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
                         "employees.department," +
                         "employees.region " +
                         "FROM " +
-                        "  assets " +
+                        "assets " +
                         " LEFT join  employees on employees.id = assets.employeeID  " + andSql,
 
                 new AssetMapper());
