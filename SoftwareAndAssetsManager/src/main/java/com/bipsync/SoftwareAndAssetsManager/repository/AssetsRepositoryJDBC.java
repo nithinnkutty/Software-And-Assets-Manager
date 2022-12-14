@@ -1,10 +1,12 @@
 package com.Bipsync.SoftwareAndAssetsManager.repository;
 
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetSummaryDTO;
 import com.Bipsync.SoftwareAndAssetsManager.DTO.AssignedAssetsDTO;
 import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.form.EditAssetForm;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssetMapper;
+import com.Bipsync.SoftwareAndAssetsManager.model.AssetSummaryMapper;
 import com.Bipsync.SoftwareAndAssetsManager.model.AssignedAssetsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,10 +51,17 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
     }
 
     @Override
-    public List<AssetDTO> getAssetsSummary() {
+    public List<AssetSummaryDTO> getAssetsSummary() {
         return jdbcTemplate.query(
-                "select ID,assetName,assetType,status,modelNumber,version,dateOfPurchase,dateOfExpiry from assets" ,
-                new AssetMapper());
+                "SELECT assets.assetName," +
+                        "assets.assetType," +
+                        "count(assets.employeeID) as assigned," +
+                        "count(*)-count(assets.employeeID) as Unassigned," +
+                        "count(*) as total" +
+                        " FROM assets LEFT OUTER JOIN employees " +
+                        "ON assets.employeeID = employees.ID " +
+                        "group by assets.assetName,assets.assetType" ,
+                new AssetSummaryMapper());
     }
 //    Multi-table search :Instantiate the queried AssignedAsset via the corresponding Mapper for use by the front-end
     @Override

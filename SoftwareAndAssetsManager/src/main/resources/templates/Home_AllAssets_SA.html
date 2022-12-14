@@ -20,7 +20,7 @@
         </nav>
 
         <div class="tab-content" id="nav-tabContent">
-            <!--                All Assets-->
+            <!--                Assets Summary-->
             <div aria-labelledby="nav-assets-tab" class="tab-pane fade show active w-100" id="nav-assets"
                  role="tabpanel" tabindex="0">
                 <div class="row">
@@ -35,25 +35,19 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Asset Name</th>
                                     <th scope="col">Asset Type</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Model Number</th>
-                                    <th scope="col">Version</th>
-                                    <th scope="col">Date of Purchase</th>
-                                    <th scope="col">Date of Expiry</th>
-                                    <th scope="col">Date of Assign</th>
+                                    <th scope="col">Assigned</th>
+                                    <th scope="col">Unassigned</th>
+                                    <th scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody class="table-group-divider ">
-                                <tr th:each="asset: ${assets}">
+                                <tr th:each="asset: ${assetSummary}">
                                     <td th:text="${asset.ID}"></td>
                                     <td th:text="${asset.assetName}"></td>
                                     <td th:text="${asset.assetType}"></td>
-                                    <td th:text="${asset.status}"></td>
-                                    <td th:text="${asset.modelNumber}"></td>
-                                    <td th:text="${asset.version}"></td>
-                                    <td th:text="${asset.dateOfPurchase}"></td>
-                                    <td th:text="${asset.dateOfExpiry}"></td>
-                                    <td th:text="${asset.assignedOn}"></td>
+                                    <td th:text="${asset.assigned}"></td>
+                                    <td th:text="${asset.unassigned}"></td>
+                                    <td th:text="${asset.total}"></td>
                                 </tr>
                                 </tbody>
                             </table>

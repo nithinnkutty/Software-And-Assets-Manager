@@ -21,10 +21,10 @@ public class GeneralController {
         employeeRepository = eRepo;
     }
 
-    @RequestMapping(path = "/allAssetsSupAdmin")
+    @RequestMapping(path = "/assetsSummarySupAdmin")
     public ModelAndView allAssetsTab() {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("assets", assetsRepository.getAllAssets());
+        mav.addObject("assetSummary", assetsRepository.getAssetsSummary());
         mav.setViewName("Home_AllAssets_SA");
         return mav;
     }
