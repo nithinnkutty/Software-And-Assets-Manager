@@ -28,6 +28,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 this.adminSuccessHandler.onAuthenticationSuccess(request, response, authentication);
                 return;
             }
+            
         }
         // if the user is not an admin delegate to the userSuccessHandler
         this.userSuccessHandler.onAuthenticationSuccess(request, response, authentication);

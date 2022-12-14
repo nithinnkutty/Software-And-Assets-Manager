@@ -1,5 +1,6 @@
 package com.Bipsync.SoftwareAndAssetsManager.Configuration;
 
+import com.Bipsync.SoftwareAndAssetsManager.Configuration.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -31,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers().hasAnyAuthority("Super")
 				.antMatchers().hasAnyAuthority("General")
+				//.antMatchers("/").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin().successHandler(new CustomAuthenticationSuccessHandler())
@@ -40,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.exceptionHandling().accessDeniedPage("/403")
 		;
+		http.csrf().disable();
 	}
 	
 	
