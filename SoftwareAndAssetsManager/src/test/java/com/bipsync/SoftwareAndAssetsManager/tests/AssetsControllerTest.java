@@ -65,7 +65,7 @@ public class AssetsControllerTest {
      */
     @Test
     public void testEditAsset() throws Exception {
-        Mockito.when(bindingResult.hasErrors()).thenReturn(true);
+        Mockito.when(bindingResult.hasErrors()).thenReturn(false);
 
         ModelAndView mav = assetsController.editAsset(editAssetForm,bindingResult);
 
@@ -79,7 +79,7 @@ public class AssetsControllerTest {
      */
     @Test
     public void testDeleteAsset() throws Exception {
-        Mockito.when(bindingResult.hasErrors()).thenReturn(true);
+        Mockito.when(bindingResult.hasErrors()).thenReturn(false);
 
         ModelAndView mav = assetsController.deleteAsset(editAssetForm,bindingResult);
 
