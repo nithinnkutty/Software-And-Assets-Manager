@@ -12,7 +12,7 @@ public class AssetSummaryMapper implements RowMapper {
     //query class
     @Override
     public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new AssetSummaryDTO((rowNum +1),
+        return new AssetSummaryDTO((rowNum +1), //Adding 1 to start ID from 1. otherwise ID start from 0.
                 rs.getString("assetName"),
                 rs.getString("assetType"),
                 rs.getInt("Assigned"),

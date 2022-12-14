@@ -25,6 +25,7 @@ public class AssetsController {
         System.out.println(assetForm.getDateOfPurchase());
         if (br.hasErrors()) {
             System.out.println(br);
+            System.out.println("Some Binding Error\n");
         } else {
             if (assetsRepository.addAsset(assetForm)) {
                 System.out.println("added asset");
