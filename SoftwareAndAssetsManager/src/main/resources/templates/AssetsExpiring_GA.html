@@ -3,6 +3,31 @@
 
 <!--This is the Home Page template for SuperAdmin Access-->
 <head th:replace="fragments/Head::siteHead"></head>
+<style>
+    /* adding in style for the alert function including base colour and page placement with hover changes */
+    .alert {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: rgba(245, 53, 53, 0.99);
+        color: white;
+        margin-bottom: 10px;
+    }
+
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .closebtn:hover {
+        color: blue;
+    }
+</style>
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
 
@@ -18,6 +43,16 @@
             </div>
         </nav>
 
+        <!-- Adding alert functionality that stores count data from js with the ability to close the alert onclick -->
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Warning!</strong> You currently have
+            <div id="expiredCount" style="display: inline"></div>
+            expired assets and
+            <div id="expiringCount" style="display: inline"></div>
+            expiring assets!
+        </div>
+
         <div class="tab-content" id="nav-tabContent">
             <!--                Assets Expiring-->
             <div aria-labelledby="nav-manageAdmin-tab" class="tab-pane fade show active w-100" id="nav-manageAdmin"
@@ -28,28 +63,34 @@
                         <p style="text-align:left">
                         </p>
                         <div class="table-responsive w-100 ">
+
+                            <!--                            If the table class attribute has table-light in it, it will affect Elliot's functionality(highlighting).-->
                             <table
-                                    class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
-                                    id="viewresult1">
+                                    class="table table-hover  table-striped  justify-content-between "  id="viewresult1">
                                 <thead>
                                 <tr>
+                                    <!--                                    Use upper case IDs here-->
                                     <th scope="col">ID</th>
                                     <th scope="col">Asset Name</th>
                                     <th scope="col">Asset Type</th>
-                                    <th scope="col">Assigned Date</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Due Date</th>
+                                    <th scope="col">Model Number</th>
+                                    <th scope="col">Version</th>
+                                    <th scope="col">DateOfPurchase</th>
+                                    <th scope="col">Expiring</th>
 
                                 </tr>
                                 </thead>
                                 <tbody class="table-group-divider ">
 
-<!--                                ***********Test Data from data base-->
+                                <!--                                ***********Test Data from data base-->
                                 <tr th:each="asset: ${assets}">
                                     <td th:text="${asset.ID}"></td>
                                     <td th:text="${asset.assetName}"></td>
                                     <td th:text="${asset.assetType}"></td>
                                     <td th:text="${asset.status}"></td>
+                                    <td th:text="${asset.modelNumber}"></td>
+                                    <td th:text="${asset.version}"></td>
                                     <td th:text="${asset.dateOfPurchase}"></td>
                                     <td th:text="${asset.dateOfExpiry}"></td>
                                 </tr>
@@ -57,19 +98,6 @@
                             </table>
                         </div>
                         <br>
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-start">
-                                <li class="page-item disabled">
-                                    <a class="page-link">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
 
                 </div>
@@ -78,7 +106,55 @@
     </div>
 </div>
 </div>
-<script th:replace="fragments/Script::script">
+<script>
+    // Loading Datatables and setting a date based upon the current date.
+    $(document).ready(function () {
+        $('#viewresult1').DataTable();
+    });
+
+    var myDate = new Date();
+    console.log(myDate);
+
+</script>
+
+<script th:inline="javascript">
+    // Adding a DOM aware function that ensures the js is executed once the DOM has loaded.
+    document.addEventListener("DOMContentLoaded", function () {
+        var arrDate = $('#viewresult1 tr').find('td:last').map(function () {
+            console.log("arrDate"+arrDate);
+            return $(this).text();
+        }).get();
+
+        // Creating logic by which expiring assets (within 30 days) and expired assets can be selected and given a
+        // different background as to highlight them on the page. There is also counts for each that are appended to
+        // the HTML elements previously described.
+
+        let dateToUse = [];
+        let expiredCount = 0;
+        let expiringCount = 0;
+        for (let k = 0; k < arrDate.length; k++) {
+            dateToUse.push(new Date(arrDate[k]));
+            console.log(arrDate[k]);
+        }
+        for (let i = 0; i <= arrDate.length; i++) {
+            if ((dateToUse[i] - myDate) / 86400000 < 0) {
+                let row = document.getElementById('viewresult1').rows;
+                row[i + 1].style.background = "red";
+                // $(row[i + 1]).css({color: "red", backgroundColor: "red"});
+                expiredCount = expiredCount + 1;
+            }
+            if (((dateToUse[i] - myDate) / 86400000 < 30) && ((dateToUse[i] - myDate) / 86400000 > 0)) {
+                let row = document.getElementById('viewresult1').rows;
+                row[i + 1].style.background = "yellow";
+                // $(row[i + 1]).css({color: "yellow", backgroundColor: "yellow"});
+                expiringCount = expiringCount + 1;
+            }
+        }
+        document.getElementById("expiredCount").innerHTML = expiredCount.toString();
+        document.getElementById("expiringCount").innerHTML = expiringCount.toString();
+    });
+</script>
+<script th:replace="fragments/Script_GA::script">
 
 </script>
 </body>
