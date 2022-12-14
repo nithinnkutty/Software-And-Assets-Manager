@@ -55,8 +55,8 @@ public class AssetsRepositoryJDBC implements AssetsRepository {
         return jdbcTemplate.query(
                 "SELECT assets.assetName," +
                         "assets.assetType," +
-                        "count(assets.employeeID) as assigned," +
-                        "count(*)-count(assets.employeeID) as Unassigned," +
+                        "count(assets.employeeID)-count(case when assets.employeeID = 0 then 1 end) as assigned," +
+                        "count(case when assets.employeeID = 0 then 1 end)+count(case when assets.employeeID is null then 1 end) as Unassigned," +
                         "count(*) as total" +
                         " FROM assets LEFT OUTER JOIN employees " +
                         "ON assets.employeeID = employees.ID " +

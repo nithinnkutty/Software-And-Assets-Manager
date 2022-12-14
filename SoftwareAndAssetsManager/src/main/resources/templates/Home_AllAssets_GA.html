@@ -49,8 +49,27 @@
                                     <td th:text="${asset.unassigned}"></td>
                                     <td th:text="${asset.total}"></td>
                                 </tr>
+                                <tbody>
+                            </table>
+                            <table class="table table-hover table-light table-striped w-100 justify-content-between modal-dialog-scrollable display"
+                                   id="assetsSummaryTotal">
+
+                                <tfoot>
+                                <tr>
+                                    <th scope="col">Total Assigned</th>
+                                    <th scope="col">Total Unassigned</th>
+                                    <th scope="col">Total Assets</th>
+                                </tr>
+                                </tfoot>
+                                <tbody class="table-group-divider ">
+                                <tr th:object="${assetSummary.get(0)}">
+                                    <td th:utext="*{totalAssigned}"></td>
+                                    <td th:utext="*{totalUnassigned}"></td>
+                                    <td th:utext="*{totalAssets}"></td>
+                                </tr>
                                 </tbody>
                             </table>
+
                         </div>
                         <br>
 
