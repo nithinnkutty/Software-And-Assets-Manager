@@ -30,16 +30,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers().hasAnyAuthority("Super")
-				.antMatchers().hasAnyAuthority("General")
+				.antMatchers("/assetsSummarySupAdmin").hasAuthority("Super")
+				.antMatchers("/assetsSummaryGenAdmin").hasAuthority("General")
 				//.antMatchers("/").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin().successHandler(new CustomAuthenticationSuccessHandler())
 				.loginPage("/login").permitAll()
 				.and()
-				.logout().permitAll()
-				.and()
+				.logout(logout -> logout
+						.logoutUrl("/logout")
+						.logoutSuccessUrl("/login")
+						.invalidateHttpSession(true)
+				)
 				.exceptionHandling().accessDeniedPage("/403")
 		;
 		http.csrf().disable();
