@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.Thymeleaf.org">
+
+<!--This is the Home Page template for SuperAdmin Access-->
+<head th:replace="fragments/Head::siteHead"></head>
+<body>
+<header th:replace="fragments/Header::siteHeader"></header>
+
+<div class="container-fluid">
+    <div class="col col-lg-8 offset-lg-2 text-center">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button th:replace="fragments/navBar_Inactive::navBar_AllAssets"></button>
+                <button th:replace="fragments/navBar_Active::navBar_AssetSearch"></button>
+                <button th:replace="fragments/navBar_Inactive::navBar_AssetStatus"></button>
+                <button th:replace="fragments/navBar_Inactive::navBar_AssetsExpiring"></button>
+                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>
+            </div>
+        </nav>
+
+
+        <br>
+        <br>
+        <div name="main">
+            <div class="table-responsive"
+                 style="padding: 10px; border-radius: 10px;border: 2px #44f2b3 solid ; background-color: #f8f9fa">
+
+
+                <table
+                        class="table table-hover table-light table-striped  justify-content-between "
+                        id="resultTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Asset Name</th>
+                        <th scope="col">Asset Type</th>
+                        <th scope="col">Model Number</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Assigned ID</th>
+                        <th scope="col">Assignee</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Date of Assigned</th>
+                        <th scope="col">Date of Purchase</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider ">
+                    <tr th:each="asset: ${assignedAssets}">
+                        <td th:text="${asset.ID}"></td>
+                        <td th:text="${asset.assetName}"></td>
+                        <td th:text="${asset.assetType}"></td>
+                        <td th:text="${asset.modelNumber}"></td>
+                        <td th:text="${asset.version}"></td>
+                        <td th:text="${asset.employeeID}"></td>
+                        <td th:text="${asset.firstName} +${asset.surname}"></td>
+                        <td th:text="${asset.department}"></td>
+                        <td th:text="${asset.region}"></td>
+                        <td th:text="${asset.assignedOn}"></td>
+                        <td th:text="${asset.dateOfPurchase}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <script type="text/javascript">
+                    $(document).ready( function () {
+                        $('#resultTable').DataTable();
+                    } );
+                </script>
+
+            </div>
+            <br>
+
+        </div>
+    </div>
+</div>
+
+<script th:replace="fragments/Script::script"></script>
+</body>
+</html>

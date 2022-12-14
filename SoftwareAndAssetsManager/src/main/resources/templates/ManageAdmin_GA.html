@@ -140,40 +140,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1-edb203c114.10.2.js"></script>
-<script>
-    let getAllAssetsTab = function () {
-        window.location = '/allAssetsSupAdmin';
-        alert("Works Fine");
-    };
-    let getAssetSearchTab = function () {
-        window.location = '/assetSearchSupAdmin';
-        alert("Works Fine");
-    };
-    let getAssetStatusTab = function () {
-        window.location = '/assetStatusSupAdmin';
-        alert("Works Fine");
-    };
-    let getAssetsExpiringTab = function () {
-        window.location = '/assetsExpiringSupAdmin';
-        alert("Works Fine");
-    };
-    let getManageAdminTab = function () {
-        window.location = '/manageAdminSupAdmin';
-        alert("Works Fine");
-    };
-
-
-    function changeStatus(id){
-        $.ajax({
-            url:"/changeStatus",
-            data:{state:$("#input").val(),id:id},
-            // success:function(){
-            //     alert("Done")
-            // }
-        })
-    }
-</script>
+<script th:replace="fragments/Script::script"></script>
 
 </body>
 </html>

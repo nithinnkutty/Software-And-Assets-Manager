@@ -6,8 +6,7 @@
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
 
-
-<div class="row">
+<div class="container-fluid">
     <div class="col col-lg-8 offset-lg-2 text-center">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -19,124 +18,323 @@
             </div>
         </nav>
 
-        <div class="tab-content" id="nav-tabContent">
-            <!--                Asset Search-->
-            <div aria-labelledby="nav-assetSearch-tab" class="tab-pane show active fade w-100" id="nav-assetSearch"
-                 role="tabpanel" tabindex="0">
-                <div class="row">
-                    <div style="text-align: center">
-                        <br/>
-                        <div class="container">
 
-                            <div class="wrapleft ">
-                                <div class="row row-col-5">
-                                    <div class="col-4 p-2">
-                                        <label class="form-label" for="AssetName">Asset Name</label>
-                                    </div>
-                                    <div class="col-8 p-2">
-                                        <input class="form-control" id="AssetName" placeholder="Default Name"
-                                               type="text">
-                                    </div>
-                                    <div class="col-4 p-2">
-                                        <label class="form-label" for="Model">Model</label>
-                                    </div>
-                                    <div class="col-8 p-2">
-                                        <input class="form-control" id="Model" placeholder="Default Model" type="text">
-                                    </div>
-                                    <div class="col-4 p-2">
-                                        <label class="form-label" for="OperatedDate">Operated Date</label>
-                                    </div>
-                                    <div class="col-8 p-2">
-                                        <input class="form-control" id="OperatedDate" placeholder="Date" type="date">
+        <br>
+        <br>
+        <div name="main">
+            <div class="table-responsive"
+                 style="padding: 10px; border-radius: 10px;border: 2px #44f2b3 solid ; background-color: #f8f9fa">
 
-                                    </div>
-                                    <div class="col-4 p-2">
-                                        <label class="form-label" for="Operation">Operation</label>
-                                    </div>
-                                    <div class="col-8 p-2">
-                                        <input class="form-control" id="Operation" placeholder="Operation" type="text">
-                                    </div>
-                                    <div class="col-12 p-2" style="text-align: center">
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+
+                <table
+                        class="table table-hover table-light table-striped  justify-content-between "
+                        id="resultTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Asset Name</th>
+                        <th scope="col">Asset Type</th>
+                        <th scope="col">Model Number</th>
+                        <th scope="col">Version</th>
+                        <th scope="col">Assigned ID</th>
+                        <th scope="col">Assignee</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Date of Assigned</th>
+                        <th scope="col">Date of Purchase</th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="table-group-divider ">
+                    <tr th:each="asset: ${assignedAssets}">
+                        <td th:text="${asset.ID}"></td>
+                        <td th:text="${asset.assetName}"></td>
+                        <td th:text="${asset.assetType}"></td>
+                        <td th:text="${asset.modelNumber}"></td>
+                        <td th:text="${asset.version}"></td>
+                        <td th:text="${asset.employeeID}"></td>
+                        <td th:text="${asset.firstName} +${asset.surname}"></td>
+                        <td th:text="${asset.department}"></td>
+                        <td th:text="${asset.region}"></td>
+                        <td th:text="${asset.assignedOn}"></td>
+                        <td th:text="${asset.dateOfPurchase}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <script type="text/javascript">
+                    // $(document).ready( function () {
+                    //     $('#resultTable').DataTable();
+                    // } );
+
+                    // The action button bar is hidden by default and is displayed when the form is clicked
+                    $(document).ready(function () {
+                        $("#manage").hide();
+                        $("td").click(function () {
+                            $("#manage").show()
+                        });
+
+
+                        var table = $('#resultTable').DataTable({
+                            select: true,
+                        });
+
+
+                        // Click on a specific line to get information about that line and assign it to the input that follows
+                        table.on('click', 'tr', function () {
+                            var ID = table.row(this).data()[0];
+                            var assetName = table.row(this).data()[1];
+                            var assetType = table.row(this).data()[2];
+                            var modelNumber = table.row(this).data()[3];
+                            var version = table.row(this).data()[4];
+                            var employeeID = table.row(this).data()[5];
+                            var dateOfAssigned = table.row(this).data()[9];
+                            var dateOfPuraches = table.row(this).data()[10];
+
+
+                            console.log(ID);
+                            document.getElementById("editAssetID").value = ID;
+                            document.getElementById("editAssetName").value = assetName;
+                            document.getElementById("editAssetType").value = assetType;
+                            document.getElementById("editModelNumber").value = modelNumber;
+                            document.getElementById("editAssetVersion").value = version;
+                            document.getElementById("editEmployeeID").value = employeeID;
+                            document.getElementById("editAssignedDate").value = dateOfAssigned;
+                            document.getElementById("editPurchaseDate").value = dateOfPuraches;
+                            document.getElementById("deleteAssetID").value = ID;
+                            console.log("Delete ID =" + document.getElementById("deleteAssetID").value);
+                            console.log("Assigned ID =" + document.getElementById("editAssignedDate").value);
+
+                        });
+
+                    });
+
+                </script>
+
+            </div>
+            <br>
+
+            <!--                            This div contains two action buttons-->
+            <div id="manage" style="white-space:nowrap;float: right">
+
+                <button class="btn btn-primary btn-lg"
+                        data-bs-target="#editAsset" data-bs-toggle="modal"
+                        type="button">
+
+                    Edit Asset
+                </button>
+                <!--                                editAsset modal box-->
+                <div class="modal fade" id="editAsset">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form action="/editAsset" id='editAssetForm' method='post'>
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Edit</h4>
+                                    <button class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    <div class="wrap-left ">
+                                        <div class="row row-col-5">
+
+                                            <div class="col-4 p-2">
+
+                                                <label class="form-label" for="editAssetID">Asset
+                                                    ID</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editAssetID" name="ID"
+                                                       readonly type="number">
+                                            </div>
+
+                                            <div class="col-4 p-2">
+
+                                                <label class="form-label" for="editEmployeeID">Assignee
+                                                    ID</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editEmployeeID" name="employeeID"
+                                                       placeholder="Please enter 0 for no allocation at this time"
+                                                       required="required"
+                                                       type="number">
+                                            </div>
+
+                                            <div class="col-4 p-2">
+                                                <label class="form-label"
+                                                       for="editAssetName">Asset
+                                                    Name</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editAssetName"
+                                                       name="assetName"
+                                                       placeholder="Asset Name"
+                                                       required="required"
+                                                       type="text">
+                                            </div>
+                                            <div class="col-4 p-2">
+                                                <label class="form-label"
+                                                       for="editAssetType">Asset
+                                                    Type</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+<!--                                                <input class="form-control"-->
+<!--                                                       id="editAssetType"-->
+<!--                                                       name="assetType"-->
+<!--                                                       placeholder="Asset Type"-->
+<!--                                                       required="required"-->
+<!--                                                       type="text">-->
+                                                <select class="form-control" id="editAssetType"
+                                                        name="assetType" placeholder="Asset Type" required="required">
+                                                    <option value="Software">Software</option>
+                                                    <option value="Laptop">Laptop</option>
+                                                    <option value="Monitor">Monitor</option>
+                                                    <option value="Keyboard">Keyboard</option>
+                                                    <option value="Mouse">Mouse</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-4 p-2">
+                                                <label class="form-label"
+                                                       for="editModelNumber">Model
+                                                    Number</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editModelNumber"
+                                                       name="modelNumber"
+                                                       placeholder="Model Number"
+                                                       type="text">
+                                            </div>
+
+                                            <div class="col-4 p-2">
+                                                <label class="form-label"
+                                                       for="editAssetVersion">Asset
+                                                    Version</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editAssetVersion"
+                                                       name="version"
+                                                       placeholder="Asset Version"
+                                                       type="text">
+                                            </div>
+
+
+                                            <div class="col-4 p-2">
+                                                <label class="form-label"
+                                                       for="editPurchaseDate">Date of
+                                                    Purchase</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editPurchaseDate"
+                                                       name="dateOfPurchase"
+                                                       placeholder="Date of Purchase"
+                                                       required="required"
+                                                       type="date">
+                                            </div>
+
+                                            <div class="col-4 p-2">
+                                                <label class="form-label"
+                                                       for="editAssignedDate">Date of
+                                                    Assigned</label>
+                                            </div>
+                                            <div class="col-8 p-2">
+                                                <input class="form-control"
+                                                       id="editAssignedDate"
+                                                       name="assignedOn"
+                                                       placeholder="Date of Assigned"
+                                                       type="date"
+
+                                                >
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div aria-labelledby="nav-assetsBySearch-tab" class="tab-pane fade show active w-100"
-                             id="nav-assetsBySearch"
-                             role="tabpanel" tabindex="0">
-                            <br/>
-                            <p style="text-align:left">
-                            </p>
-                            <div class="table-responsive w-100 ">
 
-                                <!--modal-dialog will makes buttons losing its function!!-->
-                                <table
-                                        class="table table-hover table-light table-striped w-100 justify-content-between  modal-dialog-scrollable"
-                                        id="viewresult2">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Asset Name</th>
-                                        <th scope="col">Asset Type</th>
-                                        <th scope="col">Assigned Date</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Proprietary</th>
+                                <div class="modal-footer">
+                                    <button class="btn btn-success"
 
-                                    </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider ">
-                                    <tr th:each="asset: ${assets}">
-                                        <td th:text="${asset.ID}"></td>
-                                        <td th:text="${asset.assetName}"></td>
-                                        <td th:text="${asset.assetType}"></td>
-                                        <td th:text="${asset.status}"></td>
-                                        <td th:text="${asset.dateOfPurchase}"></td>
-                                        <td th:text="${asset.dateOfExpiry}"></td>
-                                        <td>
-                                            <div style="white-space:nowrap">
-                                                <button class="btn btn-primary" data-bs-target="#edit"
-                                                        data-bs-toggle="modal"
-                                                        style="display: inline-block" type="submit">
-                                                    Edit
-                                                </button>
-                                                <button class="btn btn-danger" data-bs-target="#Edit"
-                                                        data-bs-toggle="modal"
-                                                        style="display: inline-block" type="submit">
-                                                    Delete
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <br>
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-start">
-                                    <li class="page-item disabled">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
+                                            type="submit">
+                                        submit
+                                    </button>
+                                    <button class="btn btn-ready"
+                                            data-bs-dismiss="modal"
+                                            type="button">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
+                </div>
+
+
+                <button class="btn btn-danger btn-lg" data-bs-target="#deleteAsset"
+                        data-bs-toggle="modal"
+                        type="button">
+                    Delete Asset
+                </button>
+
+                <div class="modal fade" id="deleteAsset">
+                    <form action="deleteAsset" method="post">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Warning</h4>
+                                    <button class="btn-close" data-bs-dismiss="modal"
+                                            type="button"></button>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    Confirm this deletion?
+
+                                    <!--                                                    Use null to fill the class to avoid reporting errors, but only use the ID-->
+                                    <input id="deleteAssetID" name="ID" type="hidden">
+                                    <input name="employeeID" type="hidden" value="0">
+                                    <input name="assetName" type="hidden" value="null">
+                                    <input name="assetType" type="hidden" value="null">
+                                    <input name="modelNumber" type="hidden" value="null">
+                                    <input name="version" type="hidden" value="null">
+                                    <input name="dateOfPurchase" type="hidden" value="2022-1-1">
+                                    <input name="assignedOn" type="hidden" value="2022-1-1">
+                                </div>
+
+
+                                <div class="modal-footer">
+
+
+                                    <button class="btn btn-warning" data-bs-dismiss="modal"
+                                            type="submit">
+                                        Delete
+                                    </button>
+
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal"
+                                            type="button">
+                                        Cancel
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-<script th:replace="fragments/Script::script">
 
-</script>
+<script th:replace="fragments/Script::script"></script>
 </body>
 </html>
