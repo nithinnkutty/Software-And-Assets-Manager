@@ -22,10 +22,17 @@ public class GeneralController {
     }
 
     @RequestMapping(path = "/assetsSummarySupAdmin")
-    public ModelAndView allAssetsTab() {
+    public ModelAndView allAssetsTabSA() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("assetSummary", assetsRepository.getAssetsSummary());
         mav.setViewName("Home_AllAssets_SA");
+        return mav;
+    }
+    @RequestMapping(path = "/assetsSummaryGenAdmin")
+    public ModelAndView allAssetsTabGA() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assetSummary", assetsRepository.getAssetsSummary());
+        mav.setViewName("Home_AllAssets_GA");
         return mav;
     }
 
@@ -45,18 +52,32 @@ public class GeneralController {
     }
 
     @RequestMapping(path = "/assetStatusSupAdmin")
-    public ModelAndView assetStatusTab(String status) {
+    public ModelAndView assetStatusTabSA(String status) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("assets", assetsRepository.getAllAssetsByStatus(status));
         mav.setViewName("AssetStatus_SA");
         return mav;
     }
+    @RequestMapping(path = "/assetStatusGenAdmin")
+    public ModelAndView assetStatusTabGA(String status) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets", assetsRepository.getAllAssetsByStatus(status));
+        mav.setViewName("AssetStatus_GA");
+        return mav;
+    }
 
     @RequestMapping(path = "/assetsExpiringSupAdmin")
-    public ModelAndView assetsExpiringTab() {
+    public ModelAndView assetsExpiringTabSA() {
         ModelAndView mav = new ModelAndView();
         mav.addObject("assets", assetsRepository.getAllAssets());
         mav.setViewName("AssetsExpiring_SA");
+        return mav;
+    }
+    @RequestMapping(path = "/assetsExpiringGenAdmin")
+    public ModelAndView assetsExpiringTabGA() {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("assets", assetsRepository.getAllAssets());
+        mav.setViewName("AssetsExpiring_GA");
         return mav;
     }
 

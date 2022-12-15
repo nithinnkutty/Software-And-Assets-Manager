@@ -5,6 +5,12 @@
 <head th:replace="fragments/Head::siteHead"></head>
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
+
+<a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out" />
+</form>
+
 <div class="row">
 <div class="col col-lg-8 offset-lg-2 text-center">
             <nav>
@@ -460,7 +466,7 @@
     }
 
 </script>
-<script th:replace="fragments/Script::script"></script>
+<script th:replace="fragments/Script_SA::script"></script>
 
 </body>
 

@@ -44,7 +44,7 @@
                 <button th:replace="fragments/navBar_Inactive::navBar_AssetSearch"></button>
                 <button th:replace="fragments/navBar_Inactive::navBar_AssetStatus"></button>
                 <button th:replace="fragments/navBar_Active::navBar_AssetsExpiring"></button>
-                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>
+<!--                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>-->
             </div>
         </nav>
 
@@ -69,12 +69,12 @@
                         </p>
                         <div class="table-responsive w-100 ">
 
-<!--                            If the table class attribute has table-light in it, it will affect Elliot's functionality(highlighting).-->
+                            <!--                            If the table class attribute has table-light in it, it will affect Elliot's functionality(highlighting).-->
                             <table
                                     class="table table-hover  table-striped  justify-content-between "  id="viewresult1">
                                 <thead>
                                 <tr>
-<!--                                    Use upper case IDs here-->
+                                    <!--                                    Use upper case IDs here-->
                                     <th scope="col">ID</th>
                                     <th scope="col">Asset Name</th>
                                     <th scope="col">Asset Type</th>
@@ -159,7 +159,7 @@
         document.getElementById("expiringCount").innerHTML = expiringCount.toString();
     });
 </script>
-<script th:replace="fragments/Script_SA::script">
+<script th:replace="fragments/Script_GA::script">
 
 </script>
 </body>

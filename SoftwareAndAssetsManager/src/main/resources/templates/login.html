@@ -231,17 +231,16 @@
 
     <!-- Sign In -->
     <div class="container__form container--login">
-        <form action="#" class="form" id="form2">
+        <form action="/login" class="form" id="form2" method="post">
             <h2 class="form__title">Sign In</h2>
             <label>
-                <input class="input" placeholder="Email" type="email"/>
+                <input class="input" name="username" placeholder="Username" type="email"/>
             </label>
             <label>
-                <input class="input" placeholder="Password" type="password"/>
+                <input class="input" name="password" placeholder="Password" type="password"/>
             </label>
-            <a class="link" href="#">Forgot yourpassword?</a>
             <br>
-            <button class="btn">Sign In</button>
+            <input class="btn" type="submit" value="Log In"/>
             <br>
             <footer><a href="https://twitter.com/BipsyncApp"><img alt=""
                                                                   src="https://www.svgrepo.com/show/47722/twitter-black-shape.svg"

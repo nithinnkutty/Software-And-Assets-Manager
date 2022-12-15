@@ -6,6 +6,11 @@
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
 
+<a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out" />
+</form>
+
 <div class="row">
     <div class="col col-lg-8 offset-lg-2 text-center">
         <nav>
@@ -14,7 +19,7 @@
                 <button th:replace="fragments/navBar_Inactive::navBar_AssetSearch"></button>
                 <button th:replace="fragments/navBar_Active::navBar_AssetStatus"></button>
                 <button th:replace="fragments/navBar_Inactive::navBar_AssetsExpiring"></button>
-                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>
+<!--                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>-->
             </div>
         </nav>
 
@@ -166,7 +171,7 @@
 </div>
 <!--<script src="https://dss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/js/lib/jquery-1-edb203c114.10.2.js"-->
 <!--        type="text/javascript"></script>-->
-<script th:replace="fragments/Script::script"></script>
+
 <script>
     // let getAllAssetsTab = function () {
     //     window.location = '/allAssetsSupAdmin';
@@ -213,6 +218,6 @@
         window.location = '/assetStatusSupAdmin?status=' + $("#sel").val();
     })
 </script>
-
+<script th:replace="fragments/Script_GA::script"></script>
 </body>
 </html>

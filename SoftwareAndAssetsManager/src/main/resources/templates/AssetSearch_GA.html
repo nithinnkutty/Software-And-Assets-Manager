@@ -6,6 +6,12 @@
 <body>
 <header th:replace="fragments/Header::siteHeader"></header>
 
+<a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out" />
+</form>
+
+
 <div class="container-fluid">
     <div class="col col-lg-8 offset-lg-2 text-center">
         <nav>
@@ -14,7 +20,7 @@
                 <button th:replace="fragments/navBar_Active::navBar_AssetSearch"></button>
                 <button th:replace="fragments/navBar_Inactive::navBar_AssetStatus"></button>
                 <button th:replace="fragments/navBar_Inactive::navBar_AssetsExpiring"></button>
-                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>
+<!--                <button th:replace="fragments/navBar_Inactive::navBar_ManageAdmin"></button>-->
             </div>
         </nav>
 
@@ -76,6 +82,11 @@
     </div>
 </div>
 
-<script th:replace="fragments/Script::script"></script>
+<a href="javascript: document.logoutForm.submit()" class="dropdown-toggle">Sign out</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
+
+<script th:replace="fragments/Script_GA::script"></script>
 </body>
 </html>
