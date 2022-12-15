@@ -64,5 +64,5 @@ SELECT * FROM assets WHERE employeeID = 1;
 
 SELECT assets.ID,assets.employeeID, assets.assetName, assets.assetType, assets.modelNumber, assets.version, assets.status, assets.dateOfPurchase,assets.dateOfExpiry,assets.assignedOn,employees.firstName,employees.surname,employees.department, employees.region FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID;
 SELECT assets.ID, assets.assetName, assets.assetType,employees.region, count(assets.employeeID) as assigned,count(assets.employeeID) as Unassigned FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID group by assets.assetName,assets.assetType;
-SELECT assets.assetName, assets.assetType, employees.region, count(assets.employeeID) as assigned, count(*)-count(assets.employeeID) as Unassigned, count(assets.assetType) as total FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID group by assets.assetName,assets.assetType,employees.region
+SELECT assets.assetName, assets.assetType, employees.region, count(assets.employeeID) as assigned, count(case when assets.employeeID = 0 then 1 end)+count(case when assets.employeeID is null then 1 end) as Unassigned, count(*) as total FROM assets LEFT OUTER JOIN employees ON assets.employeeID = employees.ID group by assets.assetName,assets.assetType,employees.region
 
