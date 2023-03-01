@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.tests;
+package com.Bipsync.SoftwareAndAssetsManager.Unittests;
 
 import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import org.junit.jupiter.api.BeforeAll;
