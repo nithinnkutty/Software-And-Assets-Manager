@@ -5,7 +5,18 @@ use assetsManager;
  DROP TABLE IF EXISTS employees;
 
 -- Database changing to one to many relationship.
--- Removed the assigned table 
+-- Removed the assigned table
+
+CREATE TABLE IF NOT EXISTS `employees` (
+                                           `ID`				INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                           `firstName`		TEXT NOT NULL,
+                                           `surname`		TEXT NOT NULL,
+                                           `username`  		TEXT,
+                                           `password`		TEXT,
+                                           `department`		TEXT,
+                                           `authority`		TEXT NOT NULL,
+                                           `region`  		TEXT NOT NULL
+);
 CREATE TABLE IF NOT EXISTS `assets` (
   `ID`				INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `employeeID`		INTEGER,
@@ -16,24 +27,14 @@ CREATE TABLE IF NOT EXISTS `assets` (
   `status`			TEXT NOT NULL,
   `dateOfPurchase`	DATE NOT NULL,
   `dateOfExpiry`	DATE,
-  `assignedOn`		DATE
+  `assignedOn`		DATE,
+  FOREIGN KEY(employeeID) REFERENCES employees(ID)
+
 );
 
 
-
-CREATE TABLE IF NOT EXISTS `employees` (
-  `ID`				INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `firstName`		TEXT NOT NULL,
-  `surname`			TEXT NOT NULL,
-  `username`  		TEXT,
-  `password`		TEXT,
-  `department`		TEXT,
-  `authority`		TEXT NOT NULL,
-  `region`  		TEXT NOT NULL
-);
-
-
--- Look at the quotes 
+-- Look at the quotes
+INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Nithin','Kutty','nithinnkutty', 'password','Engineering','Super', 'Cardiff');
 INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Ben','Shariff','ben@shariff', 'password','Engineering','Super', 'Cardiff');
 INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Heather','Perkins','heather@perkins', 'password', 'Engineering','Super','Cardiff');
 INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Wendy','Ivins','wendy@ivins','password',  'comsc', 'General','Cardiff');
