@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `assets` (
 
 
 -- Look at the quotes
-INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Nithin','Kutty','nithinnkutty', 'password','Engineering','Super', 'Cardiff');
+INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Nithin','Kutty','nithin@nkutty', 'password','Engineering','Super', 'Cardiff');
 INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Ben','Shariff','ben@shariff', 'password','Engineering','Super', 'Cardiff');
 INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Heather','Perkins','heather@perkins', 'password', 'Engineering','Super','Cardiff');
 INSERT INTO employees (firstName, surname,username, password, department, authority, region ) VALUES ('Wendy','Ivins','wendy@ivins','password',  'comsc', 'General','Cardiff');
