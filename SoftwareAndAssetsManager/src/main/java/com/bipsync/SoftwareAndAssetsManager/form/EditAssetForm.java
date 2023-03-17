@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.form;
+package com.bipsync.SoftwareAndAssetsManager.form;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

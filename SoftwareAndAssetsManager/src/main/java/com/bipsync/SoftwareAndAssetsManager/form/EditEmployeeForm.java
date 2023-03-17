@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.form;
+package com.bipsync.SoftwareAndAssetsManager.form;
 
 public class EditEmployeeForm {
 

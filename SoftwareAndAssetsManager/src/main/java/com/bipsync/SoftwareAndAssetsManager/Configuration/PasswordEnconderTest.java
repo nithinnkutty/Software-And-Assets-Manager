@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.Configuration;
+package com.bipsync.SoftwareAndAssetsManager.Configuration;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

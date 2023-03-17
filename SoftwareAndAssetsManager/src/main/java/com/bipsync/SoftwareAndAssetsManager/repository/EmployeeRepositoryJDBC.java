@@ -1,10 +1,10 @@
-package com.Bipsync.SoftwareAndAssetsManager.repository;
+package com.bipsync.SoftwareAndAssetsManager.repository;
 
-import com.Bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
-import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.model.EmployeeMapper;
-import com.Bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
+import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.model.EmployeeMapper;
+import com.bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
-package com.Bipsync.SoftwareAndAssetsManager.Unittests;
+package com.bipsync.SoftwareAndAssetsManager.Unittests;
 
-import com.Bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
+import com.bipsync.SoftwareAndAssetsManager.DTO.AssetDTO;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;

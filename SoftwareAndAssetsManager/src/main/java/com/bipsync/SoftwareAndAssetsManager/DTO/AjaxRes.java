@@ -1,4 +1,4 @@
-package com.Bipsync.SoftwareAndAssetsManager.DTO;
+package com.bipsync.SoftwareAndAssetsManager.DTO;
 
 import lombok.Data;
 

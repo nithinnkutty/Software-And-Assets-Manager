@@ -1,6 +1,6 @@
-package com.Bipsync.SoftwareAndAssetsManager.model;
+package com.bipsync.SoftwareAndAssetsManager.model;
 
-import com.Bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
+import com.bipsync.SoftwareAndAssetsManager.DTO.EmployeeDTO;
 import org.springframework.jdbc.core.RowMapper;
 
 

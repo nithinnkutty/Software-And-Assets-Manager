@@ -1,5 +1,5 @@
-package com.Bipsync.SoftwareAndAssetsManager.model;
-import com.Bipsync.SoftwareAndAssetsManager.DTO.AssignedAssetsDTO;
+package com.bipsync.SoftwareAndAssetsManager.model;
+import com.bipsync.SoftwareAndAssetsManager.DTO.AssignedAssetsDTO;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

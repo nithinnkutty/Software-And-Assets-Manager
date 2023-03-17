@@ -1,12 +1,11 @@
-package com.Bipsync.SoftwareAndAssetsManager.Unittests;
+package com.bipsync.SoftwareAndAssetsManager.Unittests;
 
-import com.Bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
+import com.bipsync.SoftwareAndAssetsManager.form.AddAssetForm;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 
-import static org.apache.catalina.util.ConcurrentDateFormat.GMT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**

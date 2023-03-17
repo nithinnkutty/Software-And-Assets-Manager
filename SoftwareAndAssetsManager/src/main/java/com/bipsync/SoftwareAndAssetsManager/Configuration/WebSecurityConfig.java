@@ -1,6 +1,5 @@
-package com.Bipsync.SoftwareAndAssetsManager.Configuration;
+package com.bipsync.SoftwareAndAssetsManager.Configuration;
 
-import com.Bipsync.SoftwareAndAssetsManager.Configuration.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

@@ -1,11 +1,11 @@
-package com.Bipsync.SoftwareAndAssetsManager.Controller;
+package com.bipsync.SoftwareAndAssetsManager.Controller;
 
 
 
-import com.Bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
-import com.Bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
+import com.bipsync.SoftwareAndAssetsManager.form.AddEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.form.DeleteEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.form.EditEmployeeForm;
+import com.bipsync.SoftwareAndAssetsManager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
